@@ -1,0 +1,916 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema Digital de Soluciones Educativas | CECYTE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        guinda: '#651C32',
+                        'guinda-light': '#80243e',
+                        ocre: '#B9975B',
+                        'cecyte-burgundy': '#651C32',
+                        'cecyte-guinda': '#651C32',
+                        'cecyte-guindaLight': '#80243e',
+                        'cecyte-gold': '#B9975B',
+                        'cecyte-oro': '#B9975B',
+                        'cecyte-oroLight': '#ceb484',
+                        'cecyte-grisBg': '#f4f6f8',
+                        'cecyte-lila': 'rgba(101, 28, 50, 0.08)',
+                        cecyte: {
+                            guinda: '#651C32',
+                            guindaLight: '#80243e',
+                            oro: '#B9975B',
+                            oroLight: '#ceb484',
+                            grisBg: '#f4f6f8',
+                            lila: 'rgba(101, 28, 50, 0.08)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .header-gradient {
+            background: linear-gradient(135deg, #651C32 0%, #80243e 100%);
+        }
+        .bg-gradient-cecyte-guinda {
+            background: linear-gradient(135deg, #651C32 0%, #80243e 100%);
+        }
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    </style>
+    <meta name="theme-color" content="#651C32">
+
+</head>
+
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 max-w-screen-2xl">
+            <div class="flex justify-between h-16">
+                <!-- Logo e Identidad -->
+                <div class="flex items-center gap-3">
+                    <div>
+                        <span class="font-montserrat font-extrabold text-sm sm:text-base tracking-wider text-cecyte-guinda block leading-none">PORTAL EDUCATIVO</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Escritorio -->
+                <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
+                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Principal
+                    </a>
+                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                    </a>
+                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
+                    </a>
+                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
+                    </a>
+                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
+                </div>
+
+                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MenÃº Desplegable MÃ³vil -->
+        <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
+            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            </a>
+            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+            </a>
+           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
+            </a>
+            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
+            </a>
+        </div>
+    </nav>
+
+    <!-- MENÃš DE NAVEGACIÃ“N SECUNDARIO (STICKY) -->
+    <nav class="sticky top-16 z-40 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14">
+                <div class="flex items-center space-x-3">
+                    <span class="font-montserrat font-extrabold text-sm tracking-wider text-cecyte-burgundy">Propuesta de Plataforma LMS para CECYTE</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-4 text-sm font-semibold">
+                    <a href="#objetivos" class="text-slate-600 hover:text-cecyte-burgundy transition-colors">Objetivos</a>
+                    <a href="#autenticacion" class="text-slate-600 hover:text-cecyte-burgundy transition-colors">Seguridad</a>
+                    <a href="#comparativa" class="text-slate-600 hover:text-cecyte-burgundy transition-colors">Comparativa</a>
+                    <a href="#desglose" class="text-slate-600 hover:text-cecyte-burgundy transition-colors">Presupuesto</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content con pt-16 para el nav fijo -->
+    <div class="pt-32">
+
+    <!-- HERO SECTION -->
+    <header class="header-gradient text-white py-16 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 rounded-full bg-cecyte-burgundy filter blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-white filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    <div class="inline-flex items-center space-x-2 bg-cecyte-burgundy backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase text-cecyte-gold">
+                        <i class="fa-solid fa-scale-balanced text-sm"></i>
+                        <span>AnÃ¡lisis de Arquitectura - Estrategia de Gasto MÃ­nimo Inteligente</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-montserrat font-extrabold leading-tight">
+                        Moodle LMS <span class="text-cecyte-gold">vs.</span> Desarrollo a la Medida
+                    </h1>
+                    <p class="text-slate-300 text-lg max-w-2xl leading-relaxed">
+                        EvaluaciÃ³n de arquitectura orientada a un <strong class="text-white">gasto sumamente limitado</strong>. La estrategia Ã³ptima para CECYTE nacional consiste en no programar desde cero, sino apalancar Moodle con micro-inversiones estratÃ©gicas.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#calculadora" class="bg-cecyte-gold text-white font-bold px-6 py-3 rounded-lg hover:bg-white hover:text-cecyte-burgundy transition-all flex items-center space-x-2 shadow-lg">
+                            <span>Simular DecisiÃ³n</span>
+                            <i class="fa-solid fa-calculator"></i>
+                        </a>
+                        <a href="#desglose" class="bg-white/10 border border-white/20 text-white font-semibold px-6 py-3 rounded-lg hover:bg-white/20 transition-all flex items-center space-x-2">
+                            <span>Plan de Gasto MÃ­nimo</span>
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-6 shadow-2xl">
+                    <h3 class="font-montserrat text-lg font-bold text-cecyte-gold mb-4 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-shield-halved mr-2"></i>Ejes de Eficiencia en Costos
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-cecyte-burgundy border border-cecyte-gold flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">1</span>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">AutenticaciÃ³n Integrada (Costo $0)</h4>
+                                <p class="text-xs text-slate-300">ConexiÃ³n directa a cuentas institucionales de Microsoft o Google ya contratadas.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-cecyte-burgundy border border-cecyte-gold flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">2</span>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">Roles Especializados con Moodle</h4>
+                                <p class="text-xs text-slate-300">Consulta, Curador y Editor mediante asignaciÃ³n de permisos nativos.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-cecyte-burgundy border border-cecyte-gold flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">3</span>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">Repositorio de PrÃ¡cticas (Baja InversiÃ³n)</h4>
+                                <p class="text-xs text-slate-300">Uso de extensiones econÃ³micas para evitar costosos desarrollos a la medida.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-cecyte-burgundy border border-cecyte-gold flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">4</span>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">Seguimiento Docente Escalable</h4>
+                                <p class="text-xs text-slate-300">Reportes agregados a nivel nacional usando bases de datos integradas.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- OBJETIVOS CLAVE -->
+    <section id="objetivos" class="py-16 px-4 bg-slate-50">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="text-xs font-bold uppercase tracking-widest text-cecyte-burgundy">AlineaciÃ³n EstratÃ©gica</span>
+            <h2 class="text-3xl font-montserrat font-extrabold text-slate-900 mt-2">Objetivos de la Plataforma Nacional CECYTE</h2>
+            <p class="text-slate-600 mt-4 max-w-2xl mx-auto">
+                CÃ³mo cumplir con solvencia tÃ©cnica con las metas del proyecto bajo un marco de austeridad y mÃ¡ximo retorno de inversiÃ³n.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+                <!-- Tarjeta 1 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 text-left relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-fingerprint text-xl"></i>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-slate-900 text-lg mb-2">AutenticaciÃ³n Segura</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Aprovechamiento de la infraestructura existente de Azure AD / Google Workspace de los docentes para implementar Single Sign-On (SSO) con gasto $0 de desarrollo.
+                    </p>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 text-left relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mb-4 group-hover:bg-teal-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-users-gear text-xl"></i>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-slate-900 text-lg mb-2">Roles RÃ­gidos de Acceso</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        DefiniciÃ³n estricta de Consulta (Lectores), Curador (Validadores acadÃ©micos) y Editor (Docentes creadores) mediante el potente gestor de roles nativo de Moodle.
+                    </p>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 text-left relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-folder-open text-xl"></i>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-slate-900 text-lg mb-2">Repositorio de PrÃ¡cticas</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        BÃºsqueda clasificada de planeaciones pedagÃ³gicas y materiales exitosos mediante bases de datos de Moodle o plugins premium de bajo costo (ej. Board o Database mejorado).
+                    </p>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                </div>
+
+                <!-- Tarjeta 4 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 text-left relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-lg bg-cecyte-gold/10 text-cecyte-gold flex items-center justify-center mb-4 group-hover:bg-cecyte-gold group-hover:text-cecyte-dark transition-all duration-300">
+                        <i class="fa-solid fa-chart-pie text-xl"></i>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-slate-900 text-lg mb-2">Seguimiento Nacional</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Monitoreo del desempeÃ±o y avance de cursos formativos de los docentes utilizando informes nativos exportables a herramientas gratuitas de BI.
+                    </p>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-cecyte-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTENTICACIÃ“N Y SEGURIDAD -->
+    <section id="autenticacion" class="py-16 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-cecyte-burgundy">AnÃ¡lisis de Costos de Seguridad</span>
+                <h2 class="text-3xl font-montserrat font-extrabold text-slate-900 mt-2">Seguridad en la AutenticaciÃ³n con Gasto Limitado</h2>
+                <p class="text-slate-600 mt-3 max-w-2xl mx-auto">CÃ³mo proteger los accesos nacionales de manera corporativa sin invertir en costosas consultorÃ­as de ciberseguridad.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Enfoque Moodle -->
+                <div class="border border-slate-200 rounded-2xl p-8 bg-slate-50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full uppercase">Eficiencia Financiera</span>
+                            <span class="text-lg font-bold font-montserrat text-slate-700">Moodle LMS + SSO</span>
+                        </div>
+                        <h4 class="text-xl font-montserrat font-bold text-slate-900 mb-4">AutenticaciÃ³n Profesional Preconstruida</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Moodle aprovecha tecnologÃ­as de seguridad de nivel bancario ya testeadas globalmente por millones de instituciones. Esto elimina el riesgo de vulnerabilidades de dÃ­a cero y el costo de auditorÃ­as de cÃ³digo (pentests).
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2 text-sm text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span><strong>OAuth 2.0 / SAML Gratuito:</strong> SincronizaciÃ³n instantÃ¡nea con el correo institucional existente del docente.</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span><strong>MFA sin Costo Extra:</strong> ActivaciÃ³n de doble factor de autenticaciÃ³n nativo (mediante apps gratuitas como Google Authenticator).</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span><strong>Parches de Ciberseguridad Gratis:</strong> Actualizaciones globales de Moodle constantes y comunitarias.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">Costo de ImplementaciÃ³n:</span>
+                            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">$0 MXN (Solo configuraciÃ³n)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enfoque Hecho a la Medida -->
+                <div class="border border-slate-200 rounded-2xl p-8 bg-slate-950 text-white flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold bg-rose-900/50 text-rose-400 border border-rose-500/20 px-3 py-1 rounded-full uppercase">Alto Costo Oculto</span>
+                            <span class="text-lg font-bold font-montserrat text-white">Desarrollo a la Medida</span>
+                        </div>
+                        <h4 class="text-xl font-montserrat font-bold text-white mb-4">La Trampa Financiera de la Seguridad "Propia"</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Desarrollar autenticaciÃ³n propia exige escribir cÃ³digo para encriptaciÃ³n, validaciÃ³n de sesiones, prevenciÃ³n de inyecciones SQL y ataques XSS. Un solo error expone la base de datos nacional del magisterio.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2 text-sm text-slate-300">
+                                <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
+                                <span>Requiere contratar ingenieros DevSecOps especializados con salarios muy elevados.</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-slate-300">
+                                <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
+                                <span>Costo recurrente de auditorÃ­as de seguridad y penetraciÃ³n de cÃ³digo externas (miles de pesos al aÃ±o).</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-slate-300">
+                                <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
+                                <span>La responsabilidad legal de la Ley de Datos Personales (LFPDPPP) recae totalmente sobre el cÃ³digo desarrollado internamente.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-800">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-400">Costo de ImplementaciÃ³n:</span>
+                            <span class="text-xs font-bold text-rose-400 bg-rose-950/50 border border-rose-500/30 px-2.5 py-1 rounded-full">Elevado (Riesgo Financiero Alto)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMULADOR INTERACTIVO DE ROLES -->
+    <section id="roles" class="py-16 px-4 bg-slate-200 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-cecyte-gold">Experiencia de Usuario</span>
+                <h2 class="text-3xl font-montserrat font-extrabold mt-2 text-slate-800">Simulador de Roles de Usuario</h2>
+                <p class="text-cecyte-guinda mt-3 max-w-2xl mx-auto">
+                    Seleccione un rol para validar cÃ³mo Moodle LMS (con configuraciones bÃ¡sicas de bajo costo) puede satisfacer perfectamente la experiencia de usuario requerida.
+                </p>
+            </div>
+
+            <!-- Botones de SelecciÃ³n de Roles -->
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <button onclick="setActiveRole('consulta')" id="btn-role-consulta" class="role-btn px-6 py-3 rounded-full font-bold border-2 transition-all flex items-center space-x-2 bg-cecyte-gold text-white border-cecyte-gold shadow-md">
+                    <i class="fa-solid fa-eye text-sm"></i>
+                    <span>Usuario de Consulta</span>
+                </button>
+                <button onclick="setActiveRole('curador')" id="btn-role-curador" class="role-btn px-6 py-3 rounded-full font-bold border-2 transition-all flex items-center space-x-2 bg-transparent text-slate-400 border-slate-700 hover:border-slate-500">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+                    <span>Usuario Curador</span>
+                </button>
+                <button onclick="setActiveRole('editor')" id="btn-role-editor" class="role-btn px-6 py-3 rounded-full font-bold border-2 transition-all flex items-center space-x-2 bg-transparent text-slate-400 border-slate-700 hover:border-slate-500">
+                    <i class="fa-solid fa-pen-nib text-sm"></i>
+                    <span>Usuario Editor</span>
+                </button>
+            </div>
+
+            <!-- Contenedor del Simulador -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Tarjeta Interactiva Moodle -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-slate-400 text-xs font-bold tracking-widest uppercase">Moodle LMS (Gasto MÃ­nimo)</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-cecyte-gold animate-pulse"></span>
+                        </div>
+                        <h4 class="text-xl font-montserrat font-extrabold text-white mb-2" id="moodle-role-title">Usuario de Consulta</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mb-6 border-l-2 border-amber-500 pl-3 italic">
+                            Se adapta el sistema nativo de permisos de Moodle. Un "Estudiante" actÃºa como consultor y se limita el acceso visual para evitar ruidos o confusiÃ³n en la navegaciÃ³n.
+                        </p>
+
+                        <div class="space-y-4">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-cecyte-gold">Flujo de Permisos Activos:</h5>
+                            <div class="space-y-2 text-sm" id="moodle-role-permissions">
+                                <!-- JS Injected Content -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-slate-700 flex justify-between items-center text-xs">
+                        <span class="text-slate-200">InversiÃ³n requerida:</span>
+                        <span class="font-bold text-cecyte-gold">$0 MXN (ConfiguraciÃ³n Nativa)</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Interactiva Hecho a la Medida -->
+                <div class="bg-cecyte-guinda rounded-2xl p-6 border border-teal-500/20 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-cecyte-gold text-xs font-bold tracking-widest uppercase">Desarrollo Propio a la Medida</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-cecyte-gold animate-pulse"></span>
+                        </div>
+                        <h4 class="text-xl font-montserrat font-extrabold text-white mb-2" id="custom-role-title">Usuario de Consulta</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed mb-6 border-l-2 border-teal-400 pl-3 italic">
+                            Requiere diseÃ±ar de cero las tablas de Base de Datos y las interfaces front-end para cada uno de los roles, encareciendo drÃ¡sticamente el costo de mano de obra informÃ¡tica.
+                        </p>
+
+                        <div class="space-y-4">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-cecyte-gold">Flujo de Permisos Activos:</h5>
+                            <div class="space-y-2 text-sm" id="custom-role-permissions">
+                                <!-- JS Injected Content -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-slate-900 flex justify-between items-center text-xs">
+                        <span class="text-slate-200">InversiÃ³n requerida:</span>
+                        <span class="font-bold text-cecyte-gold">+$120,000 MXN (Solo fase de roles)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulador Visual de Interfaz -->
+            <div class="mt-10 bg-slate-200 border border-cecyte-gold rounded-xl p-4 overflow-hidden shadow-2xl">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                    <div class="flex space-x-1.5">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    </div>
+                    <span class="text-xs font-mono text-cecyte-guinda tracking-wider">PREVISUALIZACIÃ“N DE INTERFAZ DE ROL</span>
+                    <span class="text-xs bg-gradient-cecyte-guinda px-2 py-0.5 rounded text-slate-200 font-mono" id="screen-badge">CONSULTA</span>
+                </div>
+                
+                <div class="bg-slate-200 p-4 rounded border border-cecyte-gold min-h-[160px] flex flex-col justify-between" id="role-screen-simulation">
+                    <!-- Dynamic screen representation -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÃ“N COMPARATIVA DETALLADA -->
+    <section id="comparativa" class="py-16 px-4 bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-cecyte-burgundy">AnÃ¡lisis Funcional</span>
+                <h2 class="text-3xl font-montserrat font-extrabold text-slate-900 mt-2">Moodle LMS vs. Hecho a la Medida</h2>
+                <p class="text-slate-600 mt-3 max-w-2xl mx-auto">EvaluaciÃ³n tÃ©cnica detallada orientada a objetivos nacionales de repositorio y seguimiento docente.</p>
+            </div>
+
+            <div class="overflow-x-auto border border-slate-200 rounded-xl shadow-sm bg-white">
+                <table class="w-full text-left border-collapse text-xs md:text-sm">
+                    <thead>
+                        <tr class="bg-guinda text-white">
+                            <th class="p-4 font-semibold uppercase bg-cecyte-burgundy border border-slate-200">Objetivo del Sistema</th>
+                            <th class="p-4 font-semibold uppercase bg-cecyte-burgundy border border-slate-200">SoluciÃ³n con Moodle LMS (Costo MÃ­nimo)</th>
+                            <th class="p-4 font-semibold uppercase bg-cecyte-burgundy border border-slate-200">SoluciÃ³n a la Medida (Alto Costo)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-bold border border-slate-200 text-slate-800">
+                                <i class="fa-solid fa-folder-tree mr-2 text-cecyte-gold"></i>Repositorio de PrÃ¡cticas
+                            </td>
+                            <td class="p-4 border border-slate-200 text-slate-600 text-justify">
+                                Uso de plugins de base de datos o foros nativos de Moodle. Permite adjuntar, etiquetar y buscar documentos por categorÃ­a nacional. 
+                                <br><span class="text-xs font-bold text-emerald-600">Costo: $0 MXN</span>
+                            </td>
+                            <td class="p-4 border border-slate-200 text-slate-600 text-justify bg-slate-50/50">
+                                ProgramaciÃ³n desde cero de un gestor de archivos en AWS S3 con motores de bÃºsqueda relacional avanzados. 
+                                <br><span class="text-xs font-bold text-rose-500">Costo: +$180,000 MXN</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-bold border border-slate-200 text-slate-800">
+                                <i class="fa-solid fa-user-clock mr-2 text-cecyte-gold"></i>Seguimiento Docente
+                            </td>
+                            <td class="p-4 border border-slate-200 text-slate-600 text-justify">
+                                Reportes de finalizaciÃ³n de actividad y bitÃ¡coras de ingreso integradas en Moodle. Exportable mediante Web Services a MS Power BI de forma gratuita.
+                                <br><span class="text-xs font-bold text-emerald-600">Costo: $0 MXN</span>
+                            </td>
+                            <td class="p-4 border border-slate-200 text-slate-600 text-justify bg-slate-50/50">
+                                Desarrollo de un panel (Dashboard) de analÃ­tica de datos a medida con consultas de base de datos complejas.
+                                <br><span class="text-xs font-bold text-rose-500">Costo: +$150,000 MXN</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-bold border border-slate-200 text-slate-800">
+                                <i class="fa-solid fa-cloud mr-2 text-cecyte-gold"></i>Infraestructura y Hosting
+                            </td>
+                            <td class="p-4 border border-slate-200 text-slate-600 text-justify">
+                                InstalaciÃ³n en servidores institucionales de CECYTE o nubes estÃ¡ndar de bajo costo optimizadas para PHP/MySQL.
+                                <br><span class="text-xs font-bold text-emerald-600">Costo: Bajo</span>
+                            </td>
+                            <td class="p-4 border border-slate-200 text-slate-600 text-justify bg-slate-50/50">
+                                Consumo de servidores de nube complejos (Kubernetes, microservicios, bases de datos no relacionales independientes).
+                                <br><span class="text-xs font-bold text-rose-500">Costo: Alto y recurrente</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVALUADOR Y CALCULADORA DINÃMICA -->
+    <section id="calculadora" class="py-16 px-4 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-cecyte-burgundy">Toma de Decisiones Directivas</span>
+                <h2 class="text-3xl font-montserrat font-extrabold text-slate-900 mt-2">Calculadora de PriorizaciÃ³n con Gasto Limitado</h2>
+                <p class="text-slate-600 mt-3 max-w-2xl mx-auto">
+                    Ajuste los controles para ponderar la importancia de las variables. Compruebe cÃ³mo, bajo una restricciÃ³n severa de presupuesto, Moodle sigue siendo la Ãºnica opciÃ³n racional.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Controles de Ajuste (Sliders) -->
+                <div class="lg:col-span-6 bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-6">
+                    <h3 class="font-montserrat text-lg font-bold text-slate-900 flex items-center space-x-2">
+                        <i class="fa-solid fa-sliders text-cecyte-burgundy"></i>
+                        <span>Ajustar Prioridades (1 al 5)</span>
+                    </h3>
+
+                    <div class="space-y-4">
+                        <!-- Criterio 1 -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <label for="weight-speed" class="text-slate-700">Rapidez de ImplementaciÃ³n</label>
+                                <span class="text-cecyte-burgundy font-bold" id="val-speed">5</span>
+                            </div>
+                            <input type="range" id="weight-speed" min="1" max="5" value="5" class="w-full accent-cecyte-burgundy cursor-pointer h-2 bg-slate-200 rounded-lg appearance-none" oninput="calculateScores()">
+                            <p class="text-[10px] text-slate-500">Â¿QuÃ© tan rÃ¡pido debe estar disponible el repositorio a nivel nacional?</p>
+                        </div>
+
+                        <!-- Criterio 2 -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <label for="weight-budget" class="text-slate-700">RestricciÃ³n Presupuestal (Menor Gasto Posible)</label>
+                                <span class="text-cecyte-burgundy font-bold" id="val-budget">5</span>
+                            </div>
+                            <input type="range" id="weight-budget" min="1" max="5" value="5" class="w-full accent-cecyte-burgundy cursor-pointer h-2 bg-slate-200 rounded-lg appearance-none" oninput="calculateScores()">
+                            <p class="text-[10px] text-slate-500">Â¿QuÃ© tan crÃ­tico es ahorrar dinero en el desarrollo de software?</p>
+                        </div>
+
+                        <!-- Criterio 3 -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <label for="weight-security" class="text-slate-700">Seguridad Inmediata (SSO y MFA)</label>
+                                <span class="text-cecyte-burgundy font-bold" id="val-security">4</span>
+                            </div>
+                            <input type="range" id="weight-security" min="1" max="5" value="4" class="w-full accent-cecyte-burgundy cursor-pointer h-2 bg-slate-200 rounded-lg appearance-none" oninput="calculateScores()">
+                            <p class="text-[10px] text-slate-500">Â¿QuÃ© tanta prioridad se le otorga a la validaciÃ³n robusta y segura?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultados del Evaluador -->
+                <div class="lg:col-span-6 bg-slate-900 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-montserrat text-lg font-bold text-cecyte-gold mb-4 border-b border-slate-800 pb-2">
+                            <i class="fa-solid fa-square-poll-vertical mr-2"></i>Ãndice de Viabilidad de ElecciÃ³n
+                        </h3>
+
+                        <div class="space-y-6">
+                            <!-- Progreso Moodle -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm font-semibold">
+                                    <span>Moodle LMS + Plugins</span>
+                                    <span class="text-emerald-400 font-mono font-bold" id="moodle-score">100%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                                    <div id="moodle-progress" class="bg-gradient-to-r from-emerald-500 to-emerald-400 h-full transition-all duration-300" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Progreso Hecho a la Medida -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm font-semibold">
+                                    <span>Desarrollo Propio a la Medida</span>
+                                    <span class="text-rose-400 font-mono font-bold" id="custom-score">15%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                                    <div id="custom-progress" class="bg-gradient-to-r from-rose-500 to-rose-400 h-full transition-all duration-300" style="width: 15%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dictamen DinÃ¡mico -->
+                    <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-400" id="calc-verdict">
+                        * Cargando veredicto...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESGLOSE DE PRESUPUESTO OPERATIVO MÃNIMO -->
+    <section id="desglose" class="py-16 px-4 bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-cecyte-burgundy">Transparencia Financiera</span>
+                <h2 class="text-3xl font-montserrat font-extrabold text-slate-900 mt-2">Plan de Gasto Operativo MÃ­nimo Estimado</h2>
+                <p class="text-slate-600 mt-3 max-w-2xl mx-auto">Propuesta de costos reales para implementar Moodle LMS frente al enorme desembolso que implicarÃ­a una codificaciÃ³n personalizada de nivel nacional.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Tarjeta Presupuesto Moodle -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-montserrat text-lg font-bold text-cecyte-burgundy mb-4 flex items-center gap-2 border-b pb-2">
+                            <i class="fa-solid fa-tags text-cecyte-gold"></i> Presupuesto Moodle LMS (InstalaciÃ³n & ConfiguraciÃ³n)
+                        </h3>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <div class="flex justify-between border-b pb-2">
+                                <span>1. ConexiÃ³n Azure AD / SSO (Nativo Moodle)</span>
+                                <strong class="text-emerald-600 font-mono">$0 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>2. Estructura de Roles (Consulta, Curador, Editor)</span>
+                                <strong class="text-emerald-600 font-mono">$0 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>3. Repositorio de Documentos (Plugin Premium)</span>
+                                <strong class="text-emerald-600 font-mono">~$5,000 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>4. ConfiguraciÃ³n de BitÃ¡coras de Seguimiento</span>
+                                <strong class="text-emerald-600 font-mono">$0 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>5. CapacitaciÃ³n a Administradores</span>
+                                <strong class="text-emerald-600 font-mono">~$10,000 MXN</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t flex justify-between items-center bg-slate-50 p-4 rounded-xl">
+                        <span class="text-sm font-bold text-slate-700">Total Proyectado:</span>
+                        <strong class="text-xl text-emerald-700 font-mono">~$15,000 MXN</strong>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Presupuesto Desarrollo propio -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-montserrat text-lg font-bold text-slate-800 mb-4 flex items-center gap-2 border-b pb-2">
+                            <i class="fa-solid fa-sack-xmark text-rose-500"></i> Presupuesto Desarrollo a la Medida (Desde cero)
+                        </h3>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <div class="flex justify-between border-b pb-2">
+                                <span>1. IngenierÃ­a de Seguridad & API de AutenticaciÃ³n</span>
+                                <strong class="text-rose-600 font-mono">~$80,000 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>2. ProgramaciÃ³n de Tablas, Permisos e Interfaz</span>
+                                <strong class="text-rose-600 font-mono">~$120,000 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>3. Desarrollo de Repositorio de Documentos</span>
+                                <strong class="text-rose-600 font-mono">~$180,000 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>4. DiseÃ±o de Backend de Reportes Nacionales</span>
+                                <strong class="text-rose-600 font-mono">~$150,000 MXN</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span>5. Licenciamiento Mensual de Nube e Infraestructura</span>
+                                <strong class="text-rose-600 font-mono">Recurrente Alto</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t flex justify-between items-center bg-rose-50 p-4 rounded-xl">
+                        <span class="text-sm font-bold text-slate-700">Total Proyectado MÃ­nimo:</span>
+                        <strong class="text-xl text-rose-700 font-mono">+$530,000 MXN</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DICTAMEN FINAL FIRMADO -->
+    <section id="recomendacion" class="py-16 px-4 bg-white">
+        <div class="max-w-4xl mx-auto border-2 border-cecyte-gold/30 rounded-2xl p-8 bg-slate-50 relative">
+            <div class="absolute -top-4 left-6 bg-cecyte-gold text-white font-bold text-xs uppercase px-4 py-1.5 rounded-full">
+                RecomendaciÃ³n Oficial del ComitÃ© TÃ©cnico
+            </div>
+            
+            <h3 class="text-xl font-montserrat font-extrabold text-cecyte-burgundy uppercase mb-4 tracking-wide"><i class="fa-solid fa-gavel"></i> Dictamen y JustificaciÃ³n de Arquitectura</h3>
+            <p class="text-slate-700 text-sm md:text-base text-justify leading-relaxed italic mb-6">
+                "En base a los objetivos estratÃ©gicos de la direcciÃ³n nacional del CECYTE y considerando que nos encontramos en una fase operativa de gasto sumamente limitado, dictamino que el desarrollo de un sistema a la medida desde cero representa una ineficiencia presupuestal severa y un riesgo de seguridad latente. La plataforma Moodle LMS provee, de manera inmediata y gratuita, el sistema de autenticaciÃ³n OAuth 2.0 y el control de roles requerido (Consulta, Curador y Editor). Con la simple integraciÃ³n de plugins de bajo costo y una configuraciÃ³n interna, podemos desplegar un repositorio y dar seguimiento a los cursos nacionales antes de que concluya el ciclo actual, protegiendo en su totalidad los flujos financieros de la instituciÃ³n."
+            </p>
+
+            <div class="border-t border-slate-200 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase block tracking-wider">Responsable del AnÃ¡lisis TÃ©cnico</span>
+                    <strong class="text-slate-800 text-base">Profesor Julian Sadak Vergara Cruz</strong>
+                    <p class="text-xs text-slate-500 font-medium">Academia Nacional de Componente Laboral â€¢ CECYTE Puebla</p>
+                </div>
+                <div class="text-slate-400 text-xs font-mono uppercase">
+                    ID Documento: CECYTE-COMP-7-2026
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+    <!-- Pie de PÃ¡gina Institucional -->
+    <footer class="bg-cecyte-guinda text-slate-400 border-t border-slate-800 text-xs py-6">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-slate-200">CECYTE Puebla â€” Desarrollos de Software 2026</p>
+                <p class="text-cecyte-oroLight mt-0.5">Todos los derechos de cÃ¡lculo y lÃ³gicas operativas reservados del autor.</p>
+            </div>
+            <div class="flex gap-4 text-cecyte-oroLight font-mono">
+                <span>Julian Sadak Vergara Cruz</span>
+                <span>|</span>
+                <span>Tailwind CSS</span>
+            </div>
+        </div>
+
+    <!-- SCRIPT DE CONTROL DINÃMICO -->
+    <script>
+        // InicializaciÃ³n
+        window.onload = function() {
+            setActiveRole('consulta');
+            calculateScores();
+        };
+
+        // CONTROL DE MOBILE MENU
+        function toggleMobileMenu() {
+            const dropdown = document.getElementById('mobile-dropdown');
+            if (dropdown.classList.contains('hidden')) {
+                dropdown.classList.remove('hidden');
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        }
+
+        // Cerrar menÃº al hacer click en el botÃ³n
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // CONTROL DEL SIMULADOR DE ROLES
+        const rolesData = {
+            consulta: {
+                moodleTitle: "Usuario de Consulta (Nativo 'Estudiante')",
+                moodlePerms: [
+                    "â€¢ Acceso de solo lectura a todos los documentos del repositorio nacional.",
+                    "â€¢ Descarga libre de plantillas en PDF, manuales de prÃ¡cticas y planeaciones.",
+                    "â€¢ VisualizaciÃ³n de bitÃ¡coras de avance y participaciÃ³n en cursos propios.",
+                    "â€¢ Barra de bÃºsqueda simplificada y sin permisos de ediciÃ³n accidental."
+                ],
+                customTitle: "Usuario de Consulta (DiseÃ±o a Medida)",
+                customPerms: [
+                    "â€¢ ProgramaciÃ³n manual de permisos condicionales 'Read-Only' en base de datos.",
+                    "â€¢ DiseÃ±o de interfaces de usuario sencillas con rutas restringidas en el frontend.",
+                    "â€¢ CodificaciÃ³n manual de rutas de API para evitar fugas de informaciÃ³n o escrituras."
+                ],
+                simulation: `
+                    <div class="text-cecyte-gold font-bold text-xs uppercase tracking-wider mb-2">Vista del Consultor Nacional:</div>
+                    <div class="p-3 bg-slate-200 rounded border border-slate-800">
+                        <p class="text-cecyte-guinda text-xs">ðŸ” <strong class="text-cecyte-guinda">Buscador de mejores prÃ¡cticas:</strong> Ingresa carrera tÃ©cnica o mÃ³dulo de interÃ©s...</p>
+                        <div class="mt-2 text-[10px] text-slate-500">Resultados encontrados: 142 documentos PDF.</div>
+                    </div>
+                `,
+                badge: "CONSULTA"
+            },
+            curador: {
+                moodleTitle: "Usuario Curador (Nativo 'Profesor sin Permiso de EdiciÃ³n')",
+                moodlePerms: [
+                    "â€¢ Capacidad de validar, revisar y aprobar las prÃ¡cticas que los docentes suben.",
+                    "â€¢ CalificaciÃ³n, asignaciÃ³n de rÃºbricas institucionales y dictamen formativo.",
+                    "â€¢ No puede modificar la estructura del curso ni alterar la base documental central.",
+                    "â€¢ Permiso de generaciÃ³n de reportes especÃ­ficos de auditorÃ­a acadÃ©mica."
+                ],
+                customTitle: "Usuario Curador (DiseÃ±o a Medida)",
+                customPerms: [
+                    "â€¢ CreaciÃ³n manual de un mÃ³dulo de 'Workflow de AprobaciÃ³n' en la base de datos propia.",
+                    "â€¢ Desarrollo de interfaces para la revisiÃ³n, comentarios y rechazo de expedientes.",
+                    "â€¢ ProgramaciÃ³n del disparador de correos de notificaciÃ³n automÃ¡tica ante veredicto."
+                ],
+                simulation: `
+                    <div class="text-cecyte-gold font-bold text-xs uppercase tracking-wider mb-2">Workflow del Curador / Validador:</div>
+                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                        <div class="p-2 bg-slate-200 rounded border border-slate-800">
+                            <span class="text-cecyte-guinda font-bold">Documento P7_Logistica.pdf</span><br>
+                            <span class="text-cecyte-guinda">Por revisar del docente</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <button class="bg-emerald-600 text-white px-2 py-1 rounded text-[9px] font-bold">Aprobar</button>
+                            <button class="bg-red-600 text-white px-2 py-1 rounded text-[9px] font-bold">Rechazar</button>
+                        </div>
+                    </div>
+                `,
+                badge: "CURADOR"
+            },
+            editor: {
+                moodleTitle: "Usuario Editor (Nativo 'Profesor')",
+                moodlePerms: [
+                    "â€¢ Creador y gestor directo del contenido de los cursos asignados.",
+                    "â€¢ Sube de forma directa mejores prÃ¡cticas, manuales de laboratorio y guÃ­as en PDF.",
+                    "â€¢ DiseÃ±a actividades, evaluaciones y ajusta las rÃºbricas interactivas.",
+                    "â€¢ Consulta las bitÃ¡coras completas de seguimiento de todos sus estudiantes."
+                ],
+                customTitle: "Usuario Editor (DiseÃ±o a Medida)",
+                customPerms: [
+                    "â€¢ ConstrucciÃ³n de un panel de carga de archivos completo con validaciÃ³n MIME (extensiones).",
+                    "â€¢ ProgramaciÃ³n de formularios dinÃ¡micos para ediciÃ³n, actualizaciÃ³n y borrado de temas (CRUD).",
+                    "â€¢ ConexiÃ³n manual a base de datos de auditorÃ­a de modificaciones del magisterio."
+                ],
+                simulation: `
+                    <div class="text-cecyte-gold font-bold text-xs uppercase tracking-wider mb-2">Consola de Carga del Editor / Docente:</div>
+                    <div class="p-3 bg-slate-200 rounded border-2 border-dashed border-cecyte-gold/50 text-center">
+                        <i class="fa-solid fa-cloud-arrow-up text-cecyte-gold text-base mb-1"></i>
+                        <p class="text-[10px] text-cecyte-guinda">Arrastre aquÃ­ la planeaciÃ³n de la prÃ¡ctica en formato PDF...</p>
+                    </div>
+                `,
+                badge: "EDITOR"
+            }
+        };
+
+        function setActiveRole(roleId) {
+            // Limpiar estilos activos de todos los botones de roles
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.className = "role-btn px-6 py-3 rounded-full font-bold border-2 transition-all flex items-center space-x-2 bg-transparent text-slate-400 border-slate-700 hover:border-slate-500";
+            });
+
+            // Aplicar estilo activo al botÃ³n seleccionado
+            const activeBtn = document.getElementById('btn-role-' + roleId);
+            activeBtn.className = "role-btn px-6 py-3 rounded-full font-bold border-2 transition-all flex items-center space-x-2 bg-cecyte-gold text-white border-cecyte-gold shadow-md";
+
+            // Actualizar textos e informaciÃ³n
+            const data = rolesData[roleId];
+            document.getElementById('moodle-role-title').innerText = data.moodleTitle;
+            document.getElementById('custom-role-title').innerText = data.customTitle;
+            document.getElementById('screen-badge').innerText = data.badge;
+
+            // Inyectar permisos de Moodle
+            const moodleContainer = document.getElementById('moodle-role-permissions');
+            moodleContainer.innerHTML = data.moodlePerms.map(p => `<p class="text-slate-200 text-xs">${p}</p>`).join('');
+
+            // Inyectar permisos Hechos a la Medida
+            const customContainer = document.getElementById('custom-role-permissions');
+            customContainer.innerHTML = data.customPerms.map(p => `<p class="text-slate-200 text-xs">${p}</p>`).join('');
+
+            // Inyectar simulaciÃ³n de pantalla
+            document.getElementById('role-screen-simulation').innerHTML = data.simulation;
+        }
+
+        // CALCULADORA DE VIABILIDAD DIRECTIVA
+        function calculateScores() {
+            const speed = parseInt(document.getElementById('weight-speed').value);
+            const budget = parseInt(document.getElementById('weight-budget').value);
+            const security = parseInt(document.getElementById('weight-security').value);
+
+            // Sincronizar etiquetas numÃ©ricas de sliders
+            document.getElementById('val-speed').innerText = speed;
+            document.getElementById('val-budget').innerText = budget;
+            document.getElementById('val-security').innerText = security;
+
+            // FÃ³rmulas matemÃ¡ticas de simulaciÃ³n ponderadas
+            // Cuando la restricciÃ³n presupuestal es alta (gasto limitado), el desarrollo propio baja en viabilidad.
+            // Cuando se busca rapidez, Moodle domina de forma absoluta.
+            const totalWeights = speed + budget + security;
+            
+            // Moodle se mantiene muy alto siempre porque cumple nativamente
+            const moodlePercent = Math.round(((speed * 5 + budget * 5 + security * 4) / (totalWeights * 5)) * 100);
+            
+            // Desarrollo a la medida se penaliza si hay prisa o si el presupuesto es limitado (alto peso del budget)
+            const customFactor = (speed * 1.5 + (6 - budget) * 4.5 + security * 3.5);
+            let customPercent = Math.round((customFactor / (totalWeights * 5)) * 100);
+            
+            if (customPercent > 90) customPercent = 90;
+            if (customPercent < 10) customPercent = 10;
+
+            // Actualizar UI
+            document.getElementById('moodle-score').innerText = moodlePercent + '%';
+            document.getElementById('moodle-progress').style.width = moodlePercent + '%';
+
+            document.getElementById('custom-score').innerText = customPercent + '%';
+            document.getElementById('custom-progress').style.width = customPercent + '%';
+
+            // Dictamen automatizado dinÃ¡mico
+            const verdict = document.getElementById('calc-verdict');
+            if (budget >= 4) {
+                verdict.innerHTML = `
+                    <span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Dictamen Directivo del Simulador:</span>
+                    <p class="mt-1">Dada la alta restricciÃ³n presupuestal y la prisa de despliegue nacional, desarrollar software a la medida representa un riesgo inaceptable de desfase. Moodle LMS se posiciona con un <strong>${moodlePercent}% de viabilidad</strong> como la Ãºnica alternativa racional.</p>
+                `;
+            } else if (speed >= 4) {
+                verdict.innerHTML = `
+                    <span class="text-amber-400 font-bold"><i class="fa-solid fa-circle-info"></i> Dictamen Directivo del Simulador:</span>
+                    <p class="mt-1">La rapidez en el lanzamiento del repositorio del CECYTE es prioritaria. Moodle LMS cuenta con el cÃ³digo ya testeado y listo para configurar de forma inmediata.</p>
+                `;
+            } else {
+                verdict.innerHTML = `
+                    <span class="text-slate-400 font-bold"><i class="fa-solid fa-circle-info"></i> Dictamen Directivo del Simulador:</span>
+                    <p class="mt-1">Equilibrio de prioridades. Sin embargo, el costo total de propiedad (TCO) y el soporte recurrente a largo plazo sugieren que Moodle LMS previene la asfixia operativa del plantel.</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
+

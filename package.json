@@ -1,0 +1,50 @@
+{
+  "name": "cecyte-portal",
+  "version": "1.0.0",
+  "description": "Portal de Soluciones e Indicadores CECYTE",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "mx.cecyte.portal",
+    "productName": "CECYTE Portal Educativo",
+    "copyright": "CECYTE",
+    "directories": {
+      "output": "dist-installer"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "img/logo.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerLanguages": [
+        "es_MX"
+      ],
+      "language": "3082"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "!dist-exe/**/*",
+      "!dist-installer/**/*",
+      "!dist-portable/**/*",
+      "!*.log"
+    ]
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.3",
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  }
+}

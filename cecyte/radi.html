@@ -1,0 +1,987 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema Digital de Soluciones Educativas | CECYTE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        // Colores directos para solucionar las clases sueltas y de JS
+                        guinda: '#651C32',
+                        'guinda-light': '#80243e',
+                        ocre: '#B9975B',
+                        // Estructura original para las clases bg-cecyte-*
+                        cecyte: {
+                            guinda: '#651C32',
+                            guindaLight: '#80243e',
+                            oro: '#B9975B',
+                            oroLight: '#ceb484',
+                            grisBg: '#f4f6f8',
+                            lila: 'rgba(101, 28, 50, 0.08)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <meta name="theme-color" content="#651C32">
+
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
+
+    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 max-w-screen-2xl">
+            <div class="flex justify-between h-16">
+                <!-- Logo e Identidad -->
+                <div class="flex items-center gap-3">
+                    <div>
+                        <span class="font-montserrat font-extrabold text-sm sm:text-base tracking-wider text-cecyte-guinda block leading-none">PORTAL EDUCATIVO</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Escritorio -->
+                <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
+                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Principal
+                    </a>
+                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                    </a>
+                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
+                    </a>
+                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
+                    </a>
+                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
+                </div>
+
+                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MenÃº Desplegable MÃ³vil -->
+        <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
+            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            </a>
+            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+            </a>
+           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
+            </a>
+            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto my-8 p-4 md:p-6 bg-white border-2 border-slate-200 rounded-xl shadow-lg">
+        
+        <!-- Header Institucional -->
+        <header class="bg-cecyte-guinda text-white p-8 rounded-t-xl border-b-4 border-cecyte-oro relative">
+
+            <div class="text-sm font-semibold uppercase tracking-widest text-amber-200 mb-2">
+                Colegio de Estudios CientÃ­ficos y TecnolÃ³gicos del Estado de Puebla
+            </div>
+            <h1 class="text-2xl md:text-4xl font-extrabold uppercase tracking-tight">Ficha Operativa RADI 2026</h1>
+            <p class="text-md md:text-lg mt-2 text-amber-100 font-medium">AplicaciÃ³n Nacional de la Encuesta RADI y DiagnÃ³stico de InnovaciÃ³n Educativa</p>
+        </header>
+
+        <!-- PresentaciÃ³n del Coordinador & Links RÃ¡pidos -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-slate-100 border-b border-slate-200">
+            <!-- Coordinador -->
+                <div class="flex items-center gap-4 bg-white p-4 rounded-lg border border-slate-200 shadow-sm col-span-2">
+                    <div class="flex-shrink-0">
+                    <img src="../img/julianprofile.png" alt="Mtro. Julian Sadak Vergara Cruz" class="w-20 h-20 rounded-full object-cover border-2 border-guinda-light"/>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-slate-400 font-bold">Responsable de la Actividad</h4>
+                    <span class="text-lg font-bold text-guinda">Mtro. Julian Sadak Vergara Cruz</span>
+                    <p class="text-xs text-slate-500 font-medium">Carrera: LogÃ­stica | CECYTE Puebla (Huejotzingo) | 
+                    <a href="mailto:jvergarac@cecytepuebla.edu.mx" class="hover:underline text-ocre">jvergarac@cecytepuebla.edu.mx</a></p>
+                </div>
+        </div>
+
+            <!-- Accesos RÃ¡pidos -->
+            <div class="flex flex-col gap-2 justify-center">
+                <a href="https://forms.gle/sCbo7ni5NxFTKSPp8" target="_blank" class="bg-ocre hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg text-center text-sm shadow transition duration-200 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-invoice"></i> Responder Encuesta RADI
+                </a>
+                <a href="https://drive.google.com/drive/folders/1gogRjW8l-ookVcFqZATxYOGS66UzK-WQ?usp=sharing" target="_blank" class="bg-slate-700 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded-lg text-center text-sm shadow transition duration-200 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-google-drive"></i> Carpeta de Evidencias
+                </a>
+            </div>
+        </div>
+
+        <!-- MenÃº de NavegaciÃ³n de PestaÃ±as Fijo (Sticky) -->
+        <div class="flex flex-wrap border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
+            <button onclick="switchTab('ficha-general')" id="tab-ficha-general" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider tab-active border-b-2">
+                <i class="fa-solid fa-circle-info mr-2"></i>Ficha y Agenda
+            </button>
+            <button onclick="switchTab('modulos')" id="tab-modulos" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2">
+                <i class="fa-solid fa-cubes mr-2"></i>4 MÃ³dulos RADI
+            </button>
+            <button onclick="switchTab('productos')" id="tab-productos" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2">
+                <i class="fa-solid fa-trophy mr-2"></i>Productos Esperados
+            </button>
+            <button onclick="switchTab('etapas')" id="tab-etapas" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2">
+                <i class="fa-solid fa-route mr-2"></i>Etapas del Proyecto
+            </button>
+            <button onclick="switchTab('simulador')" id="tab-simulador" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2 text-ocre font-bold">
+                <i class="fa-solid fa-chart-line mr-2"></i>Simulador
+            </button>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 1: FICHA GENERAL Y AGENDA -->
+        <div id="content-ficha-general" class="tab-content p-6">
+            <!-- Grid de Datos Clave -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <div class="text-guinda font-bold text-xs uppercase tracking-wider mb-1"><i class="fa-solid fa-calendar-days mr-1"></i> Periodo de AplicaciÃ³n</div>
+                    <p class="text-sm font-semibold">01 al 19 de Junio de 2026</p>
+                    <p class="text-xs text-slate-500 mt-1">Abierto las 24 horas del dÃ­a.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <div class="text-guinda font-bold text-xs uppercase tracking-wider mb-1"><i class="fa-solid fa-laptop-file mr-1"></i> Modalidad</div>
+                    <p class="text-sm font-semibold">En LÃ­nea</p>
+                    <p class="text-xs text-slate-500 mt-1">Plataforma Google Forms.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <div class="text-guinda font-bold text-xs uppercase tracking-wider mb-1"><i class="fa-solid fa-users mr-1"></i> Convocados</div>
+                    <p class="text-sm font-semibold">Todos los docentes de CECyTE</p>
+                    <p class="text-xs text-slate-500 mt-1">Nivel nacional, todos los planteles.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <div class="text-guinda font-bold text-xs uppercase tracking-wider mb-1"><i class="fa-solid fa-lightbulb mr-1"></i> Actividad Plan de AcciÃ³n</div>
+                    <p class="text-sm font-semibold">Actividad No. 3: InnovaciÃ³n Educativa</p>
+                    <p class="text-xs text-slate-500 mt-1">Mediante herramientas digitales.</p>
+                </div>
+            </div>
+
+    <!-- CONTENIDO RESTANTE DE LA PESTAÃ‘A (AquÃ­ empieza el scroll real) -->
+    <div id="content-ficha-general" class="tab-content px-6 pb-6">
+        <!-- Tu agenda, tablas o demÃ¡s informaciÃ³n van aquÃ­ abajo -->
+    </div>
+
+            <!-- Objetivo General -->
+            <div class="bg-ocre-light border-l-4 border-ocre p-5 rounded-r-lg mb-8">
+                <h3 class="text-guinda font-bold uppercase tracking-wider text-sm mb-2"><i class="fa-solid fa-bullseye mr-2"></i>Objetivo General</h3>
+                <p class="text-slate-700 text-justify text-sm md:text-base leading-relaxed">
+                    Comprender la realidad actual de las aulas en nuestro paÃ­s frente a dos retos fundamentales: la modernizaciÃ³n de la evaluaciÃ³n y la atenciÃ³n a la diversidad estudiantil mediante la aplicaciÃ³n de la encuesta nacional RADI, orientando el desarrollo docente hacia la inclusiÃ³n y la transformaciÃ³n digital acorde con los sectores productivos.
+                </p>
+            </div>
+
+            <!-- Agenda de la SesiÃ³n de Trabajo (Momentos) -->
+            <h2 class="text-xl font-bold text-guinda uppercase tracking-wide mb-6 pb-2 border-b border-slate-200">
+                <i class="fa-solid fa-clock mr-2"></i>Cronograma y Agenda de la SesiÃ³n
+            </h2>
+
+            <div class="space-y-6 relative before:absolute before:inset-y-0 before:left-4 before:w-1 before:bg-slate-200">
+                
+                <!-- Momento 1: Apertura -->
+                <div class="relative pl-10">
+                    <div class="absolute left-1 top-1 bg-guinda text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs z-10">
+                        1
+                    </div>
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <div class="flex justify-between items-center flex-wrap gap-2 mb-3">
+                            <span class="bg-guinda text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">Momento 1: Apertura</span>
+                            <span class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-user-check"></i> Mtro. Julian Sadak Vergara Cruz</span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-md mb-2">Encuadre, Acuerdos Previos y Objetivos</h4>
+                        <p class="text-sm text-slate-600 text-justify mb-3">
+                            Bienvenida a los docentes para explicarles el peso estratÃ©gico del instrumento RADI en la planeaciÃ³n de la ConstelaciÃ³n Docente. Se revisarÃ¡ la necesidad de recolectar datos sobre innovaciÃ³n y la relaciÃ³n directa con los requerimientos normativos del subsistema, presentando los 4 mÃ³dulos enfocados en la equidad (IFID) y la empleabilidad regional.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Momento 2: Desarrollo -->
+                <div class="relative pl-10">
+                    <div class="absolute left-1 top-1 bg-ocre text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs z-10">
+                        2
+                    </div>
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <div class="flex justify-between items-center flex-wrap gap-2 mb-3">
+                            <span class="bg-ocre text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">Momento 2: Desarrollo</span>
+                            <span class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-users-viewfinder"></i> Ponentes y Docentes convocados</span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-md mb-4">Secuencia Operativa de EjecuciÃ³n</h4>
+                        
+                        <!-- Lista de subactividades -->
+                        <div class="space-y-3">
+                            <div class="flex gap-4 p-3 bg-slate-50 rounded border border-slate-200 text-sm">
+                                <div class="font-bold text-guinda min-w-[70px]">15 Min.</div>
+                                <div>
+                                    <strong class="text-slate-800">ExposiciÃ³n de Contexto</strong> (Mtro. Julian Sadak Vergara Cruz)<br>
+                                    AnÃ¡lisis del propÃ³sito de la encuesta RADI y su impacto en el Mapa de Vocaciones Productivas.
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-3 bg-slate-50 rounded border border-slate-200 text-sm">
+                                <div class="font-bold text-guinda min-w-[70px]">45 Min.</div>
+                                <div>
+                                    <strong class="text-slate-800">Llenado de Encuesta en LÃ­nea</strong> (Docentes CECyTE)<br>
+                                    Acceso directo al formulario nacional para completar de forma Ã­ntegra los 4 mÃ³dulos estructurados.
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-3 bg-slate-50 rounded border border-slate-200 text-sm">
+                                <div class="font-bold text-guinda min-w-[70px]">15 Min.</div>
+                                <div>
+                                    <strong class="text-slate-800">Soporte TÃ©cnico y RetroalimentaciÃ³n</strong> (CoordinaciÃ³n)<br>
+                                    AcompaÃ±amiento, resoluciÃ³n de dudas especÃ­ficas o fallas de navegaciÃ³n para garantizar la captura.
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-3 bg-slate-50 rounded border border-slate-200 text-sm">
+                                <div class="font-bold text-guinda min-w-[70px]">Por definir</div>
+                                <div>
+                                    <strong class="text-slate-800">Taller de Cierre</strong> (Facilitadores)<br>
+                                    AnÃ¡lisis preliminar de herramientas de evaluaciÃ³n (Matriz TDEDE) y diagnÃ³stico de brechas (Ãndice IFID).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Momento 3: Acuerdos y Cierre -->
+                <div class="relative pl-10">
+                    <div class="absolute left-1 top-1 bg-guinda text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs z-10">
+                        3
+                    </div>
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <div class="flex justify-between items-center flex-wrap gap-2 mb-3">
+                            <span class="bg-guinda text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">Momento 3: Cierre</span>
+                            <span class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-flag"></i> Compromisos Institucionales</span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-md mb-2">RetroalimentaciÃ³n, Acuerdos y Seguimiento Semanal</h4>
+                        <p class="text-sm text-slate-600 text-justify mb-3">
+                            SesiÃ³n abierta de preguntas para consolidar la experiencia del llenado del instrumento. Se formaliza el <strong>compromiso del 100% de la muestra de docentes</strong> asignados antes del cierre de plataforma del 19 de junio de 2026. Los coordinadores realizarÃ¡n un monitoreo periÃ³dico semanal para iniciar el cruce de datos para el reporte final.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 2: 4 MÃ“DULOS DE LA ENCUESTA -->
+        <div id="content-modulos" class="tab-content p-6 hidden">
+            <h2 class="text-xl font-bold text-guinda uppercase tracking-wide mb-2"><i class="fa-solid fa-sliders mr-2"></i>Estructura TÃ©cnica del Instrumento</h2>
+            <p class="text-sm text-slate-500 mb-8">Haga clic en cada mÃ³dulo para profundizar en los objetivos especÃ­ficos del estudio.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- MÃ³dulo 1 -->
+                <div class="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-md transition duration-200">
+                    <div class="bg-guinda text-white px-4 py-3 font-bold text-sm uppercase flex justify-between items-center">
+                        <span>MÃ³dulo 1: Variables DemogrÃ¡ficas</span>
+                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded text-amber-200">Filtro de Control</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-3xl mb-3 text-ocre"><i class="fa-solid fa-users-gear"></i></div>
+                        <h4 class="font-bold text-slate-800 text-md mb-2">CaracterizaciÃ³n de la PoblaciÃ³n</h4>
+                        <p class="text-sm text-slate-600 text-justify mb-4">
+                            Identifica las variables demogrÃ¡ficas clave como el rango de edad de los docentes, gÃ©nero, ubicaciÃ³n geogrÃ¡fica de los planteles y aÃ±os de servicio dentro del subsistema CECYTE.
+                        </p>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100 text-xs font-medium text-slate-500">
+                            <strong>Meta del MÃ³dulo:</strong> Sentar las bases estadÃ­sticas para cruzar e identificar si existen brechas de infraestructura o de capacitaciÃ³n segÃºn el nivel geogrÃ¡fico del plantel.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MÃ³dulo 2 -->
+                <div class="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-md transition duration-200">
+                    <div class="bg-guinda text-white px-4 py-3 font-bold text-sm uppercase flex justify-between items-center">
+                        <span>MÃ³dulo 2: Herramientas de EvaluaciÃ³n</span>
+                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded text-amber-200">Matriz TDEDE</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-3xl mb-3 text-ocre"><i class="fa-solid fa-list-check"></i></div>
+                        <h4 class="font-bold text-slate-800 text-md mb-2">CuantificaciÃ³n e InnovaciÃ³n de Procesos</h4>
+                        <p class="text-sm text-slate-600 text-justify mb-4">
+                            Cuantifica el uso y efectividad de las herramientas tecnolÃ³gicas empleadas en los exÃ¡menes y evaluaciones de los mÃ³dulos de formaciÃ³n. Mide quÃ© tan diversificada es la evaluaciÃ³n ordinaria.
+                        </p>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100 text-xs font-medium text-slate-500">
+                            <strong>Meta del MÃ³dulo:</strong> Evaluar si las evaluaciones de los docentes priorizan Ãºnicamente exÃ¡menes estÃ¡ticos de opciÃ³n mÃºltiple o si usan portafolios digitales y proyectos colaborativos.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MÃ³dulo 3 -->
+                <div class="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-md transition duration-200">
+                    <div class="bg-guinda text-white px-4 py-3 font-bold text-sm uppercase flex justify-between items-center">
+                        <span>MÃ³dulo 3: Equidad y Acceso</span>
+                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded text-amber-200">Ãndice IFID</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-3xl mb-3 text-ocre"><i class="fa-solid fa-universal-access"></i></div>
+                        <h4 class="font-bold text-slate-800 text-md mb-2">InclusiÃ³n y DemocratizaciÃ³n de la TecnologÃ­a</h4>
+                        <p class="text-sm text-slate-600 text-justify mb-4">
+                            Mide el impacto directo de la tecnologÃ­a en la equidad educativa, la disponibilidad de herramientas de accesibilidad para la diversidad estudiantil (lectores, contrastes, asistentes digitales) y la asimilaciÃ³n igualitaria.
+                        </p>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100 text-xs font-medium text-slate-500">
+                            <strong>Meta del MÃ³dulo:</strong> Determinar el Ã­ndice IFID para formular una propuesta de inversiÃ³n real ante la direcciÃ³n para la obtenciÃ³n de software adaptativo de equidad.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MÃ³dulo 4 -->
+                <div class="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-md transition duration-200">
+                    <div class="bg-guinda text-white px-4 py-3 font-bold text-sm uppercase flex justify-between items-center">
+                        <span>MÃ³dulo 4: Habilidades vs Sector</span>
+                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded text-amber-200">Empleabilidad</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-3xl mb-3 text-ocre"><i class="fa-solid fa-chart-line"></i></div>
+                        <h4 class="font-bold text-slate-800 text-md mb-2">AlineaciÃ³n Curricular Productiva</h4>
+                        <p class="text-sm text-slate-600 text-justify mb-4">
+                            Analiza la correlaciÃ³n existente entre las competencias tecnolÃ³gicas adquiridas por el egresado de CECyTE y las demandas del sector industrial local y de servicios de la regiÃ³n analizada.
+                        </p>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100 text-xs font-medium text-slate-500">
+                            <strong>Meta del MÃ³dulo:</strong> Elaborar el Mapa de Vocaciones Productivas e identificar la brecha existente entre las clases tÃ©cnicas actuales y el mercado logÃ­stico-digital de la industria local.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 3: PRODUCTOS ESPERADOS (ENTREGABLES) -->
+        <div id="content-productos" class="tab-content p-6 hidden">
+            <h2 class="text-xl font-bold text-guinda uppercase tracking-wide mb-2"><i class="fa-solid fa-box-archive mr-2"></i>Entregables EstratÃ©gicos de la Ficha</h2>
+            <p class="text-sm text-slate-500 mb-8">La aplicaciÃ³n nacional de la encuesta RADI debe decantar en cuatro productos tangibles para la toma de decisiones directivas.</p>
+
+            <div class="space-y-6">
+                <!-- Producto 1 -->
+                <div class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col md:flex-row gap-4 items-start shadow-sm">
+                    <div class="bg-guinda text-white text-center p-4 rounded font-bold text-xl min-w-[70px]">
+                        01
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-slate-800 text-lg mb-1">Informe de CaracterizaciÃ³n y Brechas</h3>
+                        <p class="text-xs text-ocre font-bold uppercase tracking-wider mb-2">AnÃ¡lisis de Desigualdades e InclusiÃ³n</p>
+                        <p class="text-sm text-slate-600 text-justify">
+                            Documento analÃ­tico que cruza los factores de ubicaciÃ³n y recursos del <strong>MÃ³dulo 1</strong> con el resto del estudio para revelar inequidades en el acceso. Determina si los planteles ubicados en zonas rurales sufren asfixia tecnolÃ³gica en comparaciÃ³n con los entornos metropolitanos o si su formaciÃ³n carece de conexiÃ³n con las <strong>Vocaciones Productivas</strong> locales.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col md:flex-row gap-4 items-start shadow-sm">
+                    <div class="bg-ocre text-white text-center p-4 rounded font-bold text-xl min-w-[70px]">
+                        02
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-slate-800 text-lg mb-1">Matriz de DesempeÃ±o Docente / Institucional (TDEDE)</h3>
+                        <p class="text-xs text-guinda font-bold uppercase tracking-wider mb-2">Tasa de DiversificaciÃ³n de la EvaluaciÃ³n de DesempeÃ±o</p>
+                        <p class="text-sm text-slate-600 text-justify">
+                            Matriz en formato semÃ¡foro que clasifica el nivel de innovaciÃ³n pedagÃ³gica evaluadora del docente de CECyTE. 
+                            <br>
+                            <em>Indicador CrÃ­tico:</em> "Si el plantel posee una alta TDEDE en herramientas estÃ¡ticas de opciÃ³n mÃºltiple pero baja en el diseÃ±o de portafolios digitales o evaluaciones integradoras transversales, el semÃ¡foro marcarÃ¡ nivel de alerta."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col md:flex-row gap-4 items-start shadow-sm">
+                    <div class="bg-guinda text-white text-center p-4 rounded font-bold text-xl min-w-[70px]">
+                        03
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-slate-800 text-lg mb-1">Ãndice de InclusiÃ³n y Accesibilidad (IFID)</h3>
+                        <p class="text-xs text-ocre font-bold uppercase tracking-wider mb-2">Indicador de DemocratizaciÃ³n TecnolÃ³gica</p>
+                        <p class="text-sm text-slate-600 text-justify">
+                            Tasa de evaluaciÃ³n que registra la frecuencia y la recurrencia real con la que se emplean tecnologÃ­as de apoyo para alumnos con capacidades diversas. Este indicador actÃºa como justificaciÃ³n contundente para proponer a la direcciÃ³n planes de inversiÃ³n en licencias especÃ­ficas de software inclusivo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col md:flex-row gap-4 items-start shadow-sm">
+                    <div class="bg-ocre text-white text-center p-4 rounded font-bold text-xl min-w-[70px]">
+                        04
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-slate-800 text-lg mb-1">Mapa de Empleabilidad y AlineaciÃ³n Curricular</h3>
+                        <p class="text-xs text-guinda font-bold uppercase tracking-wider mb-2">Sinergia TÃ©cnico-Productiva</p>
+                        <p class="text-sm text-slate-600 text-justify">
+                            El entregable mÃ¡s estratÃ©gico derivado del <strong>MÃ³dulo 4</strong>. Mapea la correlaciÃ³n entre las competencias digitales enseÃ±adas en las carreras y las vacantes requeridas por los corporativos y parques industriales regionales, sirviendo de base para justificar el ajuste curricular o el ingreso inmediato al Modelo Dual de la SEP.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 4: ETAPAS DEL PROYECTO (NUEVO & ALTAMENTE INTERACTIVO) -->
+        <div id="content-etapas" class="tab-content p-6 hidden">
+            <div class="bg-guinda text-white p-6 rounded-lg mb-8 border-b-4 border-ocre flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-lg md:text-xl font-bold uppercase tracking-wider">LÃ­nea de Tiempo del Proyecto RADI 2026</h2>
+                    <p class="text-xs text-amber-200 mt-1 font-medium">Ciclo operativo completo coordinado por el Mtro. Julian Sadak Vergara Cruz</p>
+                </div>
+                <div class="bg-white/10 px-4 py-2 rounded border border-white/20">
+                    <span class="text-[10px] uppercase font-bold text-amber-200 block">Etapa Actual</span>
+                    <strong class="text-sm font-extrabold uppercase text-white"><i class="fa-solid fa-compass-drafting mr-1"></i> 1. DiseÃ±o y PlaneaciÃ³n</strong>
+                </div>
+            </div>
+
+            <!-- Stepper de Etapas -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <!-- Etapa 1 Button -->
+                <button onclick="selectStage(1)" id="btn-stage-1" class="p-4 rounded-lg border-2 text-left transition duration-200 bg-guinda-light border-guinda shadow-sm">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-guinda uppercase tracking-wider">Etapa 1</span>
+                        <span class="bg-green-600 text-white text-[9px] px-2 py-0.5 rounded font-extrabold uppercase">Activa</span>
+                    </div>
+                    <h4 class="font-extrabold text-sm text-slate-800">DiseÃ±o y Enfoque</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">EstructuraciÃ³n tÃ©cnica e institucional.</p>
+                </button>
+
+                <!-- Etapa 2 Button -->
+                <button onclick="selectStage(2)" id="btn-stage-2" class="p-4 rounded-lg border-2 text-left transition duration-200 border-slate-200 bg-white hover:border-ocre">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Etapa 2</span>
+                        <span class="bg-amber-600 text-white text-[9px] px-2 py-0.5 rounded font-extrabold uppercase">Por Iniciar</span>
+                    </div>
+                    <h4 class="font-bold text-sm text-slate-800">AplicaciÃ³n y Captura</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">Llenado nacional de encuestas.</p>
+                </button>
+
+                <!-- Etapa 3 Button -->
+                <button onclick="selectStage(3)" id="btn-stage-3" class="p-4 rounded-lg border-2 text-left transition duration-200 border-slate-200 bg-white hover:border-ocre">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Etapa 3</span>
+                        <span class="bg-slate-500 text-white text-[9px] px-2 py-0.5 rounded font-extrabold uppercase">Planeada</span>
+                    </div>
+                    <h4 class="font-bold text-sm text-slate-800">Cruce y AuditorÃ­a</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">CÃ¡lculo de brechas de inclusiÃ³n.</p>
+                </button>
+
+                <!-- Etapa 4 Button -->
+                <button onclick="selectStage(4)" id="btn-stage-4" class="p-4 rounded-lg border-2 text-left transition duration-200 border-slate-200 bg-white hover:border-ocre">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Etapa 4</span>
+                        <span class="bg-slate-500 text-white text-[9px] px-2 py-0.5 rounded font-extrabold uppercase">Planeada</span>
+                    </div>
+                    <h4 class="font-bold text-sm text-slate-800">Plan de AcciÃ³n</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">VinculaciÃ³n productiva dual.</p>
+                </button>
+            </div>
+
+            <!-- Panel de Detalle de Etapa DinÃ¡mica -->
+            <div id="panel-etapas" class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+                <!-- El contenido se inyecta dinÃ¡micamente mediante JS -->
+                Procesando fases del proyecto...
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 5: SIMULADOR DE DIAGNÃ“STICO -->
+        <div id="content-simulador" class="tab-content p-6 hidden">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-5 mb-8">
+                <h3 class="text-guinda font-bold uppercase tracking-wider text-md mb-2"><i class="fa-solid fa-vial mr-2"></i>Herramienta DidÃ¡ctica de SimulaciÃ³n de Resultados</h3>
+                <p class="text-sm text-slate-600 text-justify leading-relaxed">
+                    Ajuste los siguientes parÃ¡metros de simulaciÃ³n para emular la recolecciÃ³n de datos de su plantel educativo. El sistema procesarÃ¡ matemÃ¡ticamente la <strong>Tasa de DiversificaciÃ³n de la EvaluaciÃ³n de DesempeÃ±o (TDEDE)</strong> y el <strong>Ãndice de InclusiÃ³n (IFID)</strong>, arrojando alertas, semÃ¡foros de desempeÃ±o y un borrador automÃ¡tico para el comitÃ© curricular de acuerdo con la ficha del <strong>Profesor Julian Sadak Vergara Cruz</strong>.
+                </p>
+            </div>
+
+            <!-- Interfaz del Simulador -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Columna de Sliders (Controladores) -->
+                <div class="space-y-6 lg:col-span-2">
+                    <h3 class="text-slate-700 font-bold uppercase text-xs tracking-wider border-b pb-2 mb-4"><i class="fa-solid fa-sliders text-guinda mr-2"></i>ParÃ¡metros de Captura RADI</h3>
+                    
+                    <!-- Slider 1: ParticipaciÃ³n Docente -->
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-slate-700">ParticipaciÃ³n de la Muestra Docente</span>
+                            <span id="val-participacion" class="text-sm font-bold text-guinda">80%</span>
+                        </div>
+                        <input type="range" id="input-participacion" min="10" max="100" value="80" oninput="calcularKPIs()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#651C32]">
+                        <p class="text-xs text-slate-400 mt-1">Porcentaje de docentes del plantel que respondieron el instrumento del 01 al 19 de junio.</p>
+                    </div>
+
+                    <!-- Slider 2: Diversidad Evaluativa -->
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-slate-700">DiversificaciÃ³n de la EvaluaciÃ³n (TDEDE)</span>
+                            <span id="val-tdede" class="text-sm font-bold text-guinda">55%</span>
+                        </div>
+                        <input type="range" id="input-tdede" min="0" max="100" value="55" oninput="calcularKPIs()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#651C32]">
+                        <p class="text-xs text-slate-400 mt-1">Nivel de uso de portafolios de evidencias, rÃºbricas dinÃ¡micas y proyectos colaborativos frente a exÃ¡menes convencionales de opciÃ³n mÃºltiple.</p>
+                    </div>
+
+                    <!-- Slider 3: InclusiÃ³n y Accesibilidad -->
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-slate-700">ImplementaciÃ³n de TecnologÃ­as de InclusiÃ³n (IFID)</span>
+                            <span id="val-ifid" class="text-sm font-bold text-guinda">40%</span>
+                        </div>
+                        <input type="range" id="input-ifid" min="0" max="100" value="40" oninput="calcularKPIs()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#651C32]">
+                        <p class="text-xs text-slate-400 mt-1">Nivel de uso de herramientas adaptativas, lectores de pantalla o materiales inclusivos.</p>
+                    </div>
+
+                    <!-- Slider 4: AlineaciÃ³n Productiva -->
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-slate-700">AlineaciÃ³n Curricular Regional</span>
+                            <span id="val-alineacion" class="text-sm font-bold text-guinda">70%</span>
+                        </div>
+                        <input type="range" id="input-alineacion" min="0" max="100" value="70" oninput="calcularKPIs()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#651C32]">
+                        <p class="text-xs text-slate-400 mt-1">Porcentaje de concordancia entre los mÃ³dulos de especialidad tÃ©cnica y las demandas reales de los CEDIS o industrias del corredor logÃ­stico local.</p>
+                    </div>
+                </div>
+
+                <!-- Columna de Resultados / SemÃ¡foros -->
+                <div class="space-y-6">
+                    <h3 class="text-slate-700 font-bold uppercase text-xs tracking-wider border-b pb-2 mb-4"><i class="fa-solid fa-square-poll-vertical text-ocre mr-2"></i>Indicadores Procesados</h3>
+                    
+                    <!-- SemÃ¡foro de ParticipaciÃ³n -->
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 text-center shadow-sm">
+                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Meta de Muestra Docente</span>
+                        <div class="text-2xl font-bold my-2 text-slate-800" id="result-participacion">80%</div>
+                        <div id="badge-participacion" class="inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-green-600">
+                            Excelente Cumplimiento
+                        </div>
+                    </div>
+
+                    <!-- SemÃ¡foro de InnovaciÃ³n Evaluadora -->
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 text-center shadow-sm">
+                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Tasa TDEDE Ponderada</span>
+                        <div class="text-2xl font-bold my-2 text-slate-800" id="result-tdede">55%</div>
+                        <div id="badge-tdede" class="inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-yellow-500">
+                            InnovaciÃ³n Regular
+                        </div>
+                    </div>
+
+                    <!-- SemÃ¡foro de Equidad e InclusiÃ³n -->
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 text-center shadow-sm">
+                        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400 font-medium">Ãndice IFID Calculado</span>
+                        <div class="text-2xl font-bold my-2 text-slate-800" id="result-ifid">40%</div>
+                        <div id="badge-ifid" class="inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-red-600">
+                            Brecha CrÃ­tica de Equidad
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Reporte / Dictamen Automatizado Generado -->
+            <div class="mt-8 bg-slate-900 text-white rounded-lg p-6 font-mono text-xs overflow-x-auto shadow-inner relative">
+                <div class="absolute top-4 right-4 bg-ocre text-white px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                    Borrador de Reporte RADI-2026
+                </div>
+                <h4 class="text-ocre font-bold text-sm uppercase mb-4 border-b border-slate-700 pb-2"><i class="fa-solid fa-file-invoice-dollar mr-2"></i>Dictamen Preliminar de Brechas y Vocaciones</h4>
+                
+                <p class="mb-2 text-slate-300">CECYTE | COMITÃ‰ TÃ‰CNICO DE PERTINENCIA</p>
+                <p class="mb-4 text-slate-300">FECHA: 10 DE JUNIO DE 2026 | RESPONSABLE: MTRO. JULIAN SADAK VERGARA CRUZ</p>
+                
+                <div class="text-emerald-400 mb-2"># RESULTADO DE SIMULACIÃ“N DE INDICADORES DE INNOVACIÃ“N #</div>
+                
+                <p id="reporte-texto" class="leading-relaxed text-justify text-slate-300">
+                    Procesando datos...
+                </p>
+            </div>
+        </div>
+
+        <!-- Seccion: Requerimientos de ProtecciÃ³n de Datos -->
+        <div class="bg-slate-100 border-t border-slate-200 p-6">
+            <h3 class="text-guinda font-bold uppercase tracking-wider text-xs mb-3"><i class="fa-solid fa-shield-halved mr-2"></i>GarantÃ­a de Confidencialidad y Requerimiento Normativo</h3>
+            <p class="text-xs text-slate-500 text-justify leading-relaxed">
+                De conformidad con las polÃ­ticas del subsistema nacional CECYTE, se emitirÃ¡ un <strong>Oficio de DifusiÃ³n Institucional</strong> firmado para informar a la totalidad del cuerpo docente sobre los objetivos, la importancia de su participaciÃ³n y el carÃ¡cter vinculante de la encuesta en lÃ­nea RADI. El tratamiento de la informaciÃ³n capturada se realizarÃ¡ bajo la garantÃ­a de confidencialidad y estricta protecciÃ³n de datos personales de acuerdo con las normativas federales y de transparencia vigentes.
+            </p>
+        </div>
+
+        <!-- Footer y Referencias BibliogrÃ¡ficas -->
+        <footer class="bg-cecyte-guinda p-8 border-t border-slate-200 rounded-b-xl box-sizing: border-box;">
+            
+            <div class="border-t border-slate-200 pt-6">
+                <h3 class="text-xs font-bold text-cecyte-oroLight uppercase tracking-widest mb-3">Referencias de la Ficha Operativa</h3>
+                <div class="text-xs text-slate-300 space-y-2">
+                    <p class="pl-5 -indent-5">CECyTE Nacional. (2026). <em>Estrategia General de ConstelaciÃ³n Docente y Ã“rbita AcadÃ©mica</em>. Subsistema de EducaciÃ³n Media Superior.</p>
+                    <p class="pl-5 -indent-5">Vergara Cruz, J. S. (2026). <em>Ficha Operativa de Actividades: AplicaciÃ³n a Nivel Nacional de la Encuesta RADI - SesiÃ³n 1</em>. Academia Nacional de Componente Laboral, Puebla, MÃ©xico.</p>
+                </div>
+            </div>
+            
+            <p class="margin-top: 30px; text-center text-cecyte-oroLight text-[10px] uppercase tracking-widest mt-6">CECYTE â€¢ Componente Laboral â€¢ GestiÃ³n Educativa 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- Script de Control del Tab, Etapas y CÃ¡lculos -->
+    <script>
+        // InicializaciÃ³n al cargar la pÃ¡gina
+        window.onload = function() {
+            selectStage(1); // Carga por defecto la Etapa 1
+        };
+
+        function switchTab(tabId) {
+            // Ocultar todos los contenidos de pestaÃ±a
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Quitar clase activa a todos los botones
+            document.querySelectorAll('button[id^="tab-"]').forEach(button => {
+                button.classList.remove('tab-active');
+                button.classList.add('text-slate-500');
+            });
+            
+            // Mostrar pestaÃ±a activa
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            
+            // Aplicar clase activa al botÃ³n presionado
+            document.getElementById('tab-' + tabId).classList.add('tab-active');
+            document.getElementById('tab-' + tabId).classList.remove('text-slate-500');
+            
+            if(tabId === 'simulador') {
+                calcularKPIs();
+            }
+        }
+
+        // CONTROL INTERACTIVO DE ETAPAS
+        function selectStage(stageNumber) {
+            // Quitar estilos activos a todos los botones de etapa
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById('btn-stage-' + i);
+                btn.classList.remove('bg-guinda-light', 'border-guinda', 'shadow-sm');
+                btn.classList.add('border-slate-200', 'bg-white');
+            }
+
+            // Aplicar estilos activos al botÃ³n seleccionado
+            const activeBtn = document.getElementById('btn-stage-' + stageNumber);
+            activeBtn.classList.remove('border-slate-200', 'bg-white');
+            activeBtn.classList.add('bg-guinda-light', 'border-guinda', 'shadow-sm');
+
+            // Inyectar contenido en el panel dinÃ¡mico segÃºn el nÃºmero de etapa
+            const panel = document.getElementById('panel-etapas');
+            
+            if (stageNumber === 1) {
+                panel.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-4 mb-4">
+                        <div>
+                            <h3 class="text-guinda font-bold text-lg uppercase"><i class="fa-solid fa-compass-drafting mr-2"></i>Etapa 1: DiseÃ±o y PlaneaciÃ³n</h3>
+                            <p class="text-xs text-slate-500 mt-1">Fase operativa en curso - Completada al 100%</p>
+                        </div>
+                        <span class="bg-green-600 text-white text-xs px-3 py-1 rounded font-bold uppercase">En Proceso / Concluido</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-2">
+                            <p class="text-sm text-slate-600 text-justify leading-relaxed mb-4">
+                                Esta etapa constituye la base intelectual del proyecto RADI. Consiste en delimitar el propÃ³sito metodolÃ³gico de la encuesta, estructurar los 4 mÃ³dulos de recopilaciÃ³n y redactar la Ficha Operativa oficial.
+                            </p>
+                            <h4 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Actividades Clave Desarrolladas:</h4>
+                            <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4">
+                                <li>DiseÃ±o de los objetivos especÃ­ficos y variables demogrÃ¡ficas cruzadas.</li>
+                                <li>ConfiguraciÃ³n tÃ©cnica de los cuestionarios en la plataforma Google Forms.</li>
+                                <li>PreparaciÃ³n del material de apoyo interactivo y guÃ­as de asimilaciÃ³n para Moodle (LMS sugerido).</li>
+                                <li>FormalizaciÃ³n del liderazgo tÃ©cnico por el Mtro. Julian Sadak Vergara Cruz.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                            <h4 class="font-bold text-guinda text-xs uppercase tracking-wider mb-3"><i class="fa-solid fa-list-check"></i> Checklist de Entrega</h4>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" checked disabled class="accent-[#651C32] rounded">
+                                    <span>Ficha Operativa Firmada</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" checked disabled class="accent-[#651C32] rounded">
+                                    <span>Google Form Listo</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" checked disabled class="accent-[#651C32] rounded">
+                                    <span>GuÃ­as en Canvas</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (stageNumber === 2) {
+                panel.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-4 mb-4">
+                        <div>
+                            <h3 class="text-guinda font-bold text-lg uppercase"><i class="fa-solid fa-laptop-code mr-2"></i>Etapa 2: AplicaciÃ³n y Captura (Llenado)</h3>
+                            <p class="text-xs text-slate-500 mt-1">Periodo programado: Del 01 al 19 de Junio de 2026</p>
+                        </div>
+                        <span class="bg-amber-600 text-white text-xs px-3 py-1 rounded font-bold uppercase">Por Iniciar</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-2">
+                            <p class="text-sm text-slate-600 text-justify leading-relaxed mb-4">
+                                Corresponde al levantamiento nacional del instrumento. Los docentes de todos los planteles ingresarÃ¡n a la plataforma para proveer los datos reales sobre evaluaciÃ³n e inclusiÃ³n tecnolÃ³gica.
+                            </p>
+                            <h4 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Actividades Clave Planificadas:</h4>
+                            <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4">
+                                <li>EmisiÃ³n del oficio de difusiÃ³n institucional obligatorio a los docentes.</li>
+                                <li>Lanzamiento y apertura de la plataforma las 24 horas del dÃ­a.</li>
+                                <li>Monitoreo de participaciÃ³n semanal para garantizar el 100% de la muestra.</li>
+                                <li>Sesiones de soporte tÃ©cnico y resoluciÃ³n de dudas sobre el llenado.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                            <h4 class="font-bold text-guinda text-xs uppercase tracking-wider mb-3"><i class="fa-solid fa-list-check"></i> Checklist de Control</h4>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-2-1" onchange="updateStageProgress(2)">
+                                    <span>Oficio de DifusiÃ³n Emitido</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-2-2" onchange="updateStageProgress(2)">
+                                    <span>Plataforma Forms Abierta</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-2-3" onchange="updateStageProgress(2)">
+                                    <span>Soporte TÃ©cnico en Activo</span>
+                                </label>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-slate-200">
+                                <span class="text-[10px] text-slate-400 block mb-1">Progreso de la Etapa:</span>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div id="prog-bar-stage-2" class="bg-guinda h-full w-0 transition-all duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (stageNumber === 3) {
+                panel.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-4 mb-4">
+                        <div>
+                            <h3 class="text-guinda font-bold text-lg uppercase"><i class="fa-solid fa-calculator mr-2"></i>Etapa 3: Cruce, Procesamiento y AuditorÃ­a de Datos</h3>
+                            <p class="text-xs text-slate-500 mt-1">Periodo estimado: agosto - septiembre 2026</p>
+                        </div>
+                        <span class="bg-slate-500 text-white text-xs px-3 py-1 rounded font-bold uppercase">Planificada</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-2">
+                            <p class="text-sm text-slate-600 text-justify leading-relaxed mb-4">
+                                Cierre de la encuesta y descarga de bases de datos. Los analistas realizarÃ¡n la limpieza de datos en Excel y aplicarÃ¡n las fÃ³rmulas estadÃ­sticas para obtener los indicadores del plantel.
+                            </p>
+                            <h4 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Actividades Clave Planificadas:</h4>
+                            <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4">
+                                <li>Descarga y depuraciÃ³n de la base de datos de Google Forms.</li>
+                                <li>CÃ¡lculo matemÃ¡tico de la Tasa de DiversificaciÃ³n de la EvaluaciÃ³n (TDEDE).</li>
+                                <li>DeterminaciÃ³n del Ãndice de InclusiÃ³n y Accesibilidad (IFID).</li>
+                                <li>GeneraciÃ³n de reportes grÃ¡ficos preliminares por plantel educativo.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                            <h4 class="font-bold text-guinda text-xs uppercase tracking-wider mb-3"><i class="fa-solid fa-list-check"></i> Checklist de Control</h4>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-3-1" onchange="updateStageProgress(3)">
+                                    <span>BBDD Descargada y Limpia</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-3-2" onchange="updateStageProgress(3)">
+                                    <span>MÃ©tricas TDEDE / IFID Calculadas</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-3-3" onchange="updateStageProgress(3)">
+                                    <span>Reporte de Brechas Listo</span>
+                                </label>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-slate-200">
+                                <span class="text-[10px] text-slate-400 block mb-1">Progreso de la Etapa:</span>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div id="prog-bar-stage-3" class="bg-guinda h-full w-0 transition-all duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (stageNumber === 4) {
+                panel.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-4 mb-4">
+                        <div>
+                            <h3 class="text-guinda font-bold text-lg uppercase"><i class="fa-solid fa-graduation-cap mr-2"></i>Etapa 4: Plan de AcciÃ³n Curricular y VinculaciÃ³n Dual</h3>
+                            <p class="text-xs text-slate-500 mt-1">Periodo estimado: septiembre 2026 en adelante</p>
+                        </div>
+                        <span class="bg-slate-500 text-white text-xs px-3 py-1 rounded font-bold uppercase">Planificada</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-2">
+                            <p class="text-sm text-slate-600 text-justify leading-relaxed mb-4">
+                                PresentaciÃ³n del dictamen al ComitÃ© de Pertinencia Curricular del CECYTE para justificar reformas acadÃ©micas, proponer compra de software adaptativo y alineaciÃ³n de carreras.
+                            </p>
+                            <h4 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2">Actividades Clave Planificadas:</h4>
+                            <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4">
+                                <li>Entrega oficial del "Informe de CaracterizaciÃ³n y Brechas" a la DirecciÃ³n General.</li>
+                                <li>AlineaciÃ³n curricular de las especialidades tecnolÃ³gicas con el sector logÃ­stico local.</li>
+                                <li>Apertura de convenios de FormaciÃ³n Dual con empresarios industriales de Huejotzingo.</li>
+                                <li>GestiÃ³n de presupuestos pÃºblicos dirigidos a equipamiento inclusivo.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                            <h4 class="font-bold text-guinda text-xs uppercase tracking-wider mb-3"><i class="fa-solid fa-list-check"></i> Checklist de Control</h4>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-4-1" onchange="updateStageProgress(4)">
+                                    <span>Informe Entregado a DirecciÃ³n</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-4-2" onchange="updateStageProgress(4)">
+                                    <span>AlineaciÃ³n con Corredor Industrial</span>
+                                </label>
+                                <label class="flex items-center gap-2 text-slate-700">
+                                    <input type="checkbox" class="accent-[#651C32] rounded" id="chk-4-3" onchange="updateStageProgress(4)">
+                                    <span>Firma de Convenios Duales</span>
+                                </label>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-slate-200">
+                                <span class="text-[10px] text-slate-400 block mb-1">Progreso de la Etapa:</span>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div id="prog-bar-stage-4" class="bg-guinda h-full w-0 transition-all duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function updateStageProgress(stageNumber) {
+            let checkedCount = 0;
+            for (let i = 1; i <= 3; i++) {
+                if (document.getElementById('chk-' + stageNumber + '-' + i).checked) {
+                    checkedCount++;
+                }
+            }
+            const percentage = Math.round((checkedCount / 3) * 100);
+            document.getElementById('prog-bar-stage-' + stageNumber).style.width = percentage + '%';
+        }
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileDropdown = document.getElementById('mobile-dropdown');
+        const menuIcon = document.getElementById('menu-icon');
+
+        function toggleMenu() {
+            if (mobileDropdown.classList.contains('hidden')) {
+                mobileDropdown.classList.remove('hidden');
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                mobileDropdown.classList.add('hidden');
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // FUNCIONES DE CÃLCULO DEL SIMULADOR (PESTAÃ‘A 5)
+        function calcularKPIs() {
+            // Obtener valores de los inputs
+            const participacion = parseInt(document.getElementById('input-participacion').value);
+            const tdede = parseInt(document.getElementById('input-tdede').value);
+            const ifid = parseInt(document.getElementById('input-ifid').value);
+            const alineacion = parseInt(document.getElementById('input-alineacion').value);
+
+            // Actualizar etiquetas numÃ©ricas
+            document.getElementById('val-participacion').innerText = participacion + '%';
+            document.getElementById('val-tdede').innerText = tdede + '%';
+            document.getElementById('val-ifid').innerText = ifid + '%';
+            document.getElementById('val-alineacion').innerText = alineacion + '%';
+
+            // Actualizar tarjetas de resultado
+            document.getElementById('result-participacion').innerText = participacion + '%';
+            document.getElementById('result-tdede').innerText = tdede + '%';
+            document.getElementById('result-ifid').innerText = ifid + '%';
+
+            // LÃ³gica SemÃ¡foro ParticipaciÃ³n
+            const badgePart = document.getElementById('badge-participacion');
+            if (participacion >= 85) {
+                badgePart.innerText = "Excelente Cumplimiento";
+                badgePart.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-green-600";
+            } else if (participacion >= 70) {
+                badgePart.innerText = "ParticipaciÃ³n Ã“ptima";
+                badgePart.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-yellow-500";
+            } else {
+                badgePart.innerText = "Muestra Insuficiente";
+                badgePart.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-red-600";
+            }
+
+            // LÃ³gica SemÃ¡foro TDEDE (EvaluaciÃ³n)
+            const badgeTdede = document.getElementById('badge-tdede');
+            if (tdede >= 75) {
+                badgeTdede.innerText = "InnovaciÃ³n Destacada";
+                badgeTdede.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-green-600";
+            } else if (tdede >= 50) {
+                badgeTdede.innerText = "InnovaciÃ³n Regular";
+                badgeTdede.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-yellow-500";
+            } else {
+                badgeTdede.innerText = "EvaluaciÃ³n Tradicional";
+                badgeTdede.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-red-600";
+            }
+
+            // LÃ³gica SemÃ¡foro IFID (InclusiÃ³n)
+            const badgeIfid = document.getElementById('badge-ifid');
+            if (ifid >= 70) {
+                badgeIfid.innerText = "InclusiÃ³n Favorable";
+                badgeIfid.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-green-600";
+            } else if (ifid >= 45) {
+                badgeIfid.innerText = "InclusiÃ³n Regular";
+                badgeIfid.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-yellow-500";
+            } else {
+                badgeIfid.innerText = "Brecha CrÃ­tica de Equidad";
+                badgeIfid.className = "inline-block px-3 py-1 rounded text-xs font-bold uppercase text-white bg-red-600";
+            }
+
+            // GeneraciÃ³n de Texto del Dictamen DinÃ¡mico
+            let dictamenCritico = "";
+            if (tdede < 50 && ifid < 45) {
+                dictamenCritico = "El plantel reporta un estado crÃ­tico de innovaciÃ³n y equidad. Se detecta una alta concentraciÃ³n de evaluaciones sumativas convencionales de opciÃ³n mÃºltiple (Bajo TDEDE), careciendo de portafolios digitales o evaluaciones integradoras complejas. Adicionalmente, el bajo Ã­ndice IFID seÃ±ala que la tecnologÃ­a no estÃ¡ democratizada en el aula para la atenciÃ³n a la diversidad, haciendo urgente una inversiÃ³n prioritaria en software adaptativo de inclusiÃ³n.";
+            } else if (tdede >= 50 && ifid < 45) {
+                dictamenCritico = "Aunque el plantel muestra esfuerzos regulares en diversificar los mÃ©todos de evaluaciÃ³n (portafolios y proyectos digitales), subsiste una preocupante brecha de equidad (Bajo IFID). Los recursos tecnolÃ³gicos no se aplican de forma igualitaria para alumnos con capacidades diversas, requiriendo un plan de asimilaciÃ³n urgente y capacitaciÃ³n docente en adaptabilidad tecnolÃ³gica.";
+            } else if (tdede < 50 && idid >= 45) {
+                dictamenCritico = "Se cuenta con un entorno relativamente inclusivo y de accesibilidad favorable (Buen IFID); no obstante, el modelo pedagÃ³gico evaluativo permanece estÃ¡tico. Los docentes continÃºan evaluando de forma convencional, por lo que se sugiere implementar talleres interdepartamentales para diversificar la evaluaciÃ³n pedagÃ³gica y transicionar a portafolios interactivos.";
+            } else {
+                dictamenCritico = "El plantel demuestra un excelente desempeÃ±o y liderazgo en el subsistema. La evaluaciÃ³n de los aprendizajes se encuentra ampliamente diversificada (TDEDE Alto) y las tecnologÃ­as de apoyo e inclusiÃ³n estÃ¡n asimiladas de manera recurrente por los docentes (IFID Favorable), asegurando equidad escolar y robustez en la calidad educativa.";
+            }
+
+            let dictamenAlineacion = "";
+            if (alineacion >= 75) {
+                dictamenAlineacion = "Se reporta una sinergia sobresaliente con el corredor productivo local. El perfil de egreso en carreras tÃ©cnicas estÃ¡ plenamente alineado con las necesidades tecnolÃ³gicas de los corporativos de manufactura y distribuciÃ³n locales, propiciando el ingreso inmediato al Modelo de FormaciÃ³n Dual.";
+            } else if (alineacion >= 50) {
+                dictamenAlineacion = "Existe una correlaciÃ³n regular con los sectores productivos de la regiÃ³n centro. Si bien la base teÃ³rica es sÃ³lida, es indispensable incorporar simuladores o software especializado y ruteo para recortar la brecha de competencias tecnolÃ³gicas que exigen las empresas.";
+            } else {
+                dictamenAlineacion = "Se identifica una seria desconexiÃ³n curricular con el entorno industrial predominante. El plan de asimilaciÃ³n actual no responde a las demandas digitales del sector industrial, requiriendo un ajuste urgente en las materias operativas para evitar que la inserciÃ³n de los egresados sea tardÃ­a o precarizada.";
+            }
+
+            document.getElementById('reporte-texto').innerHTML = `
+                &gt;&gt; DICTAMEN DE INNOVACIÃ“N EVALUATIVA (TDEDE): <span class="${tdede >= 50 ? 'text-emerald-400' : 'text-red-400'}">${tdede >= 50 ? 'SATISFACTORIO' : 'ALERTA'}</span><br>
+                &gt;&gt; DICTAMEN DE EQUIDAD Y ACCESO (IFID): <span class="${ifid >= 45 ? 'text-emerald-400' : 'text-red-400'}">${ifid >= 45 ? 'SATISFACTORIO' : 'ALERTA'}</span><br>
+                &gt;&gt; ALINEACIÃ“N DE VOCACIONES REGIONALES: <span class="${alineacion >= 50 ? 'text-emerald-400' : 'text-red-400'}">${alineacion >= 50 ? 'Ã“PTIMA' : 'DESVIACIÃ“N'}</span><br><br>
+                [ANÃLISIS DE RESILIENCIA Y CAPACITACIÃ“N ADAPTATIVA]<br>
+                ${dictamenCritico}<br><br>
+                [DIAGNÃ“STICO DE VINCULACIÃ“N CON EL SECTOR PRODUCTIVO REAL]<br>
+                ${dictamenAlineacion}<br><br>
+                &gt;&gt; CONFIDENCIALIDAD: Toda la informaciÃ³n ha sido procesada de manera agregada bajo el principio de anonimato del RADI 2026.
+            `;
+        }
+    </script>
+</body>
+</html>
+

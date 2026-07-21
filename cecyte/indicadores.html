@@ -1,0 +1,926 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema Digital de Soluciones Educativas | CECYTE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        // Colores directos para solucionar las clases sueltas y de JS
+                        guinda: '#651C32',
+                        'guinda-light': '#80243e',
+                        ocre: '#B9975B',
+                        // Estructura original para las clases bg-cecyte-*
+                        cecyte: {
+                            guinda: '#651C32',
+                            guindaLight: '#80243e',
+                            oro: '#B9975B',
+                            oroLight: '#ceb484',
+                            grisBg: '#f4f6f8',
+                            lila: 'rgba(101, 28, 50, 0.08)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <meta name="theme-color" content="#651C32">
+
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+        .responsive-table {
+            min-width: 0;
+        }
+        .responsive-table th,
+        .responsive-table td {
+            white-space: normal;
+            word-break: break-word;
+        }
+        @media (max-width: 820px) {
+            table.vertical-table {
+                display: block;
+                width: 100%;
+                overflow: hidden;
+            }
+            table.vertical-table thead {
+                position: absolute;
+                clip: rect(0 0 0 0);
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            table.vertical-table tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 1rem;
+                background: transparent;
+            }
+            table.vertical-table td {
+                display: block;
+                text-align: left;
+                padding: 0.85rem 1rem;
+                border: none;
+                border-bottom: 1px solid #e2e8f0;
+                position: relative;
+                background: white;
+            }
+            table.vertical-table tr[class*='bg-'] td {
+                background-color: inherit;
+            }
+            table.vertical-table td:last-child {
+                border-bottom: none;
+            }
+            table.vertical-table td::before {
+                content: attr(data-label);
+                display: block;
+                margin-bottom: 0.35rem;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: #475569;
+            }
+        }
+    </style>
+</head>
+<body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
+
+    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 max-w-screen-2xl">
+            <div class="flex justify-between h-16">
+                <!-- Logo e Identidad -->
+                <div class="flex items-center gap-3">
+                    <div>
+                        <span class="font-montserrat font-extrabold text-sm sm:text-base tracking-wider text-cecyte-guinda block leading-none">PORTAL EDUCATIVO</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Escritorio -->
+                <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
+                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Principal
+                    </a>
+                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                    </a>
+                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
+                    </a>
+                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
+                    </a>
+                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
+                </div>
+
+                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MenÃº Desplegable MÃ³vil -->
+        <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
+            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            </a>
+            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+            </a>
+           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
+            </a>
+            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto my-8 p-4 md:p-6 bg-white border-2 border-slate-200 rounded-xl shadow-lg relative">
+        
+        <!-- HEADER INSTITUCIONAL -->
+        <header class="bg-cecyte-guinda text-white p-8 rounded-t-xl border-b-4 border-cecyte-oro relative">
+
+            <div class="text-md font-semibold uppercase tracking-widest text-cecyte-oroLight mb-2">
+                Colegio de Estudios CientÃ­ficos y TecnolÃ³gicos del Estado de Puebla
+            </div>
+            <h1 class="text-2xl md:text-4xl font-extrabold uppercase tracking-tight">PresentaciÃ³n de Indicadores</h1>
+            <p class="text-xs md:text-sm mt-2 text-cecyte-oroLight">InnovaciÃ³n Educativa y Equidad Social mediante Herramientas Digitales</p>
+        </header>
+
+        <!-- SECCIÃ“N DE AUTORÃA Y PRESENTACIÃ“N -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-slate-100 border-b border-slate-200">
+            <!-- Autores -->
+            <div class="flex flex-col gap-2 bg-white p-4 rounded-lg border border-slate-200 shadow-sm col-span-2">
+                <h4 class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-1"><i class="fa-solid fa-graduation-cap"></i> DiseÃ±ado y Elaborado por:</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3">
+                    <img src="../img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-16 h-16 object-cover rounded-full">
+                        <div>
+                            <span class="text-sm font-bold text-guinda block">Profesor Julian Sadak Vergara Cruz</span>
+                            <span class="text-[10px] text-slate-500 uppercase tracking-wider">Academia de LogÃ­stica</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SÃ­ntesis de PropÃ³sito -->
+            <div class="flex flex-col justify-center bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1"><i class="fa-solid fa-bullseye"></i> PropÃ³sito Core:</span>
+                <p class="text-xs text-slate-600 text-justify">
+                    Transformar la evaluaciÃ³n tradicional centrada en el examen sumativo en un proceso mÃ¡s dinÃ¡mico, formativo y variado, potenciado por tecnologÃ­as accesibles.
+                </p>
+            </div>
+        </div>
+
+        <!-- MENÃš DE NAVEGACIÃ“N STICKY -->
+        <div class="flex flex-wrap border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
+            <button onclick="switchTab('inicio')" id="tab-inicio" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider tab-active border-b-2">
+                <i class="fa-solid fa-house mr-2"></i>Inicio
+            </button>
+            <button onclick="switchTab('tdede')" id="tab-tdede" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2">
+                <i class="fa-solid fa-circle-check mr-2"></i>EvaluaciÃ³n (TDEDE)
+            </button>
+            <button onclick="switchTab('ifid')" id="tab-ifid" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2">
+                <i class="fa-solid fa-universal-access mr-2"></i>InclusiÃ³n (IFID)
+            </button>
+            <button onclick="switchTab('auditores')" id="tab-auditores" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2">
+                <i class="fa-solid fa-clipboard-check mr-2"></i>RÃºbricas Interactivas
+            </button>
+            <button onclick="switchTab('referencias')" id="tab-referencias" class="flex-1 py-4 px-4 text-center text-slate-500 hover:text-guinda font-semibold text-xs md:text-sm transition duration-150 uppercase tracking-wider border-b-2">
+                <i class="fa-solid fa-book mr-2"></i>Referencias
+            </button>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 1: INICIO -->
+        <div id="content-inicio" class="tab-content p-6">
+            <div class="bg-ocre-light border-l-4 border-ocre p-5 rounded-r-lg mb-8">
+                <h3 class="text-guinda font-bold uppercase tracking-wider text-sm mb-2"><i class="fa-solid fa-compass mr-2"></i>Marco de Trabajo Docente</h3>
+                <p class="text-slate-700 text-justify text-sm md:text-base leading-relaxed">
+                    La educaciÃ³n tecnolÃ³gica contemporÃ¡nea requiere de mÃ©tricas objetivas que permitan cuantificar la madurez digital y el nivel de equidad dentro del aula. Los dos indicadores presentados en esta plataforma han sido estructurados para dotar a los planteles de <strong>CECYTE</strong> de metodologÃ­as robustas que orienten la capacitaciÃ³n, faciliten la auditorÃ­a institucional y mitiguen la brecha pedagÃ³gica.
+                </p>
+            </div>
+
+            <!-- Mosaico de los dos Indicadores -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Tarjeta TDEDE -->
+                <div class="border border-slate-200 rounded-xl p-5 hover:shadow-md transition duration-200 bg-white">
+                    <div class="text-guinda font-bold text-xs uppercase tracking-wider mb-2"><i class="fa-solid fa-chart-bar mr-1"></i> Indicador PedagÃ³gico 1</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Tasa de DiversificaciÃ³n de Estrategias de EvaluaciÃ³n Digital (TDEDE)</h3>
+                    <p class="text-xs text-slate-500 text-justify leading-relaxed mb-4">
+                        Mide la transiciÃ³n de los esquemas evaluativos convencionales (exÃ¡menes estÃ¡ticos de memorizaciÃ³n) hacia dinÃ¡micas formativas, Ã¡giles y con retroalimentaciÃ³n inmediata integrando plataformas gamificadas.
+                    </p>
+                    <button onclick="switchTab('tdede')" class="text-ocre font-bold text-xs uppercase hover:underline"><i class="fa-solid fa-arrow-right-long mr-1"></i> Explorar MÃ³dulo e Indicadores</button>
+                </div>
+
+                <!-- Tarjeta IFID -->
+                <div class="border border-slate-200 rounded-xl p-5 hover:shadow-md transition duration-200 bg-white">
+                    <div class="text-guinda font-bold text-xs uppercase tracking-wider mb-2"><i class="fa-solid fa-eye-slash mr-1"></i> Indicador PedagÃ³gico 2</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Ãndice de Frecuencia de Uso de Herramientas para la InclusiÃ³n (IFID)</h3>
+                    <p class="text-xs text-slate-500 text-justify leading-relaxed mb-4">
+                        Mide el nivel de adaptabilidad y accesibilidad de los recursos del aula, garantizando que el software y hardware actÃºen como catalizadores de equidad y no como barreras de exclusiÃ³n tecnolÃ³gica.
+                    </p>
+                    <button onclick="switchTab('ifid')" class="text-ocre font-bold text-xs uppercase hover:underline"><i class="fa-solid fa-arrow-right-long mr-1"></i> Explorar MÃ³dulo e Indicadores</button>
+                </div>
+            </div>
+
+            <!-- Nota MetodolÃ³gica de Mejora -->
+            <div class="bg-cecyte-guinda text-white p-6 rounded-lg shadow-inner">
+                <h4 class="text-ocre font-bold text-xs uppercase tracking-widest mb-3"><i class="fa-solid fa-shield-halved mr-1"></i> El Modelo de Mejora Continua e Institucional</h4>
+                <p class="text-xs md:text-sm text-slate-300 text-justify leading-relaxed mb-4">
+                    Para ambos indicadores, el modelo del CECYTE no solo se limita al diagnÃ³stico plano de la realidad del plantel, sino que propone una ruta de acciÃ³n inmediata basada en:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                    <div class="bg-white/10 p-3 rounded border border-white/10">
+                        <strong class="text-white block mb-1"><i class="fa-solid fa-database text-ocre mr-1"></i> Banco de Recursos</strong>
+                        Repositorios de buenas prÃ¡cticas con ejemplos de sustituciÃ³n de exÃ¡menes convencionales.
+                    </div>
+                    <div class="bg-white/10 p-3 rounded border border-white/10">
+                        <strong class="text-white block mb-1"><i class="fa-solid fa-graduation-cap text-ocre mr-1"></i> CapacitaciÃ³n</strong>
+                        Talleres de diseÃ±o instruccional basados en el DiseÃ±o Universal para el Aprendizaje (DUA).
+                    </div>
+                    <div class="bg-white/10 p-3 rounded border border-white/10">
+                        <strong class="text-white block mb-1"><i class="fa-solid fa-user-group text-ocre mr-1"></i> MentorÃ­a de Pares</strong>
+                        Emparejamiento de docentes en niveles avanzados con docentes en nivel bÃ¡sico de desempeÃ±o.
+                    </div>
+                    <div class="bg-white/10 p-3 rounded border border-white/10">
+                        <strong class="text-white block mb-1"><i class="fa-solid fa-gift text-ocre mr-1"></i> Incentivos al Logro</strong>
+                        Reconocimiento formal, insignias digitales y diplomas curriculares para docentes de nivel Alto y Ã“ptimo.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 2: TDEDE (EVALUACIÃ“N) -->
+        <div id="content-tdede" class="tab-content p-6 hidden">
+            <div class="border-l-4 border-guinda pl-4 mb-6">
+                <h2 class="text-xl font-bold text-guinda uppercase tracking-wide">MÃ³dulo 1: Tasa de DiversificaciÃ³n de Estrategias de EvaluaciÃ³n Digital</h2>
+                <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Indicador MetodolÃ³gico: TDEDE</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Marco Conceptual -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-sm text-slate-700 mb-2"><i class="fa-solid fa-bullseye text-guinda mr-1"></i> Objetivo del Indicador:</h4>
+                        <p class="text-xs md:text-sm text-slate-600 text-justify leading-relaxed">
+                            Sustituir o complementar el examen tradicional sumativo mediante un proceso de evaluaciÃ³n formativa robusto apoyado de herramientas digitales. Esto promueve la retroalimentaciÃ³n oportuna, la agilidad diagnÃ³stica y una mayor motivaciÃ³n por parte del estudiante del subsistema tecnolÃ³gico.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-sm text-slate-700 mb-2"><i class="fa-solid fa-chart-line text-guinda mr-1"></i> Â¿QuÃ© Mide EspecÃ­ficamente?:</h4>
+                        <p class="text-xs md:text-sm text-slate-600 text-justify leading-relaxed">
+                            Compara la cantidad de momentos de <strong>Evaluaciones Formativas Digitales </strong> (empleando Kahoot, Forms, Mentimeter, Plickers o Quizzes en el LMS) frente al total de las <strong>Evaluaciones Formales </strong> planeadas para el curso o unidad acadÃ©mica.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Calculadora Interactiva TDEDE -->
+                <div class="bg-white border-2 border-ocre p-5 rounded-xl shadow-sm">
+                    <h3 class="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3 text-center border-b pb-2"><i class="fa-solid fa-calculator text-ocre mr-1"></i> Calculadora de Tasa TDEDE</h3>
+                    
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Evaluaciones Formativas Digitales (EFD):</label>
+                            <input type="number" id="input-efd" value="4" min="0" oninput="calcularTDEDE()" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:border-guinda focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Evaluaciones Formales Totales (ETEF):</label>
+                            <input type="number" id="input-etef" value="8" min="1" oninput="calcularTDEDE()" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:border-guinda focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="bg-guinda-light p-4 rounded-lg text-center">
+                        <span class="text-[10px] text-slate-300 uppercase tracking-wider block mb-1">Resultado de Tasa</span>
+                        <strong id="result-tdede-percent" class="text-2xl font-black text-cecyte-oroLight block">50.0%</strong>
+                        <span id="result-tdede-level" class="inline-block mt-2 px-3 py-1 bg-ocre text-white rounded text-[10px] font-bold uppercase tracking-wider">Medio - Alto</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Rango de Escalas -->
+            <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3"><i class="fa-solid fa-list-ol text-guinda mr-1"></i> Escala de ClasificaciÃ³n y Niveles de DesempeÃ±o:</h3>
+            <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm mb-6">
+                <table class="w-full text-left border-collapse text-xs md:text-sm vertical-table">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 border-b border-slate-200">
+                            <th class="p-3 font-semibold">Nivel</th>
+                            <th class="p-3 font-semibold">Rango TDEDE</th>
+                            <th class="p-3 font-semibold">InterpretaciÃ³n PedagÃ³gica del DesempeÃ±o</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr id="row-tdede-bajo" class="transition duration-150">
+                            <td class="p-3 font-bold text-red-600">Bajo</td>
+                            <td class="p-3 font-bold">0% - 20%</td>
+                            <td class="p-3 text-slate-600 text-justify">Predominio del examen tradicional. La tecnologÃ­a es auxiliar o inexistente en la evaluaciÃ³n formal.</td>
+                        </tr>
+                        <tr id="row-tdede-medio-bajo" class="transition duration-150">
+                            <td class="p-3 font-bold text-orange-500">Medio - Bajo</td>
+                            <td class="p-3 font-bold">21% - 40%</td>
+                            <td class="p-3 text-slate-600 text-justify">La tecnologÃ­a se usa ocasionalmente o como una simple "digitalizaciÃ³n" del examen. Poca o nula retroalimentaciÃ³n formativa inmediata.</td>
+                        </tr>
+                        <tr id="row-tdede-medio-alto" class="transition duration-150">
+                            <td class="p-3 font-bold text-amber-500">Medio - Alto</td>
+                            <td class="p-3 font-bold">41% - 60%</td>
+                            <td class="p-3 text-slate-600 text-justify">Se cumple el objetivo mÃ­nimo. Existe una diversificaciÃ³n moderada, sustituyendo al menos la mitad de las evaluaciones con estrategias digitales formativas.</td>
+                        </tr>
+                        <tr id="row-tdede-alto" class="transition duration-150">
+                            <td class="p-3 font-bold text-green-600">Alto</td>
+                            <td class="p-3 font-bold">61% - 80%</td>
+                            <td class="p-3 text-slate-600 text-justify">Alta diversificaciÃ³n. El examen tradicional es la excepciÃ³n. Uso estratÃ©gico de varias herramientas para distintos tipos de habilidades.</td>
+                        </tr>
+                        <tr id="row-tdede-optimo" class="transition duration-150">
+                            <td class="p-3 font-bold text-emerald-600">Ã“ptimo</td>
+                            <td class="p-3 font-bold">81% - 100%</td>
+                            <td class="p-3 text-slate-600 text-justify">La evaluaciÃ³n es casi totalmente digital, formativa, Ã¡gil y variada. El docente es un innovador en evaluaciÃ³n digital.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 3: IFID (INCLUSIÃ“N) -->
+        <div id="content-ifid" class="tab-content p-6 hidden">
+            <div class="border-l-4 border-guinda pl-4 mb-6">
+                <h2 class="text-xl font-bold text-guinda uppercase tracking-wide">MÃ³dulo 2: Ãndice de Frecuencia de Uso de Herramientas para la InclusiÃ³n y Equidad</h2>
+                <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Indicador MetodolÃ³gico: IFID</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Marco Conceptual -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-sm text-slate-700 mb-2"><i class="fa-solid fa-universal-access text-guinda mr-1"></i> Objetivo del Indicador:</h4>
+                        <p class="text-xs md:text-sm text-slate-600 text-justify leading-relaxed">
+                            Evaluar el impacto real de las herramientas digitales en la reducciÃ³n de brechas, validando su uso cotidiano como un igualador social y un derecho a la educaciÃ³n inclusiva, en lugar de considerarse elementos de privilegio.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-sm text-slate-700 mb-2"><i class="fa-solid fa-brain text-guinda mr-1"></i> Â¿QuÃ© Mide EspecÃ­ficamente?:</h4>
+                        <p class="text-xs md:text-sm text-slate-600 text-justify leading-relaxed">
+                            El porcentaje de clases o <strong>Sesiones con Adaptaciones Digitales</strong>, en las cuales el docente utiliza explÃ­citamente recursos para: la accesibilidad (subtÃ­tulos, audio, contraste), la diferenciaciÃ³n (rutas de aprendizaje diferenciadas) y el soporte NEE (asistencias para dislexia, TDAH, baja visiÃ³n).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Calculadora Interactiva IFID -->
+                <div class="bg-white border-2 border-ocre p-5 rounded-xl shadow-sm">
+                    <h3 class="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3 text-center border-b pb-2"><i class="fa-solid fa-calculator text-ocre mr-1"></i> Calculadora de Tasa IFID</h3>
+                    
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Sesiones con Adaptaciones (SAD):</label>
+                            <input type="number" id="input-sad" value="3" min="0" oninput="calcularIFID()" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:border-guinda focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Sesiones Totales del MÃ³dulo:</label>
+                            <input type="number" id="input-st" value="6" min="1" oninput="calcularIFID()" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:border-guinda focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="bg-guinda-light p-4 rounded-lg text-center">
+                        <span class="text-[10px] text-slate-300 uppercase tracking-wider block mb-1">Resultado de Tasa</span>
+                        <strong id="result-ifid-percent" class="text-2xl font-black text-cecyte-oroLight block">50.0%</strong>
+                        <span id="result-ifid-level" class="inline-block mt-2 px-3 py-1 bg-ocre text-white rounded text-[10px] font-bold uppercase tracking-wider">Intermedio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Rango de Escalas -->
+            <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3"><i class="fa-solid fa-list-ol text-guinda mr-1"></i> Escala de ClasificaciÃ³n y Niveles de InclusiÃ³n:</h3>
+            <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm mb-6">
+                <table class="w-full text-left border-collapse text-xs md:text-sm vertical-table">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 border-b border-slate-200">
+                            <th class="p-3 font-semibold">Nivel</th>
+                            <th class="p-3 font-semibold">Rango IFID</th>
+                            <th class="p-3 font-semibold">InterpretaciÃ³n Inclusiva del Aula</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr id="row-ifid-excluyente" class="transition duration-150">
+                            <td class="p-3 font-bold text-red-600">Excluyente</td>
+                            <td class="p-3 font-bold">0% - 20%</td>
+                            <td class="p-3 text-slate-600 text-justify">Modelo "talla Ãºnica". La tecnologÃ­a se usa igual para todos, ignorando barreras de aprendizaje o conectividad.</td>
+                        </tr>
+                        <tr id="row-ifid-reactivo" class="transition duration-150">
+                            <td class="p-3 font-bold text-orange-500">Reactivo</td>
+                            <td class="p-3 font-bold">21% - 40%</td>
+                            <td class="p-3 text-slate-600 text-justify">Se usa tecnologÃ­a inclusiva solo cuando un estudiante con diagnÃ³stico formal lo solicita de manera explÃ­cita (ajuste razonable bÃ¡sico).</td>
+                        </tr>
+                        <tr id="row-ifid-intermedio" class="transition duration-150">
+                            <td class="p-3 font-bold text-amber-500">Intermedio</td>
+                            <td class="p-3 font-bold">41% - 60%</td>
+                            <td class="p-3 text-slate-600 text-justify">El docente diversifica formatos (video, audio, textos legibles) de forma frecuente, beneficiando a mÃºltiples estilos de aprendizaje.</td>
+                        </tr>
+                        <tr id="row-ifid-inclusivo" class="transition duration-150">
+                            <td class="p-3 font-bold text-green-600">Inclusivo</td>
+                            <td class="p-3 font-bold">61% - 80%</td>
+                            <td class="p-3 text-slate-600 text-justify">La personalizaciÃ³n es la norma de la clase. Se usan plataformas adaptativas regularmente para nivelar brechas acadÃ©micas e individuales.</td>
+                        </tr>
+                        <tr id="row-ifid-diseno-universal" class="transition duration-150">
+                            <td class="p-3 font-bold text-emerald-600">DiseÃ±o Universal</td>
+                            <td class="p-3 font-bold">81% - 100%</td>
+                            <td class="p-3 text-slate-600 text-justify">La tecnologÃ­a elimina barreras a priori. El aula es un ecosistema digital amigable donde cada alumno accede al contenido segÃºn su capacidad.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 4: RÃšBRICAS INTERACTIVAS -->
+        <div id="content-auditores" class="tab-content p-6 hidden">
+            <div class="bg-ocre-light p-4 border-l-4 border-ocre rounded-r-lg mb-6">
+                <h3 class="font-bold text-guinda text-sm uppercase mb-1"><i class="fa-solid fa-list-check"></i> Auditor de RÃºbricas Cualitativas</h3>
+                <p class="text-xs text-slate-600 text-justify leading-relaxed">
+                    Haga clic en las celdas de las rÃºbricas para simular el desempeÃ±o del docente en cada categorÃ­a. El sistema guardarÃ¡ su selecciÃ³n y evaluarÃ¡ el <strong>Ãndice de Madurez PedagÃ³gica</strong> de forma cuantitativa e interactiva.
+                </p>
+            </div>
+
+            <!-- MenÃº interno de RÃºbricas -->
+            <div class="flex gap-4 mb-6">
+                <button onclick="switchRubric('rub-tdede')" id="btn-rub-tdede" class="flex-1 py-2 px-3 rounded-lg font-bold text-xs uppercase tracking-wider text-center border-2 border-guinda bg-guinda text-white shadow">
+                    RÃºbrica 1: TDEDE (EvaluaciÃ³n)
+                </button>
+                <button onclick="switchRubric('rub-ifid')" id="btn-rub-ifid" class="flex-1 py-2 px-3 rounded-lg font-bold text-xs uppercase tracking-wider text-center border-2 border-slate-200 text-slate-600 hover:border-guinda">
+                    RÃºbrica 2: IFID (InclusiÃ³n)
+                </button>
+            </div>
+
+            <!-- RÃšBRICA INTERACTIVA 1: TDEDE -->
+            <div id="rub-tdede-container" class="space-y-6">
+                <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm custom-scrollbar">
+                    <table class="w-full table-auto text-left border-collapse text-xs md:text-sm responsive-table vertical-table">
+                        <thead>
+                            <tr class="bg-guinda text-white">
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 w-1/5">CategorÃ­a</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 1 (Inicial)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 2 (BÃ¡sico)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 3 (Competente)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 4 (Avanzado)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 5 (Innovador)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-rub-tdede">
+                            <!-- CategorÃ­a 1 -->
+                            <tr class="rubric-row" data-category="tdede-1">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">1. SustituciÃ³n y DiversificaciÃ³n de Formatos</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">No hay sustituciÃ³n o la evaluaciÃ³n digital es el examen tradicional escaneado/digitalizado.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">SustituciÃ³n esporÃ¡dica (1-2 veces/ciclo) usando una sola herramienta (ej. solo Forms).</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">SustituciÃ³n moderada. Se reemplazan el 40-60% de los exÃ¡menes, usando 2-3 herramientas digitales distintas.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Alta sustituciÃ³n. MÃ¡s del 60% de las evaluaciones son digitales, variando formatos (quizzes, encuestas, co-evaluaciÃ³n).</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">TransformaciÃ³n total. La evaluaciÃ³n es casi totalmente digital y el docente diseÃ±a nuevos formatos (simulaciones, juegos de rol).</td>
+                            </tr>
+                            <!-- CategorÃ­a 2 -->
+                            <tr class="rubric-row" data-category="tdede-2">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">2. Calidad de la RetroalimentaciÃ³n (Feedback)</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">RetroalimentaciÃ³n inexistente o solo la calificaciÃ³n final (correcta/incorrecta).</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">RetroalimentaciÃ³n genÃ©rica y automÃ¡tica provista por la herramienta (ej. "La respuesta correcta es B").</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">RetroalimentaciÃ³n especÃ­fica y automÃ¡tica bien configurada, indicando por quÃ© es correcta o sugiriendo material de apoyo.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">RetroalimentaciÃ³n personalizada y procesual que combina el feedback automÃ¡tico con comentarios directos del docente en el LMS.</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">RetroalimentaciÃ³n inmediata, multidireccional (pares, auto-evaluaciÃ³n y docente) que guÃ­a los siguientes pasos.</td>
+                            </tr>
+                            <!-- CategorÃ­a 3 -->
+                            <tr class="rubric-row" data-category="tdede-3">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">3. Agilidad y Frecuencia de la EvaluaciÃ³n</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">EvaluaciÃ³n concentrada en grandes hitos (parciales/finales). Los resultados son tardÃ­os.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">EvaluaciÃ³n con algunos momentos intermedios. Los resultados tardan mÃ¡s de 48h.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">EvaluaciÃ³n frecuente (al menos 1 vez/semana) con herramientas que permiten resultados en tiempo real o menos de 24h.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">EvaluaciÃ³n continua y breve integrada en cada sesiÃ³n (entradas/salidas de clase). Resultados al instante.</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">EvaluaciÃ³n adaptativa a la necesidad del estudiante. El docente usa los datos del dÃ­a para ajustar el ritmo de la siguiente clase.</td>
+                            </tr>
+                            <!-- CategorÃ­a 4 -->
+                            <tr class="rubric-row" data-category="tdede-4">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">4. Uso de Datos para la Mejora (AnalÃ­tica)</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Los datos de la evaluaciÃ³n digital no se usan o solo se registran para la calificaciÃ³n final.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Los datos se revisan para identificar si la unidad se aprobÃ³ o no, pero sin impacto en la enseÃ±anza de las sesiones.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente analiza los datos (preguntas mÃ¡s falladas) para reforzar temas especÃ­ficos con todo el grupo de forma global.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente usa los datos para segmentar al grupo y ofrecer rutas de aprendizaje diferenciadas (refuerzo vs. ampliaciÃ³n).</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente utiliza la analÃ­tica digital para revisar el diseÃ±o instruccional del curso y documentar cientÃ­ficamente su efectividad.</td>
+                            </tr>
+                            <!-- CategorÃ­a 5 -->
+                            <tr class="rubric-row" data-category="tdede-5">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">5. IntegraciÃ³n de la TecnologÃ­a</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">La herramienta digital se usa como un extra o requiere muchos pasos manuales desarticulados.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">La herramienta digital es funcional pero su uso es estÃ¡ndar y no aprovecha todas las opciones interactivas de la plataforma.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">La herramienta estÃ¡ integrada en el LMS (Moodle), haciendo el flujo de trabajo eficiente para el estudiante y el docente.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">La herramienta se usa para evaluar habilidades complejas que un examen convencional no podrÃ­a (p. ej., Pensamiento crÃ­tico).</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente experimenta con nuevas herramientas o combina varias de forma simultÃ¡nea creando una experiencia vanguardista.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RÃšBRICA INTERACTIVA 2: IFID -->
+            <div id="rub-ifid-container" class="space-y-6 hidden">
+                <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm custom-scrollbar">
+                    <table class="w-full table-auto text-left border-collapse text-xs md:text-sm responsive-table vertical-table">
+                        <thead>
+                            <tr class="bg-guinda text-white">
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 w-1/5">CategorÃ­a</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 1 (Barrera)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 2 (Inicial)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 3 (En Proceso)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 4 (Avanzado)</th>
+                                <th class="p-3 font-semibold uppercase tracking-wider border border-slate-200 text-center">Nivel 5 (DiseÃ±o Universal)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-rub-ifid">
+                            <!-- CategorÃ­a 1 -->
+                            <tr class="rubric-row" data-category="ifid-1">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">1. Accesibilidad del Contenido Digital</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El material digital (PDFs imagen, videos sin texto) es inaccesible para lectores de pantalla.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Algunos materiales son accesibles, pero la mayorÃ­a requiere conversiÃ³n manual o soporte externo para ser consumidos.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente asegura que los textos sean seleccionables y los videos tengan subtÃ­tulos automÃ¡ticos (aunque con errores).</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente revisa y corrige la accesibilidad: alt-text en imÃ¡genes, subtÃ­tulos precisos y alto contraste en diapositivas.</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Todo el contenido nace accesible. Se usan herramientas nativas (ej. Accessibility Checker) para garantizar cero barreras.</td>
+                            </tr>
+                            <!-- CategorÃ­a 2 -->
+                            <tr class="rubric-row" data-category="ifid-2">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">2. PersonalizaciÃ³n del Aprendizaje (Ritmos)</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Todos los estudiantes deben avanzar al mismo ritmo y usar el mismo recurso digital al mismo tiempo.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Se permiten tiempos extra en plataformas digitales solo para estudiantes con diagnÃ³stico o dictamen formal.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente ofrece dos opciones de actividad digital (ej. una bÃ¡sica y una avanzada) para atender diferentes ritmos de entrega.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Uso de plataformas adaptativas (IA) que ajustan la dificultad de los ejercicios automÃ¡ticamente segÃºn el desempeÃ±o del alumno.</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">La tecnologÃ­a permite rutas personalizadas. Cada alumno tiene un "playlist" de aprendizaje digital ajustado a su nivel.</td>
+                            </tr>
+                            <!-- CategorÃ­a 3 -->
+                            <tr class="rubric-row" data-category="ifid-3">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">3. Variedad de Formatos (RepresentaciÃ³n)</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Predominio absoluto de texto digital plano o escaneado. Poca estimulaciÃ³n multisensorial o visual.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Se incluye alguna imagen o video decorativo, pero la informaciÃ³n central sigue siendo solo texto plano.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente presenta la informaciÃ³n en al menos dos formatos (ej. Texto + Video explicativo) de forma regular.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente ofrece opciones multimedia ricas: Podcasts, infografÃ­as interactivas y simuladores para explicar el mismo tema.</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Multimodalidad total. El alumno elige cÃ³mo consumir la informaciÃ³n (leer, ver, escuchar o interactuar) usando la tecnologÃ­a.</td>
+                            </tr>
+                            <!-- CategorÃ­a 4 -->
+                            <tr class="rubric-row" data-category="ifid-4">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">4. Apoyo a Necesidades EspecÃ­ficas (NEE)</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente desconoce las herramientas de accesibilidad de los dispositivos (tablets/PC) del aula.</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El uso de herramientas de asistencia (dictado, lupas) se ve como "trampa" o ventaja injusta por el docente o el grupo.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente permite el uso de herramientas de asistencia (calculadoras, correctores) si el alumno las trae por cuenta propia.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente enseÃ±a y promueve activamente el uso de herramientas como text-to-speech o diccionarios visuales a todo el grupo.</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente integra tecnologÃ­a asistiva avanzada (rastreo ocular, software de comunicaciÃ³n aumentativa) con naturalidad.</td>
+                            </tr>
+                            <!-- CategorÃ­a 5 -->
+                            <tr class="rubric-row" data-category="ifid-5">
+                                <td class="p-3 font-bold border border-slate-200 bg-slate-50 text-slate-700">5. Uso de TecnologÃ­a para Cerrar Brechas</td>
+                                <td onclick="selectRubricCell(this, 1)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">La tecnologÃ­a amplÃ­a la brecha (solo la aprovechan quienes tienen mejores dispositivos o conectividad en casa).</td>
+                                <td onclick="selectRubricCell(this, 2)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente nota las brechas digitales pero no cuenta con una estrategia estructurada para mitigarlas dentro del aula.</td>
+                                <td onclick="selectRubricCell(this, 3)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">Se facilitan dispositivos de repuesto o recursos offline para estudiantes con baja conectividad o rezago socioeconÃ³mico.</td>
+                                <td onclick="selectRubricCell(this, 4)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">El docente usa datos de apps educativas para detectar quiÃ©n se estÃ¡ quedando atrÃ¡s e interviene digitalmente (remediaciÃ³n rÃ¡pida).</td>
+                                <td onclick="selectRubricCell(this, 5)" class="p-3 border border-slate-200 text-slate-500 hover:bg-slate-100 cursor-pointer text-justify">La tecnologÃ­a se usa como igualador social. Se diseÃ±an estrategias "Mobile-first" o de bajo consumo de datos para equidad total.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Consola de DiagnÃ³stico Cualitativo de RÃºbricas -->
+            <div class="mt-6 bg-slate-900 text-white rounded-lg p-6 font-mono text-xs overflow-x-auto shadow-inner relative">
+                <h4 class="text-ocre font-bold text-sm uppercase mb-3 border-b border-slate-700 pb-2"><i class="fa-solid fa-square-poll-vertical mr-2"></i> Reporte del Evaluador Interno</h4>
+                <div id="diagnostico-rubrica" class="space-y-2 text-slate-300">
+                    Haga clic en las celdas de las rÃºbricas para que el sistema empiece a procesar la informaciÃ³n de madurez institucional...
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PESTAÃ‘A 5: REFERENCIAS BIBLIOGRÃFICAS -->
+        <div id="content-referencias" class="tab-content p-6 hidden">
+            <h2 class="text-xl font-bold text-guinda uppercase tracking-wide mb-6 pb-2 border-b border-slate-200">
+                <i class="fa-solid fa-book-bookmark mr-2"></i> Fuentes de InformaciÃ³n y Referencias AcadÃ©micas (APA 7)
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Referencias de EvaluaciÃ³n -->
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                    <h3 class="text-guinda font-bold text-xs uppercase tracking-widest mb-3 border-b pb-1"><i class="fa-solid fa-check-double text-ocre"></i> Eje 1: EvaluaciÃ³n Formativa y GamificaciÃ³n Digital</h3>
+                    <div class="space-y-4 text-xs md:text-sm text-slate-600">
+                        <p class="pl-5 -indent-5">
+                            Ayauca MorÃ¡n, S. M., et al. (2024). El uso de plataformas digitales gamificadas para la evaluaciÃ³n formativa en educaciÃ³n. <em>Revista de TecnologÃ­as Educativas ContemporÃ¡neas</em>.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            Casado, M., & Casado, J. (2017). MetodologÃ­as activas como estrategias de evaluaciÃ³n formativa. <em>Revista Iberoamericana de EducaciÃ³n y PedagogÃ­a</em>.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            HortigÃ¼ela-AlcalÃ¡, D., et al. (2019). <em>EvaluaciÃ³n Formativa y Compartida (EFyC): La evaluaciÃ³n para la mejora de los aprendizajes</em>. Morata.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            INTEF. (2017). <em>Marco ComÃºn de Competencia Digital Docente (DigCompEdu)</em>. Instituto Nacional de TecnologÃ­as Educativas y de FormaciÃ³n del Profesorado.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            Recio-MuÃ±oz, F., & Joo, J. (2021). IntegraciÃ³n de la tecnologÃ­a digital en el aula: DiseÃ±o de una propuesta formativa online desde una mirada de la prÃ¡ctica reflexiva. <em>Revista Digital de InvestigaciÃ³n y Docencia Universitaria</em>.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            SecretarÃ­a de EducaciÃ³n PÃºblica. (2013). <em>Las estrategias y los instrumentos de evaluaciÃ³n desde el enfoque formativo (Serie de textos para la evaluaciÃ³n formativa, cuadernillo 4)</em>. SEP.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Referencias de InclusiÃ³n -->
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                    <h3 class="text-guinda font-bold text-xs uppercase tracking-widest mb-3 border-b pb-1"><i class="fa-solid fa-universal-access text-ocre"></i> Eje 2: InclusiÃ³n, DiseÃ±o Universal (DUA) y Equidad</h3>
+                    <div class="space-y-4 text-xs md:text-sm text-slate-600">
+                        <p class="pl-5 -indent-5">
+                            Cabero-Almenara, J., & Ruiz-Palmero, J. (2018). Las TecnologÃ­as de la InformaciÃ³n y ComunicaciÃ³n para la inclusiÃ³n: reformulando la brecha digital. <em>Innoeduca. International Journal of Technology and Educational Innovation</em>.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            CAST. (2018). <em>Universal Design for Learning Guidelines version 2.2</em>. Center for Applied Special Technology.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            Pastor, C. A. (2019). <em>DiseÃ±o Universal para el Aprendizaje: EducaciÃ³n para todos y prÃ¡cticas de enseÃ±anza inclusivas</em>. Morata.
+                        </p>
+                        <p class="pl-5 -indent-5">
+                            UNESCO. (2021). <em>Estrategia sobre innovaciÃ³n tecnolÃ³gica en la educaciÃ³n (2022-2025)</em>. OrganizaciÃ³n de las Naciones Unidas para la EducaciÃ³n, la Ciencia y la Cultura.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Pie de PÃ¡gina Institucional -->
+    <footer class="bg-cecyte-guinda text-slate-400 border-t border-slate-800 text-xs py-6">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-slate-200">CECYTE Puebla â€” Desarrollos de Software 2026</p>
+                <p class="text-cecyte-oroLight mt-0.5">Todos los derechos de cÃ¡lculo y lÃ³gicas operativas reservados del autor.</p>
+            </div>
+            <div class="flex gap-4 text-cecyte-oroLight font-mono">
+                <span>Julian Sadak Vergara Cruz</span>
+                <span>|</span>
+                <span>Tailwind CSS</span>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Variables de estado para las rÃºbricas interactivas
+    const selections = {
+        'tdede-1': null, 'tdede-2': null, 'tdede-3': null, 'tdede-4': null, 'tdede-5': null,
+        'ifid-1': null, 'ifid-2': null, 'ifid-3': null, 'ifid-4': null, 'ifid-5': null
+    };
+    let currentRubric = 'rub-tdede';
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileDropdown = document.getElementById('mobile-dropdown');
+    const menuIcon = document.getElementById('menu-icon');
+
+    function toggleMenu() {
+        if (mobileDropdown.classList.contains('hidden')) {
+            mobileDropdown.classList.remove('hidden');
+            menuIcon.classList.replace('fa-bars', 'fa-xmark');
+        } else {
+            mobileDropdown.classList.add('hidden');
+            menuIcon.classList.replace('fa-xmark', 'fa-bars');
+        }
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMenu);
+
+    function initVerticalTableLabels() {
+        document.querySelectorAll('table.vertical-table').forEach(table => {
+            const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+            table.querySelectorAll('tbody tr').forEach(row => {
+                row.querySelectorAll('td').forEach((cell, index) => {
+                    const label = headers[index] || '';
+                    if (label) {
+                        cell.setAttribute('data-label', label);
+                    }
+                });
+            });
+        });
+    }
+
+    // InicializaciÃ³n al cargar la pÃ¡gina
+    window.onload = function() {
+        calcularTDEDE();
+        calcularIFID();
+        updateQualitativeDiagnostic();
+        initVerticalTableLabels();
+    };
+
+    // Enrutador de pestaÃ±as principal
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+        document.querySelectorAll('button[id^="tab-"]').forEach(button => {
+            button.classList.remove('tab-active');
+            button.classList.add('text-slate-500');
+        });
+        document.getElementById('content-' + tabId).classList.remove('hidden');
+        document.getElementById('tab-' + tabId).classList.add('tab-active');
+        document.getElementById('tab-' + tabId).classList.remove('text-slate-500');
+    }
+
+    // Cambio entre RÃºbrica de EvaluaciÃ³n e InclusiÃ³n
+    function switchRubric(rubricId) {
+        currentRubric = rubricId;
+        if(rubricId === 'rub-tdede') {
+            document.getElementById('rub-tdede-container').classList.remove('hidden');
+            document.getElementById('rub-ifid-container').classList.add('hidden');
+            document.getElementById('btn-rub-tdede').className = "flex-1 py-2 px-3 rounded-lg font-bold text-xs uppercase tracking-wider text-center border-2 border-guinda bg-guinda text-white shadow";
+            document.getElementById('btn-rub-ifid').className = "flex-1 py-2 px-3 rounded-lg font-bold text-xs uppercase tracking-wider text-center border-2 border-slate-200 text-slate-600 hover:border-guinda";
+        } else {
+            document.getElementById('rub-tdede-container').classList.add('hidden');
+            document.getElementById('rub-ifid-container').classList.remove('hidden');
+            document.getElementById('btn-rub-tdede').className = "flex-1 py-2 px-3 rounded-lg font-bold text-xs uppercase tracking-wider text-center border-2 border-slate-200 text-slate-600 hover:border-guinda";
+            document.getElementById('btn-rub-ifid').className = "flex-1 py-2 px-3 rounded-lg font-bold text-xs uppercase tracking-wider text-center border-2 border-guinda bg-guinda text-white shadow";
+        }
+        updateQualitativeDiagnostic();
+    }
+
+    // SelecciÃ³n de celdas de la rÃºbrica interactiva (CON COLORES ACTUALIZADOS)
+    function selectRubricCell(cell, score) {
+        const row = cell.parentNode;
+        const category = row.getAttribute('data-category');
+        
+        // Remover estilos seleccionados de toda la fila (Usa text-slate-600 del segundo script)
+        row.querySelectorAll('td').forEach((td, idx) => {
+            if (idx > 0) { // Ignorar la primera celda de tÃ­tulo de categorÃ­a
+                td.className = "p-3 border border-slate-200 text-slate-600 hover:bg-slate-100 cursor-pointer text-justify";
+            }
+        });
+
+        // Aplicar estilo de celda activa (Actualizado a bg-lila segÃºn el segundo script)
+        cell.className = "p-3 border-2 border-ocre bg-lila text-guinda font-bold text-justify cursor-pointer shadow-inner";
+        selections[category] = score;
+
+        updateQualitativeDiagnostic();
+    }
+
+    // Actualizar reporte de diagnÃ³stico en base a las rÃºbricas seleccionadas
+    function updateQualitativeDiagnostic() {
+        const isTdede = currentRubric === 'rub-tdede';
+        const prefix = isTdede ? 'tdede' : 'ifid';
+        const textLabels = isTdede ? {
+            title: "Reporte de Madurez de EvaluaciÃ³n (TDEDE)",
+            rec1: "Enfocar talleres de capacitaciÃ³n docente en el diseÃ±o instruccional, no solo instrumental.",
+            rec2: "Estructurar comunidades de mentorÃ­a emparejando docentes de nivel Ã³ptimo con iniciales."
+        } : {
+            title: "Reporte de Madurez de InclusiÃ³n Escolar (IFID)",
+            rec1: "DiseÃ±ar estrategias 'Mobile-first' o de bajo consumo para garantizar equidad ante la baja conectividad.",
+            rec2: "Implementar software de asistencia (Microsoft Immersive Reader o dictado por voz) de forma nativa."
+        };
+
+        let sum = 0;
+        let answered = 0;
+        for(let i = 1; i <= 5; i++) {
+            const score = selections[`${prefix}-${i}`];
+            if(score !== null) {
+                sum += score;
+                answered++;
+            }
+        }
+
+        const diagDiv = document.getElementById('diagnostico-rubrica');
+        if(answered < 5) {
+            diagDiv.innerHTML = `
+                <p class="text-amber-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Faltan evaluar ${5 - answered} categorÃ­as en la rÃºbrica activa para generar el dictamen.</p>
+            `;
+            return;
+        }
+
+        const average = (sum / 5).toFixed(1);
+        let levelBadge = "";
+        let detailText = "";
+
+        if(average >= 4.5) {
+            levelBadge = "<span class='bg-emerald-600 text-white px-2 py-0.5 rounded font-bold text-[10px]'>EXCELENCIA / DISEÃ‘O UNIVERSAL</span>";
+            detailText = "El docente demuestra liderazgo institucional. Su prÃ¡ctica educativa estÃ¡ adaptada para eliminar barreras a priori e incentivar la evaluaciÃ³n formativa y colaborativa dinÃ¡mica.";
+        } else if(average >= 3.5) {
+            levelBadge = "<span class='bg-green-600 text-white px-2 py-0.5 rounded font-bold text-[10px]'>AVANZADO</span>";
+            detailText = "Buen nivel de incorporaciÃ³n de tecnologÃ­a pedagÃ³gica. Se diversifican formatos y se provee feedback oportuno, aunque requiere sistematizar los repositorios.";
+        } else if(average >= 2.5) {
+            levelBadge = "<span class='bg-yellow-500 text-white px-2 py-0.5 rounded font-bold text-[10px]'>COMPETENTE / INTERMEDIO</span>";
+            detailText = "Cumple con los requisitos operativos bÃ¡sicos. Sin embargo, predomina un uso instrumental sobre el diseÃ±o metodolÃ³gico o existen ligeros sesgos en equidad.";
+        } else {
+            levelBadge = "<span class='bg-red-600 text-white px-2 py-0.5 rounded font-bold text-[10px]'>BARRERA / INICIAL</span>";
+            detailText = "Se detectan brechas significativas en el aula. Se priorizan esquemas evaluativos tradicionales o la tecnologÃ­a actÃºa de manera excluyente.";
+        }
+
+        diagDiv.innerHTML = `
+            <div class="border-l-2 border-ocre pl-3 space-y-2">
+                <p class="text-sm font-bold text-white uppercase">${textLabels.title}</p>
+                <p class="text-xs">PUNTUACIÃ“N PROMEDIO: <strong class="text-ocre text-sm">${average} / 5.0</strong> - ESTADO: ${levelBadge}</p>
+                <p class="text-xs text-slate-300 text-justify">${detailText}</p>
+                <p class="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-wider">Plan de AcciÃ³n Recomendado:</p>
+                <ul class="list-disc pl-5 text-[11px] text-slate-300 space-y-1">
+                    <li>${textLabels.rec1}</li>
+                    <li>${textLabels.rec2}</li>
+                </ul>
+            </div>
+        `;
+    }
+
+    // CALCULADORA TDEDE EN TIEMPO REAL
+    function calcularTDEDE() {
+        const efd = parseInt(document.getElementById('input-efd').value) || 0;
+        const etef = parseInt(document.getElementById('input-etef').value) || 1;
+        
+        let percent = (efd / etef) * 100;
+        if(percent > 100) percent = 100;
+        if(percent < 0) percent = 0;
+
+        document.getElementById('result-tdede-percent').innerText = percent.toFixed(1) + '%';
+        
+        const levelSpan = document.getElementById('result-tdede-level');
+        
+        // Limpiar clases de filas
+        const rows = ['row-tdede-bajo', 'row-tdede-medio-bajo', 'row-tdede-medio-alto', 'row-tdede-alto', 'row-tdede-optimo'];
+        rows.forEach(r => document.getElementById(r).className = "transition duration-150");
+
+        if (percent <= 20) {
+            levelSpan.innerText = "Bajo";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-red-600 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-tdede-bajo').className = "bg-red-50 font-semibold";
+        } else if (percent <= 40) {
+            levelSpan.innerText = "Medio - Bajo";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-orange-500 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-tdede-medio-bajo').className = "bg-orange-50 font-semibold";
+        } else if (percent <= 60) {
+            levelSpan.innerText = "Medio - Alto";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-amber-500 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-tdede-medio-alto').className = "bg-amber-50 font-semibold";
+        } else if (percent <= 80) {
+            levelSpan.innerText = "Alto";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-green-600 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-tdede-alto').className = "bg-green-50 font-semibold";
+        } else {
+            levelSpan.innerText = "Ã“ptimo";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-emerald-600 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-tdede-optimo').className = "bg-emerald-50 font-semibold";
+        }
+    }
+
+    // CALCULADORA IFID EN TIEMPO REAL
+    function calcularIFID() {
+        const sad = parseInt(document.getElementById('input-sad').value) || 0;
+        const st = parseInt(document.getElementById('input-st').value) || 1;
+        
+        let percent = (sad / st) * 100;
+        if(percent > 100) percent = 100;
+        if(percent < 0) percent = 0;
+
+        document.getElementById('result-ifid-percent').innerText = percent.toFixed(1) + '%';
+        
+        const levelSpan = document.getElementById('result-ifid-level');
+        
+        // Limpiar clases de filas
+        const rows = ['row-ifid-excluyente', 'row-ifid-reactivo', 'row-ifid-intermedio', 'row-ifid-inclusivo', 'row-ifid-diseno-universal'];
+        rows.forEach(r => document.getElementById(r).className = "transition duration-150");
+
+        if (percent <= 20) {
+            levelSpan.innerText = "Excluyente";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-red-600 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-ifid-excluyente').className = "bg-red-50 font-semibold";
+        } else if (percent <= 40) {
+            levelSpan.innerText = "Reactivo";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-orange-500 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-ifid-reactivo').className = "bg-orange-50 font-semibold";
+        } else if (percent <= 60) {
+            levelSpan.innerText = "Intermedio";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-amber-500 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-ifid-intermedio').className = "bg-amber-50 font-semibold";
+        } else if (percent <= 80) {
+            levelSpan.innerText = "Inclusivo";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-green-600 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-ifid-inclusivo').className = "bg-green-50 font-semibold";
+        } else {
+            levelSpan.innerText = "DiseÃ±o Universal";
+            levelSpan.className = "inline-block mt-2 px-3 py-1 bg-emerald-600 text-white rounded text-[10px] font-bold uppercase tracking-wider";
+            document.getElementById('row-ifid-diseno-universal').className = "bg-emerald-50 font-semibold";
+        }
+    }
+</script>
+</body>
+</html>
+

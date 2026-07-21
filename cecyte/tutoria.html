@@ -1,0 +1,982 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestiÃ³n de TutorÃ­as y AsesorÃ­as | CECYTE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        cecyte: {
+                            guinda: '#651C32',
+                            guindaLight: '#80243e',
+                            oro: '#B9975B',
+                            oroLight: '#ceb484',
+                            grisBg: '#f4f6f8',
+                        },
+                        cecyte: {
+                            guinda: '#651C32',
+                            guindaLight: '#80243e',
+                            oro: '#B9975B',
+                            oroLight: '#ceb484',
+                            grisBg: '#f4f6f8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <meta name="theme-color" content="#651C32">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
+
+    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 max-w-screen-2xl">
+            <div class="flex justify-between h-16">
+                <!-- Logo e Identidad -->
+                <div class="flex items-center gap-3">
+                    <div>
+                        <span class="font-montserrat font-extrabold text-sm sm:text-base tracking-wider text-cecyte-guinda block leading-none">PORTAL EDUCATIVO</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Escritorio -->
+                <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
+                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Principal
+                    </a>
+                    <div class="relative group">
+                        <button type="button" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                            <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 z-50">
+                            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-layer-group text-cecyte-guinda"></i>
+                                <span>Ir a la secciÃ³n</span>
+                            </a>
+                            <div class="my-2 border-t border-slate-100"></div>
+                            <a href="pase_lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: Pase de Lista</span>
+                            </a>
+                            <a href="tutoria.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: TutorÃ­a</span>
+                            </a>
+                            <a href="seguimiento_entregas.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-table-list text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: Seguimiento AcadÃ©mico</span>
+                            </a>
+                            <a href="eval/plantilla_rubrica.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: RÃºbrica</span>
+                            </a>
+                            <a href="eval/plantilla_estimativa.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: Escala Estimativa</span>
+                            </a>
+                            <a href="eval/plantilla_observacion.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: GuÃ­a de ObservaciÃ³n</span>
+                            </a>
+                            <a href="eval/plantilla_cotejo.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: Lista de Cotejo</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
+                    </a>
+                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
+                    </a>
+                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
+                </div>
+
+                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MenÃº Desplegable MÃ³vil -->
+        <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
+            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            </a>
+            <details class="group rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-3 rounded-lg text-slate-700 font-semibold text-sm transition-colors">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+                    </span>
+                    <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-150 group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la secciÃ³n
+                    </a>
+                    <a href="pase_lista.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: Pase de Lista
+                    </a>
+                    <a href="tutoria.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: TutorÃ­a
+                    </a>
+                    <a href="seguimiento_entregas.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-table-list text-cecyte-guinda"></i> MÃ³dulo: Seguimiento AcadÃ©mico
+                    </a>
+                    <a href="eval/plantilla_rubrica.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: RÃºbrica
+                    </a>
+                    <a href="eval/plantilla_estimativa.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Escala Estimativa
+                    </a>
+                    <a href="eval/plantilla_observacion.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: GuÃ­a de ObservaciÃ³n
+                    </a>
+                    <a href="eval/plantilla_cotejo.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Lista de Cotejo
+                    </a>
+                </div>
+            </details>
+           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
+            </a>
+            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
+            </a>
+        </div>
+    </nav>
+
+    <!-- Encabezado Principal / Hero Banner -->
+    <header class="bg-cecyte-guinda text-white shadow-md relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-40 h-40 bg-cecyte-oro opacity-10 rounded-full transform translate-x-12 -translate-y-12"></div>
+        <div class="container mx-auto px-6 max-w-screen-2xl py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                    <span class="bg-cecyte-oro text-cecyte-guinda text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Plantel Huejotzingo</span>
+                    <span class="text-slate-300 text-sm">| TutorÃ­as y AsesorÃ­as 2026</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Expediente y RÃºbrica de TutorÃ­as</h1>
+                <p class="text-cecyte-oroLight mt-2 text-base font-light max-w-2xl">
+                    Plataforma tecnolÃ³gica integral, diseÃ±ada especÃ­ficamente para CECyTE. Este entorno unifica herramientas de anÃ¡lisis y evaluaciÃ³n en un solo Hub interactivo.
+                </p>
+            </div>
+            
+            <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10 w-full md:w-auto">
+                <div class="bg-cecyte-oro/10 border border-cecyte-oro text-cecyte-oro w-14 h-14 rounded-full flex items-center justify-center text-2xl shrink-0">
+                    <img src="../img/julianprofile.png" alt="Perfil" class="w-full h-full object-cover rounded-full" onerror="this.src='https://via.placeholder.com/150'">
+                </div>
+                <div>
+                    <h4 class="font-bold text-md text-white">Mtro. Julian Sadak Vergara Cruz</h4>
+                    <p class="text-sm text-cecyte-oro">Desarrollo e InnovaciÃ³n Educativa</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container mx-auto px-4 max-w-screen-2xl py-6 flex-grow">
+        
+        <!-- BOTONES DE RESPALDO GLOBAL Y ACCIONES -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+            <!-- MÃ‰TRICAS EN TIEMPO REAL -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex-grow max-w-3xl text-center">
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase">Total Sesiones</div>
+                    <div id="metric-total" class="text-xl font-bold text-cecyte-guinda">0</div>
+                </div>
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase">% AcadÃ©micas</div>
+                    <div id="metric-pct-acad" class="text-xl font-bold text-slate-700">0%</div>
+                </div>
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase">% TutorÃ­as</div>
+                    <div id="metric-pct-tut" class="text-xl font-bold text-slate-700">0%</div>
+                </div>
+                <div>
+                    <div class="text-[10px] font-bold text-orange-600 uppercase">Casos Seguimiento</div>
+                    <div id="metric-seguimiento" class="text-xl font-bold text-orange-600 animate-pulse">0</div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button id="backup-export-btn" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1">
+                    <i class="fa-solid fa-file-shield"></i> Respaldar Datos
+                </button>
+                <button id="backup-import-btn" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1">
+                    <i class="fa-solid fa-file-import"></i> Restaurar Copia
+                </button>
+                <input type="file" id="backup-file-input" class="hidden" accept=".json">
+            </div>
+        </div>
+
+        <!-- FORMULARIOS Y MATRIZ -->
+        <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
+            
+            <!-- CONFIGURACIÃ“N DE GRUPO Y ALTA -->
+            <div class="space-y-4 xl:col-span-1">
+                <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-4">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
+                        <i class="fa-solid fa-users mr-1 text-cecyte-oro"></i> Datos del Grupo
+                    </h2>
+                    <div class="space-y-2 text-xs">
+                        <input id="group-name" type="text" placeholder="Carrera (Ej. Soporte TÃ©cnico)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input id="group-semester" type="text" placeholder="Semestre" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none">
+                            <input id="group-shift" type="text" placeholder="Grupo" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none">
+                        </div>
+                        <textarea id="students-input" rows="4" placeholder="Estudiantes (uno por lÃ­nea)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none"></textarea>
+                        
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="save-group-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-2 rounded-xl transition-colors">Guardar Grupo</button>
+                            <button id="delete-group-btn" class="bg-slate-700 hover:bg-black text-white font-bold py-2 px-2 rounded-xl transition-colors">Borrar</button>
+                        </div>
+                    </div>
+                    <hr class="border-slate-200">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-cecyte-guinda mb-1">Grupo Activo</label>
+                        <select id="group-select" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none"></select>
+                    </div>
+                </article>
+            </div>
+
+            <!-- REGISTRO E HISTORIAL DE ATENCIÃ“N CON RÃšBRICA -->
+            <div class="xl:col-span-3 space-y-6">
+                <!-- FORMULARIO DE ATENCIÃ“N INDIVIDUAL / GRUPAL -->
+                <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-cecyte-guinda mb-4">
+                        <i class="fa-solid fa-clipboard-user text-cecyte-oro mr-1"></i> Formulario de IntervenciÃ³n Docente
+                    </h2>
+                    
+                    <form id="tutoria-form" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div>
+                            <label class="block font-bold mb-1">Alcance de AtenciÃ³n</label>
+                            <select id="tutoria-scope" class="w-full border border-slate-300 rounded-lg p-2 bg-slate-50">
+                                <option value="Individual">Individual (Seleccionar alumno)</option>
+                                <option value="Grupal">Grupal (Todo el grupo seleccionado)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1">Estudiante (Si aplica)</label>
+                            <select id="student-select" class="w-full border border-slate-300 rounded-lg p-2 bg-slate-50">
+                                <option value="">-- Seleccione Estudiante --</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1">Tipo de IntervenciÃ³n</label>
+                            <select id="tutoria-type" class="w-full border border-slate-300 rounded-lg p-2 bg-slate-50">
+                                <option value="Academica">AsesorÃ­a AcadÃ©mica</option>
+                                <option value="Tutoria">SesiÃ³n de TutorÃ­a (Socioemocional / Conductual)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1">Tipo de Estudiante</label>
+                            <select id="student-type" class="w-full border border-slate-300 rounded-lg p-2 bg-slate-50">
+                                <option value="Regular">Regular</option>
+                                <option value="Irregular">Irregular</option>
+                                <option value="Sobresaliente">Sobresaliente</option>
+                                <option value="Situacion de riesgo">SituaciÃ³n de riesgo</option>
+                            </select>
+                        </div>
+
+                        <!-- SECCIÃ“N DINÃMICA DE RÃšBRICA EVALUATIVA -->
+                        <div class="md:col-span-3 bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2">
+                            <h3 class="font-bold text-cecyte-guinda uppercase text-[11px] mb-3 flex items-center gap-1">
+                                <i class="fa-solid fa-star text-cecyte-oro"></i> Matriz Evaluativa Contextualizada
+                            </h3>
+                            <div id="rubric-container" class="space-y-3">
+                                <!-- Contenido inyectado por JS -->
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block font-bold mb-1">SituaciÃ³n presentada / Observaciones</label>
+                            <textarea id="tutoria-obs" rows="3" placeholder="Describe la situaciÃ³n presentada y observaciones relevantes..." class="w-full border border-slate-300 rounded-lg p-2 focus:outline-none focus:border-cecyte-guinda"></textarea>
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1">DeterminaciÃ³n Inicial</label>
+                            <select id="tutoria-action" class="w-full border border-slate-300 rounded-lg p-2 font-semibold">
+                                <option value="Ninguno" class="text-slate-600">Concluido (Sin acciones requeridas)</option>
+                                <option value="Seguimiento" class="text-orange-600 font-bold">Requiere Plan de Seguimiento Interno</option>
+                                <option value="Canalizacion" class="text-red-600 font-bold">Canalizar Urgente a OrientaciÃ³n Educativa</option>
+                            </select>
+                            <button type="button" id="save-session-btn" class="w-full mt-4 bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-4 rounded-xl transition-all shadow-sm text-xs">
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> Registrar BitÃ¡cora
+                            </button>
+                        </div>
+                        <div class="md:col-span-3">
+                            <label class="block font-bold mb-1">Acuerdos y compromisos</label>
+                            <textarea id="tutoria-acuerdos" rows="2" placeholder="Compromisos establecidos con fecha o condiciones..." class="w-full border border-slate-300 rounded-lg p-2 focus:outline-none focus:border-cecyte-guinda"></textarea>
+                        </div>
+                    </form>
+                </article>
+
+                <!-- PROMPT DE SALIDA INTELIGENTE -->
+                <article id="prompt-output-card" class="bg-slate-900 text-slate-100 rounded-2xl p-4 shadow-inner hidden">
+                    <div class="flex justify-between items-center mb-2 border-b border-slate-800 pb-2">
+                        <span class="text-xs font-bold text-cecyte-oro tracking-widest uppercase"><i class="fa-solid fa-robot"></i> Prompt de DerivaciÃ³n Generado para IA / Expediente</span>
+                        <button id="copy-prompt-btn" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2.5 py-1 rounded font-bold text-white transition-colors">
+                            <i class="fa-solid fa-copy mr-1"></i> Copiar Prompt
+                        </button>
+                    </div>
+                    <p id="prompt-text" class="text-xs font-mono text-slate-300 whitespace-pre-wrap leading-relaxed"></p>
+                </article>
+
+                <!-- HISTÃ“RICO DE LOGS / REGISTROS -->
+                <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda"><i class="fa-solid fa-history mr-1"></i> Historial Reciente del Grupo</h3>
+                        <button id="export-general-report-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white text-[11px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 transition-colors">
+                            <i class="fa-solid fa-file-excel"></i> Descargar Reporte General (Excel/CSV)
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto border border-slate-200 rounded-lg max-h-64">
+                        <table class="w-full text-[11px] text-left">
+                            <thead class="bg-slate-100 border-b border-slate-200 font-bold text-slate-600">
+                                <tr>
+                                    <th class="py-2 px-3">Fecha</th>
+                                    <th class="py-2 px-3">Alcance / Alumno</th>
+                                    <th class="py-2 px-3">Tipo</th>
+                                    <th class="py-2 px-3 text-center">DesempeÃ±o RÃºbrica</th>
+                                    <th class="py-2 px-3">Estatus</th>
+                                    <th class="py-2 px-3 text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body">
+                                <tr><td colspan="6" class="p-4 text-center text-slate-400">NingÃºn registro en el grupo actual.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Pie de PÃ¡gina -->
+    <footer class="bg-cecyte-guinda rounded-2xl text-slate-400 border-t border-slate-800 text-xs py-6 mt-auto">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-slate-200">Colegio de Estudios CientÃ­ficos y TecnolÃ³gicos del Estado de Puebla</p>
+                <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
+            </div>
+            <div class="flex gap-4 text-cecyte-oroLight font-mono">
+                </span>Desarrollado por:</span>
+                <a href="mailto:jvergarac@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
+                    <span>Julian Sadak Vergara Cruz</span>
+                </a>
+                <span>|</span>
+                </span>Revisado por:</span>
+                <a href="mailto:hpaezg@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
+                    <span>Herlinda PaÃ©z GonzÃ¡lez</span>
+                </a>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÃ“GICA JAVASCRIPT INTEGRADA -->
+    <script>
+        const STORAGE_KEY = 'cecyte_tutorias_v1';
+        
+        const state = {
+            groups: [],
+            sessions: []
+        };
+
+        const rubricsDefinition = {
+            Academica: [
+                { 
+                    id: 'preparacion', 
+                    label: 'PreparaciÃ³n y Enfoque', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): Llega puntual, con dudas especÃ­ficas y materiales organizados. Demuestra haber revisado el tema a fondo previamente.' },
+                        { val: 3, text: 'Competente (3 pts): Llega a tiempo con sus materiales. Sus dudas son vÃ¡lidas pero generales. Se nota una revisiÃ³n parcial del tema.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Llega con dudas muy vagas (ej. "no le entiendo a nada"). No hay evidencia de una revisiÃ³n previa del material.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Llega tarde, no trae materiales ni dudas concretas, o no se preparÃ³ en lo absoluto para la sesiÃ³n.' }
+                    ]
+                },
+                { 
+                    id: 'participacion', 
+                    label: 'ParticipaciÃ³n Activa', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): Toma notas, propone soluciones y responde con seguridad. Adopta un rol proactivo en su propio aprendizaje.' },
+                        { val: 3, text: 'Competente (3 pts): Escucha con atenciÃ³n y responde cuando se le pregunta, pero su rol tiende a ser mÃ¡s pasivo que proactivo.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Muestra distracciones o apatÃ­a. InteractÃºa solo de forma superficial o cuando la o el asesor se lo exige directamente.' },
+                        { val: 1, text: 'Insuficiente (1 pt): No interactÃºa, muestra total desinterÃ©s o se distrae constantemente con elementos ajenos a la asesorÃ­a.' }
+                    ]
+                },
+                { 
+                    id: 'receptividad', 
+                    label: 'Receptividad a la RetroalimentaciÃ³n', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): Recibe las crÃ­ticas constructivas con apertura, hace preguntas para aclarar sus errores y muestra disposiciÃ³n a mejorar.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta las correcciones y sugerencias, aunque le cuesta un poco profundizar en el origen de sus errores.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Se justifica constantemente, le cuesta aceptar las correcciones o ignora algunas de las sugerencias dadas.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud defensiva o de rechazo absoluto ante las observaciones de la o el asesor, bloqueando el avance.' }
+                    ]
+                },
+                { 
+                    id: 'autonomia', 
+                    label: 'AutonomÃ­a y Plan de AcciÃ³n', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): Es capaz de explicar lo aprendido con sus propias palabras y propone un plan claro con pasos a seguir de forma independiente.' },
+                        { val: 3, text: 'Competente (3 pts): Comprende las explicaciones del asesor, pero requiere de su ayuda para definir los siguientes pasos de su trabajo.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Muestra dificultades para aplicar lo aprendido por sÃ­ mismo. El plan de acciÃ³n para el estudio independiente es difuso.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Termina la sesiÃ³n sin comprender el tema y sin una ruta clara de trabajo; depende totalmente de otra asesorÃ­a.' }
+                    ]
+                }
+            ],
+            Tutoria: [
+                { 
+                    id: 'autoconocimiento', 
+                    label: 'Autoconocimiento y Apertura', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): Identifica con claridad sus emociones, fortalezas y Ã¡reas de oportunidad. Expresa su situaciÃ³n sin reservas y con honestidad.' },
+                        { val: 3, text: 'Competente (3 pts): Reconoce que enfrenta una situaciÃ³n difÃ­cil, sin embargo, no logra verbalizar o profundizar en el origen del problema.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Tiene dificultades para determinar o identificar quÃ© lo o la estÃ¡ afectando.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud cerrada, evade las preguntas y no reconoce o minimiza el problema que estÃ¡ afectando su bienestar.' }
+                    ]
+                },
+                { 
+                    id: 'comunicacion', 
+                    label: 'ComunicaciÃ³n y Confianza', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): Utiliza la tutorÃ­a como un espacio seguro. Escucha activamente la perspectiva del docente y dialoga asertivamente.' },
+                        { val: 3, text: 'Competente (3 pts): Se comunica de manera clara, sin embargo,  mantiene distancia durante la sesiÃ³n. Escucha los consejos pero interactÃºa poco.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Su comunicaciÃ³n es pasiva; tiene dificultad para establecer un diÃ¡logo fluido con la o el tutor.' },
+                        { val: 1, text: 'Insuficiente (1 pt): No hay comunicaciÃ³n efectiva; responde con monosÃ­labos o muestra una actitud de rechazo hacia el espacio de tutorÃ­a.' }
+                    ]
+                },
+                { 
+                    id: 'soluciones', 
+                    label: 'BÃºsqueda de Soluciones y Resiliencia', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): Propone activamente alternativas para superar el obstÃ¡culo y demuestra disposiciÃ³n para aprender de la experiencia.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta las sugerencias de la o el tutor y muestra interÃ©s en cambiar la situaciÃ³n, necesita acompaÃ±amiento en las soluciones.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Espera que la o el tutor o un tercero resuelva el problema por Ã©l o ella. Tiene dificultades para elegir alternativas viables.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud de victimizaciÃ³n o resignaciÃ³n absoluta; no tiene interÃ©s en buscar soluciones a su situaciÃ³n.' }
+                    ]
+                },
+                { 
+                    id: 'compromiso', 
+                    label: 'Compromiso con el Bienestar (Plan de AcciÃ³n)', 
+                    options: [
+                        { val: 4, text: 'Excelente (4 pts): DiseÃ±a, junto a la o el tutor, compromisos claros y realistas (ej. acudir al departamento de orientaciÃ³n, organizar mejor su tiempo) y asume la responsabilidad de cumplirlos.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta el plan de acciÃ³n sugerido por la o el tutor y se compromete a realizarlo, sin embargo, requiere de recordatorios o seguimiento cercano.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Acuerda un plan de acciÃ³n solo por compromiso en la sesiÃ³n de tutoria individual, pero muestra baja convicciÃ³n o motivaciÃ³n para llevarlo a cabo.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Se retira de la sesiÃ³n sin establecer ningÃºn compromiso concreto ni intenciÃ³n de cambiar su situaciÃ³n actual.' }
+                    ]
+                }
+            ]
+        };
+
+        const el = {
+            groupName: document.getElementById('group-name'),
+            groupSemester: document.getElementById('group-semester'),
+            groupShift: document.getElementById('group-shift'),
+            studentsInput: document.getElementById('students-input'),
+            saveGroupBtn: document.getElementById('save-group-btn'),
+            deleteGroupBtn: document.getElementById('delete-group-btn'),
+            groupSelect: document.getElementById('group-select'),
+            tutoriaScope: document.getElementById('tutoria-scope'),
+            studentSelect: document.getElementById('student-select'),
+            tutoriaType: document.getElementById('tutoria-type'),
+            studentType: document.getElementById('student-type'),
+            rubricContainer: document.getElementById('rubric-container'),
+            tutoriaObs: document.getElementById('tutoria-obs'),
+            tutoriaAction: document.getElementById('tutoria-action'),
+            tutoriaAcuerdos: document.getElementById('tutoria-acuerdos'),
+            saveSessionBtn: document.getElementById('save-session-btn'),
+            promptOutputCard: document.getElementById('prompt-output-card'),
+            promptText: document.getElementById('prompt-text'),
+            copyPromptBtn: document.getElementById('copy-prompt-btn'),
+            historyTableBody: document.getElementById('history-table-body'),
+            exportBackupBtn: document.getElementById('backup-export-btn'),
+            importBackupBtn: document.getElementById('backup-import-btn'),
+            backupFileInput: document.getElementById('backup-file-input'),
+            metricTotal: document.getElementById('metric-total'),
+            metricPctAcad: document.getElementById('metric-pct-acad'),
+            metricPctTut: document.getElementById('metric-pct-tut'),
+            metricSeguimiento: document.getElementById('metric-seguimiento'),
+            exportGeneralReportBtn: document.getElementById('export-general-report-btn')
+        };
+
+        const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+        function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); computeMetrics(); }
+        
+        function loadState() {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            try {
+                const parsed = JSON.parse(raw);
+                state.groups = parsed.groups || [];
+                state.sessions = parsed.sessions || [];
+            } catch(e) { console.error(e); }
+        }
+
+        function parseStudents(text) {
+            return text.split('\n').map(l => l.trim()).filter(Boolean).map((line, idx) => {
+                const [first, ...rest] = line.split(',');
+                if (rest.length === 0) return { id: uid(), number: idx + 1, name: first.trim() };
+                const num = parseInt(first.trim());
+                return { id: uid(), number: isNaN(num) ? idx + 1 : num, name: rest.join(',').trim() };
+            });
+        }
+
+        function renderGroupOptions() {
+            const val = el.groupSelect.value;
+            el.groupSelect.innerHTML = '<option value="">-- Seleccionar Grupo --</option>';
+            state.groups.forEach(g => {
+                const opt = document.createElement('option');
+                opt.value = g.id;
+                opt.textContent = `${g.name} (${g.semester}Â° ${g.shift})`;
+                el.groupSelect.appendChild(opt);
+            });
+            if (val) el.groupSelect.value = val;
+            updateStudentSelect();
+        }
+
+        function updateStudentSelect() {
+            const gId = el.groupSelect.value;
+            el.studentSelect.innerHTML = '<option value="">-- Seleccione Estudiante --</option>';
+            const group = state.groups.find(g => g.id === gId);
+            if (group) {
+                group.students.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s.id;
+                    opt.textContent = `${s.number}. ${s.name}`;
+                    el.studentSelect.appendChild(opt);
+                });
+            }
+        }
+
+        function renderRubric() {
+            const type = el.tutoriaType.value;
+            const definitions = rubricsDefinition[type] || [];
+            el.rubricContainer.innerHTML = '';
+
+            definitions.forEach(criteria => {
+                const div = document.createElement('div');
+                div.className = "flex flex-col gap-1 border-b border-slate-200 pb-2 text-[11px]";
+                div.innerHTML = `<span class="font-bold text-slate-700">${criteria.label}</span>`;
+                
+                const select = document.createElement('select');
+                select.id = `rubric-crit-${criteria.id}`;
+                select.className = "border border-slate-300 rounded p-1.5 text-[11px] font-medium text-slate-800 bg-white w-full";
+                
+                criteria.options.forEach(opt => {
+                    const o = document.createElement('option');
+                    o.value = JSON.stringify({ score: opt.val, desc: opt.text });
+                    o.textContent = opt.text;
+                    select.appendChild(o);
+                });
+                div.appendChild(select);
+                el.rubricContainer.appendChild(div);
+            });
+        }
+
+        function computeMetrics() {
+            const total = state.sessions.length;
+            if (total === 0) {
+                el.metricTotal.textContent = "0"; el.metricPctAcad.textContent = "0%";
+                el.metricPctTut.textContent = "0%"; el.metricSeguimiento.textContent = "0";
+                return;
+            }
+            const acad = state.sessions.filter(s => s.type === 'Academica').length;
+            const tut = state.sessions.filter(s => s.type === 'Tutoria').length;
+            const seg = state.sessions.filter(s => s.action === 'Seguimiento' || s.action === 'Canalizacion').length;
+
+            el.metricTotal.textContent = total;
+            el.metricPctAcad.textContent = `${Math.round((acad / total) * 100)}%`;
+            el.metricPctTut.textContent = `${Math.round((tut / total) * 100)}%`;
+            el.metricSeguimiento.textContent = seg;
+        }
+
+        function saveSession() {
+            const gId = el.groupSelect.value;
+            if (!gId) return alert('Seleccione un grupo docente activo.');
+
+            const scope = el.tutoriaScope.value;
+            let studentId = '';
+            let studentName = 'Todo el Grupo';
+
+            if (scope === 'Individual') {
+                studentId = el.studentSelect.value;
+                if (!studentId) return alert('Por favor, elija al estudiante afectado.');
+                const g = state.groups.find(x => x.id === gId);
+                const s = g?.students.find(x => x.id === studentId);
+                if (s) studentName = s.name;
+            }
+
+            const type = el.tutoriaType.value;
+            const rubricValues = {};
+            let totalPoints = 0;
+            let maxPointsPossible = rubricsDefinition[type].length * 4;
+
+            rubricsDefinition[type].forEach(c => {
+                const component = document.getElementById(`rubric-crit-${c.id}`);
+                if (component) {
+                    const parsed = JSON.parse(component.value);
+                    rubricValues[c.label] = parsed.desc;
+                    totalPoints += parsed.score;
+                }
+            });
+
+            const acuerdosCompromisos = el.tutoriaAcuerdos.value.trim();
+            const seguimientoAuto = acuerdosCompromisos
+                ? `Requiere plan de seguimiento interno. Detalles de acuerdos y compromisos: ${acuerdosCompromisos}`
+                : 'Requiere plan de seguimiento interno. Pendiente registrar acuerdos y compromisos.';
+            const seguimientoFinal = el.tutoriaAction.value === 'Seguimiento' ? seguimientoAuto : 'no';
+
+            const session = {
+                id: uid(),
+                groupId: gId,
+                scope, studentId, studentName, type,
+                studentType: el.studentType.value,
+                rubric: rubricValues,
+                scoreGained: totalPoints,
+                scoreMax: maxPointsPossible,
+                obs: el.tutoriaObs.value.trim(),
+                action: el.tutoriaAction.value,
+                seguimiento: seguimientoFinal,
+                canalizacion: el.tutoriaAction.value === 'Canalizacion' ? 'si' : 'no',
+                acuerdosCompromisos,
+                timestamp: new Date().toLocaleString('es-MX')
+            };
+
+            state.sessions.push(session);
+            saveState();
+            renderHistory();
+            generatePrompt(session);
+            
+            el.tutoriaObs.value = '';
+            el.tutoriaAcuerdos.value = '';
+        }
+
+        function generatePrompt(session) {
+            const group = state.groups.find(g => g.id === session.groupId);
+            let rubricStr = Object.entries(session.rubric).map(([k,v]) => `- ${k}: ${v}`).join('\n');
+            
+            let template = `[SISTEMA DE ASISTENCIA INTEGRAL - INSTITUTO CECYTE 2026]
+CONTEXTO OPERATIVO:
+- Beneficiario: ${session.studentName}
+- Grupo / Aula: ${group ? `${group.name} - ${group.semester}Â° "${group.shift}"` : 'N/A'}
+- Naturaleza: ${session.type === 'Academica' ? 'AsesorÃ­a AcadÃ©mica Especializada' : 'SesiÃ³n Evaluativa de TutorÃ­a (Socioemocional)'}
+
+RESULTADO GLOBAL DE LA RÃšBRICA APLICADA:
+Puntaje Obtenido: ${session.scoreGained} de un mÃ¡ximo de ${session.scoreMax} puntos.
+
+DESGLOSE CRÃTICO DE EVALUACIÃ“N:
+${rubricStr}
+
+OBSERVACIONES DE CAMPO REGISTRADAS:
+"${session.obs || 'Sin observaciones descriptivas adicionales en bitÃ¡cora.'}"
+
+TIPO DE ESTUDIANTE:
+${session.studentType || 'No especificado'}
+
+SEGUIMIENTO PROPUESTO:
+${session.seguimiento || 'Sin seguimiento adicional registrado.'}
+
+CANALIZACIÃ“N:
+${session.canalizacion || 'no'}
+
+ACUERDOS Y COMPROMISOS:
+${session.acuerdosCompromisos || 'Sin acuerdos y compromisos registrados.'}
+
+ACCIÃ“N INMEDIATA REQUERIDA:
+Estatus institucional: ${session.action === 'Canalizacion' ? 'SOLICITUD DE CANALIZACIÃ“N FORMAL A ORIENTACIÃ“N EDUCATIVA' : session.action === 'Seguimiento' ? 'INTEGRAR A PLAN INTERNO DE SEGUIMIENTO EN PLANTEL' : 'ALTA DE ATENCIÃ“N / PROCESO CONCLUIDO'}.
+
+PETICIÃ“N AL ASISTENTE DE IA:
+Analiza los fallos o debilidades descritos en la rÃºbrica anterior y genera una minuta oficial institucional para el expediente de este estudiante, que contenga: Estrategias didÃ¡cticas sugeridas, recomendaciones socioeducativas precisas y compromisos esperados del alumno.`;
+
+            el.promptText.textContent = template;
+            el.promptOutputCard.classList.remove('hidden');
+        }
+
+        window.deleteSession = function(id) {
+            if(!confirm('Â¿Eliminar este registro del historial?')) return;
+            state.sessions = state.sessions.filter(s => s.id !== id);
+            saveState();
+            renderHistory();
+        }
+
+        // EXPORTAR ATENCIÃ“N INDIVIDUAL (TXT Formateado)
+        window.exportIndividualSession = function(id) {
+            const session = state.sessions.find(s => s.id === id);
+            if (!session) return alert('No se encontrÃ³ el registro de la sesiÃ³n.');
+            
+            const group = state.groups.find(g => g.id === session.groupId);
+            let rubricStr = Object.entries(session.rubric).map(([k,v]) => `${k}:\n  ${v}`).join('\n\n');
+
+            const content = `=======================================================
+            CECYTE - EXPEDIENTE DE ATENCIÃ“N INDIVIDUAL
+=======================================================
+Fecha de Registro:  ${session.timestamp}
+Tipo de AtenciÃ³n:   ${session.type === 'Academica' ? 'AsesorÃ­a AcadÃ©mica' : 'SesiÃ³n de TutorÃ­a (Socioemocional/Conductual)'}
+Alcance:            ${session.scope}
+Estudiante/Grupo:   ${session.studentName}
+-------------------------------------------------------
+DATOS DEL GRUPO:
+Carrera:            ${group ? group.name : 'N/A'}
+Semestre y Grupo:   ${group ? `${group.semester}Â° "${group.shift}"` : 'N/A'}
+-------------------------------------------------------
+EVALUACIÃ“N DE DESEMPEÃ‘O (RÃšBRICA):
+Puntaje Obtenido:   ${session.scoreGained} / ${session.scoreMax} Puntos
+
+DETALLE DE CRITERIOS:
+${rubricStr}
+-------------------------------------------------------
+OBSERVACIONES / EVIDENCIA DIAGNÃ“STICA:
+${session.obs || 'Sin observaciones adicionales registradas.'}
+
+TIPO DE ESTUDIANTE:
+${session.studentType || 'No especificado'}
+
+SEGUIMIENTO:
+${session.seguimiento || 'Sin seguimiento registrado.'}
+
+CANALIZACIÃ“N:
+${session.canalizacion || 'no'}
+
+ACUERDOS Y COMPROMISOS:
+${session.acuerdosCompromisos || 'Sin acuerdos y compromisos registrados.'}
+
+DETERMINACIÃ“N ESTATUS INSTITUCIONAL:
+Estatus Actual:     ${session.action.toUpperCase()}
+
+=======================================================
+Firma del Docente / Tutor               Firma Alumno(a)
+`;
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `EXPEDIENTE_${session.studentName.replace(/\s+/g, '_')}_${session.timestamp.split(' ')[0]}.txt`;
+            link.click();
+        }
+
+        // EXPORTAR REPORTE GENERAL DEL GRUPO (CSV compatible con Excel) - INCLUYE REPORTE INDIVIDUALIZADO
+        el.exportGeneralReportBtn.addEventListener('click', () => {
+            const gId = el.groupSelect.value;
+            if(!gId) return alert('Por favor, elija un grupo activo para exportar su reporte.');
+
+            const group = state.groups.find(g => g.id === gId);
+            const filtered = state.sessions.filter(s => s.groupId === gId);
+
+            if(filtered.length === 0) return alert('No hay atenciones registradas para este grupo.');
+
+            const csvEscape = (value) => {
+                const text = (value ?? '').toString().replace(/"/g, '""').replace(/\n/g, ' ');
+                return `"${text}"`;
+            };
+
+            // Cabeceras del CSV
+            let csvContent = "\uFEFF"; // BOM para asegurar caracteres UTF-8 correctos en Excel
+            csvContent += "No.,Fecha,Nombre,Tipo de estudiante,SituaciÃ³n presentada,Seguimiento,CanalizaciÃ³n,Acuerdos y compromisos\n";
+
+            filtered.forEach((s, index) => {
+                const seguimiento = s.seguimiento || (s.action === 'Seguimiento' ? 'SÃ­ (determinaciÃ³n inicial)' : '');
+                const canalizacion = (s.canalizacion || (s.action === 'Canalizacion' ? 'si' : 'no')).toLowerCase() === 'si' ? 'si' : 'no';
+                const row = [
+                    index + 1,
+                    csvEscape(s.timestamp),
+                    csvEscape(s.studentName),
+                    csvEscape(s.studentType || 'No especificado'),
+                    csvEscape(s.obs || ''),
+                    csvEscape(seguimiento),
+                    csvEscape(canalizacion),
+                    csvEscape(s.acuerdosCompromisos || '')
+                ].join(",");
+                
+                csvContent += row + "\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `REPORTE_GENERAL_${group.name.replace(/\s+/g, '_')}_${group.semester}_${group.shift}.csv`;
+            link.click();
+        });
+
+        function renderHistory() {
+            const gId = el.groupSelect.value;
+            el.historyTableBody.innerHTML = '';
+            const filtered = state.sessions.filter(s => s.groupId === gId);
+
+            if(filtered.length === 0) {
+                el.historyTableBody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-slate-400">NingÃºn registro en el grupo actual.</td></tr>';
+                return;
+            }
+
+            filtered.reverse().forEach(s => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-200 hover:bg-slate-50 transition-colors";
+                let badgeAction = s.action === 'Canalizacion' ? 'bg-red-100 text-red-700 font-extrabold' : s.action === 'Seguimiento' ? 'bg-orange-100 text-orange-700 font-bold' : 'bg-slate-100 text-slate-600';
+                
+                tr.innerHTML = `
+                    <td class="p-2 text-slate-500">${s.timestamp.split(' ')[0]}</td>
+                    <td class="p-2 font-semibold">${s.studentName} <span class="text-[9px] block text-slate-400">${s.scope}</span></td>
+                    <td class="p-2">${s.type === 'Academica' ? 'ðŸŽ“ AcadÃ©mica' : 'ðŸ§˜ TutorÃ­a'}</td>
+                    <td class="p-2 text-center font-bold text-slate-700">${s.scoreGained} / ${s.scoreMax} pts</td>
+                    <td class="p-2"><span class="px-2 py-0.5 rounded text-[10px] ${badgeAction}">${s.action}</span></td>
+                    <td class="p-2 text-center flex items-center justify-center gap-3">
+                        <button onclick="exportIndividualSession('${s.id}')" class="text-blue-600 hover:text-blue-900 transition-colors" title="Exportar Ficha Individual">
+                            <i class="fa-solid fa-file-arrow-down text-base"></i>
+                        </button>
+                        <button onclick="deleteSession('${s.id}')" class="text-red-600 hover:text-red-900 transition-colors" title="Eliminar Registro">
+                            <i class="fa-solid fa-trash text-base"></i>
+                        </button>
+                    </td>
+                `;
+                el.historyTableBody.appendChild(tr);
+            });
+        }
+
+        // GestiÃ³n de respaldos
+        el.exportBackupBtn.addEventListener('click', () => {
+            if(state.groups.length === 0 && state.sessions.length === 0) return alert('No hay datos para respaldar.');
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
+            const dlAnchorElem = document.createElement('a');
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", `RESPALDO_TUTORIAS_${Date.now()}.json`);
+            dlAnchorElem.click();
+        });
+
+        el.importBackupBtn.addEventListener('click', () => el.backupFileInput.click());
+        el.backupFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if(!file) return;
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                try {
+                    const parsed = JSON.parse(evt.target.result);
+                    state.groups = parsed.groups || [];
+                    state.sessions = parsed.sessions || [];
+                    saveState();
+                    renderGroupOptions();
+                    renderHistory();
+                    alert('Copia de seguridad restaurada de forma exitosa.');
+                } catch(err) { alert('Archivo JSON invÃ¡lido.'); }
+            };
+            reader.readAsText(file);
+        });
+
+        // Alta de Grupos
+        el.saveGroupBtn.addEventListener('click', () => {
+            const name = el.groupName.value.trim();
+            const shift = el.groupShift.value.trim();
+            const semester = el.groupSemester.value.trim();
+            const students = parseStudents(el.studentsInput.value);
+
+            if(!name || !shift || students.length === 0) return alert('Complete los datos y alumnos.');
+
+            const g = { id: uid(), name, shift, semester, students };
+            state.groups.push(g);
+            saveState();
+            renderGroupOptions();
+            el.groupSelect.value = g.id;
+            updateStudentSelect();
+            renderHistory();
+
+            el.groupName.value = ''; el.groupShift.value = ''; el.groupSemester.value = ''; el.studentsInput.value = '';
+        });
+
+        el.deleteGroupBtn.addEventListener('click', () => {
+            const id = el.groupSelect.value;
+            if(!id) return alert('Seleccione un grupo activo.');
+            if(!confirm('Â¿Eliminar grupo y todas sus bitÃ¡coras asociadas?')) return;
+            state.groups = state.groups.filter(g => g.id !== id);
+            state.sessions = state.sessions.filter(s => s.groupId !== id);
+            saveState();
+            renderGroupOptions();
+            renderHistory();
+        });
+
+        el.groupSelect.addEventListener('change', () => {
+            updateStudentSelect();
+            renderHistory();
+        });
+        el.tutoriaType.addEventListener('change', renderRubric);
+        el.tutoriaScope.addEventListener('change', (e) => {
+            el.studentSelect.disabled = (e.target.value === 'Grupal');
+            if(el.studentSelect.disabled) el.studentSelect.value = '';
+        });
+        el.saveSessionBtn.addEventListener('click', saveSession);
+        el.copyPromptBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(el.promptText.textContent);
+            alert('Â¡Prompt copiado con Ã©xito!');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDropdown = document.getElementById('mobile-dropdown');
+            const menuIcon = document.getElementById('menu-icon');
+
+            function toggleMenu() {
+                if (!mobileMenuBtn || !mobileDropdown || !menuIcon) return;
+
+                const isHidden = mobileDropdown.classList.contains('hidden');
+                mobileDropdown.classList.toggle('hidden', !isHidden);
+                menuIcon.classList.toggle('fa-bars', !isHidden);
+                menuIcon.classList.toggle('fa-xmark', isHidden);
+                mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleMenu();
+                });
+            }
+
+            window.toggleMenu = toggleMenu;
+
+            document.addEventListener('click', (event) => {
+                if (!mobileMenuBtn || !mobileDropdown || !menuIcon) return;
+                const clickedInsideMenu = mobileMenuBtn.contains(event.target) || mobileDropdown.contains(event.target);
+                if (!clickedInsideMenu && !mobileDropdown.classList.contains('hidden')) {
+                    mobileDropdown.classList.add('hidden');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            loadState();
+            renderGroupOptions();
+            renderRubric();
+            computeMetrics();
+        });
+    </script>
+</body>
+</html>
+

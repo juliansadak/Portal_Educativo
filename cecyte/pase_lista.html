@@ -1,0 +1,1024 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema Digital de Soluciones Educativas | CECYTE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        guinda: '#651C32',
+                        'guinda-light': '#80243e',
+                        ocre: '#B9975B',
+                        cecyte: {
+                            guinda: '#651C32',
+                            guindaLight: '#80243e',
+                            oro: '#B9975B',
+                            oroLight: '#ceb484',
+                            grisBg: '#f4f6f8',
+                            lila: 'rgba(101, 28, 50, 0.08)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <meta name="theme-color" content="#651C32">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
+
+    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 max-w-screen-2xl">
+            <div class="flex justify-between h-16">
+                <!-- Logo e Identidad -->
+                <div class="flex items-center gap-3">
+                    <div>
+                        <span class="font-montserrat font-extrabold text-sm sm:text-base tracking-wider text-cecyte-guinda block leading-none">PORTAL EDUCATIVO</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Escritorio -->
+                <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
+                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Principal
+                    </a>
+                    <div class="relative group">
+                        <button type="button" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                            <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 z-50">
+                            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-layer-group text-cecyte-guinda"></i>
+                                <span>Ir a la secciÃ³n</span>
+                            </a>
+                            <div class="my-2 border-t border-slate-100"></div>
+                            <a href="pase_lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: Pase de Lista</span>
+                            </a>
+                            <a href="tutoria.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: TutorÃ­a</span>
+                            </a>
+                            <a href="seguimiento_entregas.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-table-list text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: Seguimiento AcadÃ©mico</span>
+                            </a>
+                            <a href="eval/plantilla_rubrica.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: RÃºbrica</span>
+                            </a>
+                            <a href="eval/plantilla_estimativa.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: Escala Estimativa</span>
+                            </a>
+                            <a href="eval/plantilla_observacion.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: GuÃ­a de ObservaciÃ³n</span>
+                            </a>
+                            <a href="eval/plantilla_cotejo.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: Lista de Cotejo</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
+                    </a>
+                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
+                    </a>
+                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
+                </div>
+
+                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MenÃº Desplegable MÃ³vil -->
+        <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
+            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            </a>
+            <details class="group rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-3 rounded-lg text-slate-700 font-semibold text-sm transition-colors">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+                    </span>
+                    <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-150 group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la secciÃ³n
+                    </a>
+                    <a href="pase_lista.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: Pase de Lista
+                    </a>
+                    <a href="tutoria.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: TutorÃ­a
+                    </a>
+                    <a href="seguimiento_entregas.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-table-list text-cecyte-guinda"></i> MÃ³dulo: Seguimiento AcadÃ©mico
+                    </a>
+                    <a href="eval/plantilla_rubrica.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: RÃºbrica
+                    </a>
+                    <a href="eval/plantilla_estimativa.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Escala Estimativa
+                    </a>
+                    <a href="eval/plantilla_observacion.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: GuÃ­a de ObservaciÃ³n
+                    </a>
+                    <a href="eval/plantilla_cotejo.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Lista de Cotejo
+                    </a>
+                </div>
+            </details>
+           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
+            </a>
+            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
+            </a>
+        </div>
+    </nav>
+
+    <header class="bg-cecyte-guinda text-white shadow-md relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-40 h-40 bg-cecyte-oro opacity-10 rounded-full transform translate-x-12 -translate-y-12"></div>
+        
+        <div class="container mx-auto px-6 max-w-screen-2xl py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                    <span class="bg-cecyte-oro text-cecyte-guinda text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Plantel Huejotzingo</span>
+                    <span class="text-slate-300 text-sm">| Ecosistema Digital 2026</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">MÃ³dulo de pase de lista</h1>
+                <p class="text-cecyte-oroLight mt-2 text-base font-light max-w-2xl">
+                    Plataforma tecnolÃ³gica integral, diseÃ±ada especÃ­ficamente para CECyTE. Este entorno unifica herramientas de anÃ¡lisis y evaluaciÃ³n en un solo Hub interactivo.
+                </p>
+            </div>
+            
+            <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10 w-full md:w-auto">
+                <div class="bg-cecyte-oro/10 border border-cecyte-oro text-cecyte-oro w-14 h-14 rounded-full flex items-center justify-center text-2xl shrink-0">
+                    <img src="../img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div>
+                    <h4 class="font-bold text-md text-white">Mtro. Julian Sadak Vergara Cruz</h4>
+                    <p class="text-sm text-cecyte-oro">Desarrollo e InnovaciÃ³n Educativa</p>
+                    <p class="text-xs text-slate-300"><a href="mailto:jvergarac@cecytepuebla.edu.mx" class="text-white hover:text-cecyte-oroLight underline">jvergarac@cecytepuebla.edu.mx</a></p>
+                    <div class="mt-1 flex gap-2">
+                        <span class="text-[10px] bg-cecyte-oro/20 text-white px-1.5 py-0.5 rounded font-mono font-semibold">Vanilla JS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto px-4 max-w-screen-2xl py-6 flex-grow">
+        <div class="flex flex-wrap items-center justify-end gap-2 mb-6">
+            <button id="backup-export-btn" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1" title="Guardar copia de seguridad en el dispositivo">
+                <i class="fa-solid fa-file-shield"></i> Respaldar Datos
+            </button>
+            <button id="backup-import-btn" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1" title="Restaurar copia de seguridad">
+                <i class="fa-solid fa-file-import"></i> Restaurar
+            </button>
+            <input type="file" id="backup-file-input" class="hidden" accept=".json">
+        </div>
+
+        <section class="mb-6">
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+                <h2 class="text-lg md:text-xl font-extrabold text-cecyte-guinda tracking-tight">MÃ³dulo de Pase de Lista</h2>
+                <p class="text-xs text-slate-600 mt-1">VisualizaciÃ³n en cuadrÃ­cula rÃ¡pida y respaldos locales.</p>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+                <div class="flex items-center justify-between gap-2 mb-3">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
+                        <i class="fa-solid fa-bell mr-1 text-red-600"></i> Estudiantes con MÃ¡s de 2 Faltas (Solo del Grupo Seleccionado)
+                    </h2>
+                    <span id="critical-absences-count" class="text-[10px] font-extrabold bg-red-700 text-white px-2 py-1 rounded">0 en riesgo</span>
+                </div>
+                <div class="overflow-x-auto border border-slate-200 rounded-lg max-h-64">
+                    <table class="w-full text-[11px]">
+                        <thead class="bg-slate-50 sticky top-0 border-b border-slate-200">
+                            <tr>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Estudiante</th>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Grupo</th>
+                                <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase">Faltas</th>
+                                <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase">% Asist.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="critical-absences-body"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section class="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-6">
+            <!-- PANEL IZQUIERDO: CONFIGURACIÃ“N -->
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-1 space-y-4">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda mb-2">
+                        <i class="fa-solid fa-users mr-1 text-cecyte-oro"></i> GestiÃ³n de Grupos
+                    </h2>
+                    <div class="space-y-2 text-xs">
+                        <input id="group-name" type="text" placeholder="Carrera (Ej. Soporte TÃ©cnico)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input id="group-semester" type="text" placeholder="Semestre (Ej. 4to)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                            <input id="group-shift" type="text" placeholder="Grupo (Ej. B)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        </div>
+                        <input id="group-subject" type="text" placeholder="Materia / SubmÃ³dulo" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        <textarea id="students-input" rows="6" placeholder="Estudiantes (uno por lÃ­nea o copiado de Excel)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none"></textarea>
+                        
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="save-group-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-2 rounded-xl text-xs transition-colors">
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> Guardar
+                            </button>
+                            <button id="delete-group-btn" class="bg-slate-700 hover:bg-black text-white font-bold py-2 px-2 rounded-xl text-xs transition-colors">
+                                <i class="fa-solid fa-trash mr-1"></i> Borrar Grupo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <!-- DATOS DE LA SESIÃ“N ACTUAL -->
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda mb-2">
+                        <i class="fa-solid fa-clock mr-1 text-cecyte-oro"></i> Datos de Clase
+                    </h2>
+                    <div class="space-y-2 text-xs">
+                        <div>
+                            <label class="block text-[10px] font-semibold text-slate-500 mb-0.5">Grupo Activo</label>
+                            <select id="group-select" class="w-full border border-slate-300 rounded-lg p-2 font-semibold text-slate-700 focus:outline-none focus:border-guinda"></select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-semibold text-slate-500 mb-0.5">Fecha</label>
+                            <input id="session-date" type="date" class="w-full border border-slate-300 rounded-lg p-2 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-semibold text-slate-500 mb-0.5">Bloque de Horario (Auto-detectado)</label>
+                            <select id="session-block" class="w-full border border-slate-300 rounded-lg p-2 bg-white focus:outline-none">
+                                <option value="07:30 - 08:20">07:30 a 08:20</option>
+                                <option value="08:20 - 09:10">08:20 a 09:10</option>
+                                <option value="09:10 - 10:00">09:10 a 10:00</option>
+                                <option value="10:30 - 11:20">10:30 a 11:20</option>
+                                <option value="11:20 - 12:10">11:20 a 12:10</option>
+                                <option value="12:10 - 13:00">12:10 a 13:00</option>
+                                <option value="13:00 - 13:50">13:00 a 13:50</option>
+                                <option value="13:50 - 14:40">13:50 a 14:40</option>
+                                <option value="14:40 - 15:30">14:40 a 15:30</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PANEL DERECHO PRINCIPAL: GRID DE ASISTENCIA RÃPIDA -->
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-3 flex flex-col">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3 border-b border-slate-100 pb-2">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
+                        <i class="fa-solid fa-grid-2 mr-1 text-cecyte-oro"></i> Panel de Registro Matriz (Hacer clic en el estudiante)
+                    </h2>
+                    <div class="flex items-center gap-1.5">
+                        <button id="mark-all-p" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Todos: Presente (A)</button>
+                        <button id="mark-all-a" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Todos: Falta (F)</button>
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR VACÃO -->
+                <div id="attendance-empty" class="border border-dashed border-slate-300 rounded-xl p-8 text-sm text-slate-500 text-center my-auto">
+                    Configure un grupo o seleccione uno activo en el menÃº de la izquierda para comenzar el pase de lista de hoy.
+                </div>
+
+                <!-- CUADRÃCULA COMPACTA DE ESTUDIANTES (IDEAL PARA 50 ESTUDIANTES SIN HACER SCROLL) -->
+                <div id="attendance-grid-wrap" class="hidden flex-grow overflow-y-auto max-h-[500px] pr-1">
+                    <div id="attendance-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                        <!-- Generado dinÃ¡micamente -->
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
+                    <div class="text-xs text-slate-500 font-medium">
+                        <span class="inline-block w-2 h-2 bg-emerald-600 rounded-full mr-1"></span>A: Asistencia | 
+                        <span class="inline-block w-2 h-2 bg-red-600 rounded-full mr-1"></span>F: Falta | 
+                        <span class="inline-block w-2 h-2 bg-amber-500 rounded-full mr-1"></span>J: Justificado | 
+                        <span class="inline-block w-2 h-2 bg-sky-600 rounded-full mr-1"></span>R: Retardo
+                    </div>
+                    <button id="save-session-btn" class="bg-cecyte-oro hover:bg-cecyte-oroLight text-cecyte-guinda font-extrabold py-2 px-6 rounded-xl text-sm shadow transition-all transform active:scale-95">
+                        <i class="fa-solid fa-cloud-arrow-up mr-1.5"></i> GUARDAR REGISTRO DE CLASE
+                    </button>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECCIÃ“N DE HISTORIAL Y REPORTES RESUMIDOS -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- HISTORIAL -->
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+                <div class="flex items-center justify-between gap-2 mb-3">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
+                        <i class="fa-solid fa-history mr-1 text-cecyte-oro"></i> Clases Registradas del Periodo
+                    </h2>
+                    <div class="flex items-center gap-2">
+                        <button id="clear-history-btn" class="bg-red-600 hover:bg-red-700 text-white text-[10px] font-bold px-2 py-1.5 rounded">Limpiar Todo el Historial</button>
+                        <button id="export-csv-btn" class="bg-slate-900 hover:bg-black text-white text-[10px] font-bold px-2 py-1.5 rounded"><i class="fa-solid fa-file-csv mr-0.5"></i> Descargar Excel (CSV)</button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto border border-slate-200 rounded-lg max-h-60">
+                    <table class="w-full text-[11px]">
+                        <thead class="bg-slate-50 sticky top-0 border-b border-slate-200">
+                            <tr>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Fecha</th>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Grupo / SubmÃ³dulo</th>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Bloque</th>
+                                <th class="text-center py-2 px-1 font-bold text-slate-600 text-center">Evaluados</th>
+                                <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase">AcciÃ³n</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body"></tbody>
+                    </table>
+                </div>
+            </article>
+
+            <!-- CONTROLLER DE ESTADÃSTICAS RÃPIDAS / ESTUDIANTE EN RIESGO -->
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda mb-3">
+                    <i class="fa-solid fa-chart-bar mr-1 text-cecyte-oro"></i> Porcentajes Acumulados y Alertas
+                </h2>
+                <div class="overflow-x-auto border border-slate-200 rounded-lg max-h-60">
+                    <table class="w-full text-[11px]">
+                        <thead class="bg-slate-50 sticky top-0 border-b border-slate-200">
+                            <tr>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">NÂ° - Estudiante</th>
+                                <th class="text-center py-2 px-1 font-bold text-slate-600">A</th>
+                                <th class="text-center py-2 px-1 font-bold text-slate-600">F</th>
+                                <th class="text-center py-2 px-1 font-bold text-slate-600">J</th>
+                                <th class="text-center py-2 px-1 font-bold text-slate-600">R</th>
+                                <th class="text-center py-2 px-2 font-bold text-slate-600 uppercase">% Asist.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summary-body"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <footer class="bg-cecyte-guinda rounded-2xl text-slate-400 border-t border-slate-800 text-xs py-6 mt-6">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-slate-200">Colegio de Estudios CientÃ­ficos y TecnolÃ³gicos del Estado de Puebla</p>
+                <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
+            </div>
+            <div class="flex gap-4 text-cecyte-oroLight font-mono">
+                <a href="mailto:jvergarac@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
+                    <span>Julian Sadak Vergara Cruz</span>
+                </a>
+                <span>|</span>
+                <span>Tailwind CSS</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const STORAGE_KEY = 'cecyte_pase_lista_v1';
+        
+        const STATUS_CONFIG = {
+            A: { label: 'Asistencia', bg: 'bg-emerald-50 border-emerald-300 text-emerald-900', badge: 'bg-emerald-600 text-white' },
+            F: { label: 'Falta', bg: 'bg-red-50 border-red-300 text-red-900', badge: 'bg-red-600 text-white' },
+            J: { label: 'Justificado', bg: 'bg-amber-50 border-amber-300 text-amber-900', badge: 'bg-amber-500 text-white' },
+            R: { label: 'Retardo', bg: 'bg-sky-50 border-sky-300 text-sky-900', badge: 'bg-sky-600 text-white' }
+        };
+        const STATUS_KEYS = Object.keys(STATUS_CONFIG);
+
+        const state = {
+            groups: [],
+            sessions: [],
+            currentAttendance: {} 
+        };
+
+        const el = {
+            groupName: document.getElementById('group-name'),
+            groupSemester: document.getElementById('group-semester'),
+            groupShift: document.getElementById('group-shift'),
+            groupSubject: document.getElementById('group-subject'),
+            studentsInput: document.getElementById('students-input'),
+            saveGroupBtn: document.getElementById('save-group-btn'),
+            deleteGroupBtn: document.getElementById('delete-group-btn'),
+            groupSelect: document.getElementById('group-select'),
+            sessionDate: document.getElementById('session-date'),
+            sessionBlock: document.getElementById('session-block'),
+            attendanceEmpty: document.getElementById('attendance-empty'),
+            attendanceGridWrap: document.getElementById('attendance-grid-wrap'),
+            attendanceGrid: document.getElementById('attendance-grid'),
+            saveSessionBtn: document.getElementById('save-session-btn'),
+            markAllP: document.getElementById('mark-all-p'),
+            markAllA: document.getElementById('mark-all-a'),
+            clearHistoryBtn: document.getElementById('clear-history-btn'),
+            historyBody: document.getElementById('history-body'),
+            summaryBody: document.getElementById('summary-body'),
+            criticalAbsencesBody: document.getElementById('critical-absences-body'),
+            criticalAbsencesCount: document.getElementById('critical-absences-count'),
+            exportCsvBtn: document.getElementById('export-csv-btn'),
+            exportBackupBtn: document.getElementById('backup-export-btn'),
+            importBackupBtn: document.getElementById('backup-import-btn'),
+            backupFileInput: document.getElementById('backup-file-input')
+        };
+
+        const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function loadState() {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            try {
+                const parsed = JSON.parse(raw);
+                state.groups = Array.isArray(parsed.groups) ? parsed.groups : [];
+                state.sessions = Array.isArray(parsed.sessions) ? parsed.sessions : [];
+            } catch (e) {
+                console.error("Error cargando LocalStorage", e);
+            }
+        }
+
+        function autoSelectScheduleBlock() {
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            
+            const scheduleBlocks = [
+                { limit: "08:20", value: "07:30 - 08:20" },
+                { limit: "09:10", value: "08:20 - 09:10" },
+                { limit: "10:00", value: "09:10 - 10:00" },
+                { limit: "11:20", value: "10:30 - 11:20" },
+                { limit: "12:10", value: "11:20 - 12:10" },
+                { limit: "13:00", value: "12:10 - 13:00" },
+                { limit: "13:50", value: "13:00 - 13:50" },
+                { limit: "14:40", value: "13:50 - 14:40" },
+                { limit: "23:59", value: "14:40 - 15:30" }
+            ];
+
+            for (const block of scheduleBlocks) {
+                if (timeStr <= block.limit) {
+                    el.sessionBlock.value = block.value;
+                    break;
+                }
+            }
+        }
+
+        function parseStudents(rawText) {
+            return rawText.split('\n').map(l => l.trim()).filter(Boolean).map((line, idx) => {
+                const [first, ...rest] = line.split(',');
+                if (rest.length === 0) return { id: uid(), number: idx + 1, name: first.trim() };
+                const num = parseInt(first.trim());
+                return { id: uid(), number: isNaN(num) ? idx + 1 : num, name: rest.join(',').trim() };
+            }).sort((a,b) => a.number - b.number);
+        }
+
+        function buildGroupLabel(g) {
+            return `${g.career || g.name} (${[g.semester, g.group, g.subject].filter(Boolean).join(' | ')})`;
+        }
+
+        function renderGroupOptions() {
+            const currentVal = el.groupSelect.value;
+            el.groupSelect.innerHTML = '<option value="">-- Seleccione Grupo Docente --</option>';
+            state.groups.forEach(g => {
+                const opt = document.createElement('option');
+                opt.value = g.id;
+                opt.textContent = buildGroupLabel(g);
+                el.groupSelect.appendChild(opt);
+            });
+            if (currentVal && state.groups.some(g => g.id === currentVal)) {
+                el.groupSelect.value = currentVal;
+            }
+        }
+
+        function checkConsecutiveAbsences(studentId, groupId) {
+            const groupSessions = state.sessions
+                .filter(s => s.groupId === groupId)
+                .sort((a, b) => b.date.localeCompare(a.date));
+            
+            let count = 0;
+            for (const session of groupSessions) {
+                const status = session.statusByStudent?.[studentId];
+                if (status === 'F') {
+                    count++;
+                } else if (status === 'A' || status === 'R') {
+                    break;
+                }
+            }
+            return count > 2;
+        }
+
+        function renderAttendanceGrid() {
+            const groupId = el.groupSelect.value;
+            const group = state.groups.find(g => g.id === groupId);
+            el.attendanceGrid.innerHTML = '';
+
+            if (!group || group.students.length === 0) {
+                el.attendanceGridWrap.classList.add('hidden');
+                el.attendanceEmpty.classList.remove('hidden');
+                return;
+            }
+
+            group.students.forEach(student => {
+                if (!state.currentAttendance[student.id]) {
+                    state.currentAttendance[student.id] = 'A';
+                }
+
+                const currentStatus = state.currentAttendance[student.id];
+                const conf = STATUS_CONFIG[currentStatus];
+                const hasAlert = checkConsecutiveAbsences(student.id, groupId);
+
+                const card = document.createElement('div');
+                card.id = `card-${student.id}`;
+                card.className = `p-2 rounded-xl border-2 cursor-pointer transition-all flex flex-col justify-between h-20 shadow-sm relative select-none ${conf.bg}`;
+                
+                card.addEventListener('click', () => {
+                    const nextIndex = (STATUS_KEYS.indexOf(state.currentAttendance[student.id]) + 1) % STATUS_KEYS.length;
+                    const nextStatus = STATUS_KEYS[nextIndex];
+                    state.currentAttendance[student.id] = nextStatus;
+                    updateCardStyle(student.id, nextStatus);
+                });
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] font-bold text-slate-400">NÂ° ${student.number}</span>
+                        ${hasAlert ? '<span class="bg-red-600 text-white text-[9px] font-extrabold px-1 rounded animate-pulse"><i class="fa-solid fa-triangle-exclamation"></i> Riesgo</span>' : ''}
+                        <span id="badge-${student.id}" class="text-[11px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider ${conf.badge}">${currentStatus}</span>
+                    </div>
+                    <p class="text-[11px] font-bold leading-tight truncate mt-1 text-slate-800" title="${student.name}">${student.name}</p>
+                `;
+                el.attendanceGrid.appendChild(card);
+            });
+
+            el.attendanceEmpty.classList.add('hidden');
+            el.attendanceGridWrap.classList.remove('hidden');
+        }
+
+        function updateCardStyle(studentId, status) {
+            const card = document.getElementById(`card-${studentId}`);
+            const badge = document.getElementById(`badge-${studentId}`);
+            if (!card || !badge) return;
+
+            STATUS_KEYS.forEach(k => {
+                card.classList.remove(...STATUS_CONFIG[k].bg.split(' '));
+                badge.classList.remove(...STATUS_CONFIG[k].badge.split(' '));
+            });
+
+            card.classList.add(...STATUS_CONFIG[k=status].bg.split(' '));
+            badge.classList.add(...STATUS_CONFIG[status].badge.split(' '));
+            badge.textContent = status;
+        }
+
+        function markAll(status) {
+            const groupId = el.groupSelect.value;
+            const group = state.groups.find(g => g.id === groupId);
+            if (!group) return;
+            group.students.forEach(s => {
+                state.currentAttendance[s.id] = status;
+                updateCardStyle(s.id, status);
+            });
+        }
+
+        // FunciÃ³n para eliminar un Ãºnico registro por error de dedo u horario equivocado
+        window.deleteSingleSession = function(sessionId) {
+            const targetSession = state.sessions.find(s => s.id === sessionId);
+            if (!targetSession) return;
+
+            const group = state.groups.find(g => g.id === targetSession.groupId);
+            const groupLabel = group ? group.career : "Grupo desconocido";
+
+            const msg = `Â¿Deseas eliminar permanentemente esta clase?\n\nFecha: ${targetSession.date}\nBloque: ${targetSession.block}\nGrupo: ${groupLabel}\n\nLos porcentajes de asistencia se recalcularÃ¡n al momento.`;
+            
+            if (confirm(msg)) {
+                state.sessions = state.sessions.filter(s => s.id !== sessionId);
+                saveState();
+                renderHistory();
+                renderSummary();
+                renderCriticalAbsences();
+                renderAttendanceGrid(); // Actualiza posibles alertas de racha de faltas
+                alert('La clase seleccionada ha sido eliminada del historial.');
+            }
+        }
+
+        function renderHistory() {
+            el.historyBody.innerHTML = '';
+            const groupId = el.groupSelect.value;
+            
+            if (!groupId) {
+                el.historyBody.innerHTML = '<tr><td colspan="5" class="p-3 text-center text-slate-400">Seleccione un grupo para ver el historial de clases.</td></tr>';
+                return;
+            }
+
+            const groupSessions = state.sessions.filter(s => s.groupId === groupId).slice().sort((a,b) => b.date.localeCompare(a.date));
+            
+            if (groupSessions.length === 0) {
+                el.historyBody.innerHTML = '<tr><td colspan="5" class="p-3 text-center text-slate-400">Sin clases registradas para este grupo aÃºn.</td></tr>';
+                return;
+            }
+
+            groupSessions.forEach(s => {
+                const group = state.groups.find(g => g.id === s.groupId);
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100 hover:bg-slate-50';
+                tr.innerHTML = `
+                    <td class="p-2 font-medium">${s.date}</td>
+                    <td class="p-2">${group ? buildGroupLabel(group) : '<span class="text-red-500">Grupo Eliminado</span>'}</td>
+                    <td class="p-2">${s.block}</td>
+                    <td class="p-2 text-center font-bold text-slate-600">${Object.keys(s.statusByStudent||{}).length}</td>
+                    <td class="p-2 text-center">
+                        <button onclick="deleteSingleSession('${s.id}')" class="bg-red-50 hover:bg-red-600 text-red-600 hover:text-white px-2 py-0.5 rounded transition-all text-[10px] font-bold border border-red-200" title="Eliminar este registro especÃ­fico por error">
+                            <i class="fa-solid fa-trash-can"></i> Borrar
+                        </button>
+                    </td>
+                `;
+                el.historyBody.appendChild(tr);
+            });
+        }
+
+        function renderSummary() {
+            el.summaryBody.innerHTML = '';
+            const groupId = el.groupSelect.value;
+            const group = state.groups.find(g => g.id === groupId);
+
+            if (!group) {
+                el.summaryBody.innerHTML = '<tr><td colspan="6" class="p-3 text-center text-slate-400">Seleccione un grupo para procesar acumulados.</td></tr>';
+                return;
+            }
+
+            const groupSessions = state.sessions.filter(s => s.groupId === groupId);
+            if (groupSessions.length === 0) {
+                el.summaryBody.innerHTML = '<tr><td colspan="6" class="p-3 text-center text-slate-400">Sin clases registradas para este grupo aÃºn.</td></tr>';
+                return;
+            }
+
+            group.students.forEach(student => {
+                const stats = { A: 0, F: 0, J: 0, R: 0 };
+                groupSessions.forEach(s => {
+                    const res = s.statusByStudent?.[student.id] || 'A';
+                    if (stats[res] !== undefined) stats[res]++;
+                });
+
+                const total = groupSessions.length;
+                const score = stats.A + stats.R + stats.J; 
+                const pct = Math.round((score / total) * 100);
+                const hasRiskAlert = checkConsecutiveAbsences(student.id, groupId);
+                const pctClass = hasRiskAlert
+                    ? 'text-white bg-red-700 animate-pulse'
+                    : (pct < 80 ? 'text-red-600 bg-red-50' : 'text-emerald-700');
+
+                const tr = document.createElement('tr');
+                tr.className = `border-b border-slate-100 ${hasRiskAlert ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-slate-50'}`;
+                tr.innerHTML = `
+                    <td class="p-2 font-semibold text-slate-700">
+                        ${student.number}. ${student.name}
+                        ${hasRiskAlert ? '<span class="ml-2 inline-flex items-center gap-1 bg-red-700 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded animate-pulse"><i class="fa-solid fa-triangle-exclamation"></i> MÃ¡s de 2 faltas seguidas</span>' : ''}
+                    </td>
+                    <td class="p-2 text-center text-emerald-700 font-bold">${stats.A}</td>
+                    <td class="p-2 text-center text-red-600 font-bold">${stats.F}</td>
+                    <td class="p-2 text-center text-amber-600">${stats.J}</td>
+                    <td class="p-2 text-center text-sky-600">${stats.R}</td>
+                    <td class="p-2 text-center font-extrabold ${pctClass}">${pct}%</td>
+                `;
+                el.summaryBody.appendChild(tr);
+            });
+        }
+
+        function renderCriticalAbsences() {
+            el.criticalAbsencesBody.innerHTML = '';
+            const risks = [];
+
+            // Iterar sobre todos los grupos
+            state.groups.forEach(group => {
+                const groupSessions = state.sessions.filter(s => s.groupId === group.id);
+                if (groupSessions.length === 0) return; // Saltar grupos sin clases
+
+                group.students.forEach(student => {
+                    const stats = { A: 0, F: 0, J: 0, R: 0 };
+                    groupSessions.forEach(s => {
+                        const res = s.statusByStudent?.[student.id] || 'A';
+                        if (stats[res] !== undefined) stats[res]++;
+                    });
+
+                    if (stats.F > 2) {
+                        const score = stats.A + stats.R + stats.J;
+                        const pct = Math.round((score / groupSessions.length) * 100);
+                        risks.push({
+                            studentNumber: student.number,
+                            studentName: student.name,
+                            groupLabel: buildGroupLabel(group),
+                            absences: stats.F,
+                            pct
+                        });
+                    }
+                });
+            });
+
+            risks.sort((a, b) => b.absences - a.absences || a.pct - b.pct || a.studentName.localeCompare(b.studentName));
+            el.criticalAbsencesCount.textContent = `${risks.length} en riesgo`;
+
+            if (risks.length === 0) {
+                el.criticalAbsencesBody.innerHTML = '<tr><td colspan="4" class="p-3 text-center text-slate-400">Sin estudiantes con mÃ¡s de 2 faltas acumuladas en este grupo.</td></tr>';
+                return;
+            }
+
+            risks.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100 bg-red-50 hover:bg-red-100';
+                tr.innerHTML = `
+                    <td class="p-2 font-semibold text-slate-800">${item.studentNumber}. ${item.studentName}</td>
+                    <td class="p-2 text-slate-700">${item.groupLabel}</td>
+                    <td class="p-2 text-center font-extrabold text-white bg-red-700">${item.absences}</td>
+                    <td class="p-2 text-center font-extrabold text-red-700">${item.pct}%</td>
+                `;
+                el.criticalAbsencesBody.appendChild(tr);
+            });
+        }
+
+        function saveSession() {
+            const groupId = el.groupSelect.value;
+            const group = state.groups.find(g => g.id === groupId);
+            const date = el.sessionDate.value;
+
+            if (!group || !date) {
+                alert('Por favor verifique tener un grupo activo y una fecha de sesiÃ³n seleccionada.');
+                return;
+            }
+
+            const statusByStudent = {};
+            group.students.forEach(s => {
+                statusByStudent[s.id] = state.currentAttendance[s.id] || 'A';
+            });
+
+            state.sessions.push({
+                id: uid(),
+                groupId,
+                date,
+                block: el.sessionBlock.value,
+                statusByStudent
+            });
+
+            saveState();
+            renderHistory();
+            // Reinicia la plantilla para la siguiente captura como en el arranque.
+            state.currentAttendance = {};
+            el.groupSelect.value = '';
+            setTodayDate();
+            autoSelectScheduleBlock();
+            renderAttendanceGrid(); 
+            renderSummary();
+            renderCriticalAbsences();
+            alert('Â¡Registro de clase guardado exitosamente en este navegador!');
+        }
+
+        function addGroup() {
+            const career = el.groupName.value.trim();
+            const groupCode = el.groupShift.value.trim();
+            const students = parseStudents(el.studentsInput.value);
+
+            if (!career || !groupCode || students.length === 0) {
+                alert('Faltan datos crÃ­ticos para crear el grupo (Carrera, Grupo y lista de estudiantes).');
+                return;
+            }
+
+            const newGroup = {
+                id: uid(),
+                career,
+                semester: el.groupSemester.value.trim(),
+                group: groupCode,
+                name: career,
+                shift: groupCode,
+                subject: el.groupSubject.value.trim(),
+                students
+            };
+
+            state.groups.push(newGroup);
+            saveState();
+            
+            renderGroupOptions();
+            el.groupSelect.value = newGroup.id;
+            state.currentAttendance = {};
+            
+            renderAttendanceGrid();
+            renderSummary();
+            renderCriticalAbsences();
+
+            el.groupName.value = ''; el.groupSemester.value = ''; el.groupShift.value = '';
+            el.groupSubject.value = ''; el.studentsInput.value = '';
+        }
+
+        function deleteSelectedGroup() {
+            const groupId = el.groupSelect.value;
+            if (!groupId) return alert('Seleccione un grupo vÃ¡lido.');
+            if (!confirm('Â¿Confirma que desea borrar este grupo junto con todos sus registros de asistencia acumulados?')) return;
+
+            state.groups = state.groups.filter(g => g.id !== groupId);
+            state.sessions = state.sessions.filter(s => s.groupId !== groupId);
+            state.currentAttendance = {};
+            
+            saveState();
+            renderGroupOptions();
+            renderAttendanceGrid();
+            renderHistory();
+            renderSummary();
+            renderCriticalAbsences();
+        }
+
+        function clearHistory() {
+            if (!confirm('Â¿Desea purgar absolutamente todo el historial de clases del periodo? Los grupos no se borrarÃ¡n.')) return;
+            state.sessions = [];
+            saveState();
+            renderHistory();
+            renderSummary();
+            renderCriticalAbsences();
+        }
+
+        function exportCsv() {
+            const groupId = el.groupSelect.value;
+            const group = state.groups.find(g => g.id === groupId);
+            if (!group) return alert('Seleccione un grupo primero.');
+
+            const groupSessions = state.sessions.filter(s => s.groupId === groupId).sort((a, b) => a.date.localeCompare(b.date));
+            if (groupSessions.length === 0) return alert('No hay registros histÃ³ricos que exportar de este grupo.');
+
+            const header = ['Num', 'Estudiante', ...groupSessions.map(s => `${s.date} [${s.block}]`), 'A', 'F', 'J', 'R', '% Asistencia'];
+            const rows = [header.join(',')];
+
+            group.students.forEach(student => {
+                const stats = { A: 0, F: 0, J: 0, R: 0 };
+                const attendanceRow = groupSessions.map(s => {
+                    const status = s.statusByStudent?.[student.id] || 'A';
+                    stats[status]++;
+                    return status;
+                });
+                const score = stats.A + stats.R + stats.J;
+                const pct = Math.round((score / groupSessions.length) * 100);
+
+                const row = [
+                    student.number,
+                    `"${student.name.replace(/"/g, '""')}"`,
+                    ...attendanceRow,
+                    stats.A, stats.F, stats.J, stats.R,
+                    `${pct}%`
+                ];
+                rows.push(row.join(','));
+            });
+
+            const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Reporte_Asistencia_${group.career.replace(/\s+/g, '_')}_${group.group}.csv`;
+            link.click();
+        }
+
+        function exportBackup() {
+            if (state.groups.length === 0 && state.sessions.length === 0) {
+                return alert('No hay datos en el sistema para respaldar.');
+            }
+            const dataStr = JSON.stringify(state, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const link = document.createElement('a');
+            const d = new Date();
+            link.href = URL.createObjectURL(blob);
+            link.download = `RESPALDO_ASISTENCIAS_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}.json`;
+            link.click();
+        }
+
+        function importBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (Array.isArray(parsed.groups) && Array.isArray(parsed.sessions)) {
+                        state.groups = parsed.groups;
+                        state.sessions = parsed.sessions;
+                        state.currentAttendance = {};
+                        saveState();
+                        
+                        renderGroupOptions();
+                        renderAttendanceGrid();
+                        renderHistory();
+                        renderSummary();
+                        renderCriticalAbsences();
+                        alert('Â¡Base de datos restaurada correctamente desde el archivo de copia de seguridad!');
+                    } else {
+                        alert('El archivo no tiene el formato vÃ¡lido de asistencia Cecyte.');
+                    }
+                } catch (err) {
+                    alert('Error crÃ­tico leyendo el archivo de respaldo.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function setTodayDate() {
+            const today = new Date();
+            el.sessionDate.value = today.toISOString().split('T')[0];
+        }
+
+        function attachEvents() {
+            el.saveGroupBtn.addEventListener('click', addGroup);
+            el.deleteGroupBtn.addEventListener('click', deleteSelectedGroup);
+            el.groupSelect.addEventListener('change', () => {
+                state.currentAttendance = {};
+                renderAttendanceGrid();
+                renderSummary();
+                renderHistory();
+                renderCriticalAbsences();
+            });
+            el.markAllP.addEventListener('click', () => markAll('A'));
+            el.markAllA.addEventListener('click', () => markAll('F'));
+            el.saveSessionBtn.addEventListener('click', saveSession);
+            el.clearHistoryBtn.addEventListener('click', clearHistory);
+            el.exportCsvBtn.addEventListener('click', exportCsv);
+            
+            el.exportBackupBtn.addEventListener('click', exportBackup);
+            el.importBackupBtn.addEventListener('click', () => el.backupFileInput.click());
+            el.backupFileInput.addEventListener('change', importBackup);
+        }
+
+        function init() {
+            setTodayDate();
+            autoSelectScheduleBlock();
+            loadState();
+            attachEvents();
+            renderGroupOptions();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDropdown = document.getElementById('mobile-dropdown');
+            const menuIcon = document.getElementById('menu-icon');
+
+            function toggleMenu() {
+                if (!mobileMenuBtn || !mobileDropdown || !menuIcon) return;
+
+                const isHidden = mobileDropdown.classList.contains('hidden');
+                mobileDropdown.classList.toggle('hidden', !isHidden);
+                menuIcon.classList.toggle('fa-bars', !isHidden);
+                menuIcon.classList.toggle('fa-xmark', isHidden);
+                mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleMenu();
+                });
+            }
+
+            window.toggleMenu = toggleMenu;
+
+            document.addEventListener('click', (event) => {
+                if (!mobileMenuBtn || !mobileDropdown || !menuIcon) return;
+                const clickedInsideMenu = mobileMenuBtn.contains(event.target) || mobileDropdown.contains(event.target);
+                if (!clickedInsideMenu && !mobileDropdown.classList.contains('hidden')) {
+                    mobileDropdown.classList.add('hidden');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        init();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,861 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestiÃ³n de Entregables (Base 100) | CECYTE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        guinda: '#651C32',
+                        'guinda-light': '#80243e',
+                        ocre: '#B9975B',
+                        cecyte: {
+                            guinda: '#651C32',
+                            guindaLight: '#80243e',
+                            oro: '#B9975B',
+                            oroLight: '#ceb484',
+                            grisBg: '#f4f6f8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <meta name="theme-color" content="#651C32">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
+
+    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 max-w-screen-2xl">
+            <div class="flex justify-between h-16">
+                <!-- Logo e Identidad -->
+                <div class="flex items-center gap-3">
+                    <div>
+                        <span class="font-montserrat font-extrabold text-sm sm:text-base tracking-wider text-cecyte-guinda block leading-none">PORTAL EDUCATIVO</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Escritorio -->
+                <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
+                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Principal
+                    </a>
+                    <div class="relative group">
+                        <button type="button" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                            <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 z-50">
+                            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-layer-group text-cecyte-guinda"></i>
+                                <span>Ir a la secciÃ³n</span>
+                            </a>
+                            <div class="my-2 border-t border-slate-100"></div>
+                            <a href="pase_lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: Pase de Lista</span>
+                            </a>
+                            <a href="tutoria.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: TutorÃ­a</span>
+                            </a>
+                            <a href="seguimiento_entregas.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-table-list text-cecyte-guinda"></i>
+                                <span>MÃ³dulo: Seguimiento AcadÃ©mico</span>
+                            </a>
+                            <a href="eval/plantilla_rubrica.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: RÃºbrica</span>
+                            </a>
+                            <a href="eval/plantilla_estimativa.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: Escala Estimativa</span>
+                            </a>
+                            <a href="eval/plantilla_observacion.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: GuÃ­a de ObservaciÃ³n</span>
+                            </a>
+                            <a href="eval/plantilla_cotejo.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                                <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
+                                <span>Plantilla: Lista de Cotejo</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
+                    </a>
+                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
+                    </a>
+                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
+                </div>
+
+                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MenÃº Desplegable MÃ³vil -->
+        <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
+            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            </a>
+            <details class="group rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-3 rounded-lg text-slate-700 font-semibold text-sm transition-colors">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+                    </span>
+                    <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-150 group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la secciÃ³n
+                    </a>
+                    <a href="pase_lista.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: Pase de Lista
+                    </a>
+                    <a href="tutoria.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: TutorÃ­a
+                    </a>
+                    <a href="seguimiento_entregas.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-table-list text-cecyte-guinda"></i> MÃ³dulo: Seguimiento AcadÃ©mico
+                    </a>
+                    <a href="eval/plantilla_rubrica.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: RÃºbrica
+                    </a>
+                    <a href="eval/plantilla_estimativa.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Escala Estimativa
+                    </a>
+                    <a href="eval/plantilla_observacion.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: GuÃ­a de ObservaciÃ³n
+                    </a>
+                    <a href="eval/plantilla_cotejo.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Lista de Cotejo
+                    </a>
+                </div>
+            </details>
+           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
+            </a>
+            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
+            </a>
+        </div>
+    </nav>
+
+    <!-- Encabezado Principal / Hero Banner -->
+    <header class="bg-cecyte-guinda text-white shadow-md relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-40 h-40 bg-cecyte-oro opacity-10 rounded-full transform translate-x-12 -translate-y-12"></div>
+        
+        <div class="container mx-auto px-6 max-w-screen-2xl py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                    <span class="bg-cecyte-oro text-cecyte-guinda text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Plantel Huejotzingo</span>
+                    <span class="text-slate-300 text-sm">| Ecosistema Digital 2026</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">MÃ³dulo de Seguimiento Academico</h1>
+                <p class="text-cecyte-oroLight mt-2 text-base font-light max-w-2xl">
+                    Plataforma tecnolÃ³gica integral, diseÃ±ada especÃ­ficamente para CECyTE. Este entorno unifica herramientas de anÃ¡lisis y evaluaciÃ³n en un solo Hub interactivo. 
+                </p>
+            </div>
+            
+            <!-- Perfil del Desarrollador -->
+            <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10 w-full md:w-auto">
+                <div class="bg-cecyte-oro/10 border border-cecyte-oro text-cecyte-oro w-14 h-14 rounded-full flex items-center justify-center text-2xl shrink-0">
+                    <img src="../img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div>
+                    <h4 class="font-bold text-md text-white">Mtro. Julian Sadak Vergara Cruz</h4>
+                    <p class="text-sm text-cecyte-oro">Desarrollo e InnovaciÃ³n Educativa</p>
+                    <p class="text-xs text-slate-300"><a href="mailto:jvergarac@cecytepuebla.edu.mx" class="text-white hover:text-cecyte-oroLight underline">jvergarac@cecytepuebla.edu.mx</a></p>
+                    <div class="mt-1 flex gap-2">
+                        <span class="text-[10px] bg-cecyte-oro/20 text-white px-1.5 py-0.5 rounded font-mono font-semibold">Vanilla JS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container mx-auto px-4 max-w-screen-2xl py-6 flex-grow">
+        
+        <!-- BOTONES DE RESPALDO GLOBAL -->
+        <div class="flex flex-wrap items-center justify-end gap-2 mb-6">
+            <button id="backup-export-btn" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1" title="Guardar copia de seguridad en el dispositivo">
+                <i class="fa-solid fa-file-shield"></i> Respaldar Datos
+            </button>
+            <button id="backup-import-btn" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1" title="Restaurar copia de seguridad">
+                <i class="fa-solid fa-file-import"></i> Restaurar Copia
+            </button>
+            <input type="file" id="backup-file-input" class="hidden" accept=".json">
+        </div>
+
+        <!-- SECCIÃ“N 1: COMPONENTE DE ALERTAS DE RIESGO ACADÃ‰MICO -->
+        <section class="mb-6">
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+                <div class="flex items-center justify-between gap-2 mb-3">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
+                        <i class="fa-solid fa-triangle-exclamation mr-1 text-orange-600"></i> Riesgo AcadÃ©mico: Estudiantes con 2 o mÃ¡s productos sin entregar
+                    </h2>
+                    <span id="critical-deliverables-count" class="text-[10px] font-extrabold bg-orange-600 text-white px-2 py-1 rounded">0 en riesgo</span>
+                </div>
+                <div class="overflow-x-auto border border-slate-200 rounded-lg max-h-48">
+                    <table class="w-full text-[11px]">
+                        <thead class="bg-slate-50 sticky top-0 border-b border-slate-200">
+                            <tr>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Estudiante</th>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Grupo / SubmÃ³dulo</th>
+                                <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase">Productos Faltantes</th>
+                                <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase">Nota Final</th>
+                            </tr>
+                        </thead>
+                        <tbody id="critical-deliverables-body">
+                            <tr><td colspan="4" class="p-3 text-center text-slate-400">Seleccione un grupo para ver estudiantes en riesgo.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECCIÃ“N 2: ESTRUCTURA DE CONFIGURACIÃ“N Y MATRIZ -->
+        <section class="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-6">
+            
+            <!-- PANEL DE CONFIGURACIÃ“N DEL GRUPO -->
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-1 h-fit space-y-4">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda mb-2">
+                        <i class="fa-solid fa-users mr-1 text-cecyte-oro"></i> ConfiguraciÃ³n de Grupo
+                    </h2>
+                    <div class="space-y-2 text-xs">
+                        <input id="group-name" type="text" placeholder="Carrera (Ej. Soporte TÃ©cnico)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input id="group-semester" type="text" placeholder="Semestre (Ej. 4to)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                            <input id="group-shift" type="text" placeholder="Grupo (Ej. B)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        </div>
+                        <input id="group-subject" type="text" placeholder="Materia / SubmÃ³dulo" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        <textarea id="students-input" rows="5" placeholder="Estudiantes (uno por lÃ­nea)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none"></textarea>
+                        
+                        <div class="grid grid-cols-2 gap-2 pt-1">
+                            <button id="save-group-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-2 rounded-xl text-xs transition-colors">
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> Guardar Grupo
+                            </button>
+                            <button id="delete-group-btn" class="bg-slate-700 hover:bg-black text-white font-bold py-2 px-2 rounded-xl text-xs transition-colors">
+                                <i class="fa-solid fa-trash mr-1"></i> Borrar Grupo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-cecyte-guinda mb-1">Seleccionar Grupo Activo</label>
+                    <select id="group-select" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-guinda"></select>
+                </div>
+            </article>
+
+            <!-- PANEL DE LA MATRIZ DINÃMICA DE ENTREGABLES -->
+            <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-3 flex flex-col">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3 border-b border-slate-100 pb-2">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
+                            <i class="fa-solid fa-list-check mr-1 text-cecyte-oro"></i> CuadrÃ­cula Evaluativa Acumulativa (MÃ¡ximo 100)
+                        </h2>
+                        <p class="text-[10px] text-slate-500 mt-0.5">Asigna el puntaje mÃ¡ximo a cada producto. El promedio sumarÃ¡ las notas relativas y calcularÃ¡ la base 100.</p>
+                    </div>
+                    <button id="export-csv-btn" class="bg-slate-900 hover:bg-black text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-file-csv"></i> Descargar Excel del Grupo (CSV)
+                    </button>
+                </div>
+
+                <div class="mb-3 flex items-center text-xs">
+                    <div id="total-weight-indicator" class="font-bold text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg">
+                        Puntaje Total del Periodo Configurado: <span id="total-weight-value" class="text-cecyte-guinda">0</span> / 100 pts
+                    </div>
+                </div>
+
+                <div class="mb-3 flex flex-wrap items-center justify-end gap-2 w-full">
+                    <input type="text" id="task-name" placeholder="Ej. Tarea 1 o Examen" class="border border-slate-300 rounded-lg p-2 text-xs focus:outline-none focus:border-guinda bg-slate-50 w-36">
+                    <input type="number" id="task-weight" min="1" max="100" placeholder="Pts (Ej. 20)" class="border border-slate-300 rounded-lg p-2 text-xs focus:outline-none focus:border-guinda bg-slate-50 w-20 text-center" title="Puntaje MÃ¡ximo de este Entregable">
+                    <button id="add-task-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-sm">
+                        <i class="fa-solid fa-plus mr-1"></i> Crear
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto border border-slate-200 rounded-xl flex-grow">
+                    <table class="w-full text-[11px] bg-white">
+                        <thead class="bg-slate-100 border-b border-slate-200">
+                            <tr id="tasks-header-row">
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase w-12">NÂ°</th>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase min-w-[200px]">Estudiante</th>
+                                <th class="text-center py-2 px-2 font-bold text-slate-600 uppercase w-24">Sin Entregar</th>
+                                <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase w-24">Nota Final</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasks-matrix-body">
+                            <tr><td colspan="4" class="p-4 text-center text-slate-400">Seleccione o dÃ© de alta un grupo en el panel izquierdo para desplegar la matriz.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </article>
+        </section>
+    </main>
+
+    <!-- Pie de PÃ¡gina Institucional -->
+    <footer class="bg-cecyte-guinda rounded-2xl text-slate-400 border-t border-slate-800 text-xs py-6 mt-auto">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-slate-200">Colegio de Estudios CientÃ­ficos y TecnolÃ³gicos del Estado de Puebla</p>
+                <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
+            </div>
+            <div class="flex gap-4 text-cecyte-oroLight font-mono">
+                <a href="mailto:jvergarac@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
+                    <span>Julian Sadak Vergara Cruz</span>
+                </a>
+                <span>|</span>
+                <span>Tailwind CSS</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÃ“GICA CORE VANILLA JAVASCRIPT -->
+    <script>
+        const STORAGE_KEY = 'cecyte_entregables_base100_v1';
+        
+        const state = {
+            groups: [],
+            deliverables: {
+                tasks: [],     // { id, groupId, name, maxPoints }
+                records: {}    // { studentId: { taskId: { score, status } } }
+            }
+        };
+
+        const el = {
+            groupName: document.getElementById('group-name'),
+            groupSemester: document.getElementById('group-semester'),
+            groupShift: document.getElementById('group-shift'),
+            groupSubject: document.getElementById('group-subject'),
+            studentsInput: document.getElementById('students-input'),
+            saveGroupBtn: document.getElementById('save-group-btn'),
+            deleteGroupBtn: document.getElementById('delete-group-btn'),
+            groupSelect: document.getElementById('group-select'),
+            taskName: document.getElementById('task-name'),
+            taskWeight: document.getElementById('task-weight'),
+            addTaskBtn: document.getElementById('add-task-btn'),
+            tasksHeaderRow: document.getElementById('tasks-header-row'),
+            tasksMatrixBody: document.getElementById('tasks-matrix-body'),
+            criticalDeliverablesBody: document.getElementById('critical-deliverables-body'),
+            criticalDeliverablesCount: document.getElementById('critical-deliverables-count'),
+            totalWeightValue: document.getElementById('total-weight-value'),
+            exportCsvBtn: document.getElementById('export-csv-btn'),
+            exportBackupBtn: document.getElementById('backup-export-btn'),
+            importBackupBtn: document.getElementById('backup-import-btn'),
+            backupFileInput: document.getElementById('backup-file-input')
+        };
+
+        const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileDropdown = document.getElementById('mobile-dropdown');
+        const menuIcon = document.getElementById('menu-icon');
+
+        function toggleMenu() {
+            if (!mobileMenuBtn || !mobileDropdown || !menuIcon) return;
+            const isHidden = mobileDropdown.classList.contains('hidden');
+            mobileDropdown.classList.toggle('hidden', !isHidden);
+            menuIcon.classList.toggle('fa-bars', !isHidden);
+            menuIcon.classList.toggle('fa-xmark', isHidden);
+            mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function loadState() {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            try {
+                const parsed = JSON.parse(raw);
+                state.groups = Array.isArray(parsed.groups) ? parsed.groups : [];
+                if (parsed.deliverables) {
+                    state.deliverables.tasks = Array.isArray(parsed.deliverables.tasks) ? parsed.deliverables.tasks : [];
+                    state.deliverables.records = parsed.deliverables.records && typeof parsed.deliverables.records === 'object' ? parsed.deliverables.records : {};
+                }
+            } catch (e) {
+                console.error("Error cargando base de datos local", e);
+            }
+        }
+
+        function parseStudents(rawText) {
+            return rawText.split('\n').map(l => l.trim()).filter(Boolean).map((line, idx) => {
+                const [first, ...rest] = line.split(',');
+                if (rest.length === 0) return { id: uid(), number: idx + 1, name: first.trim() };
+                const num = parseInt(first.trim());
+                return { id: uid(), number: isNaN(num) ? idx + 1 : num, name: rest.join(',').trim() };
+            }).sort((a,b) => a.number - b.number);
+        }
+
+        function buildGroupLabel(g) {
+            return `${g.career || g.name} (${[g.semester, g.group, g.subject].filter(Boolean).join(' | ')})`;
+        }
+
+        function renderGroupOptions() {
+            const currentVal = el.groupSelect.value;
+            el.groupSelect.innerHTML = '<option value="">-- Seleccione Grupo Docente --</option>';
+            state.groups.forEach(g => {
+                const opt = document.createElement('option');
+                opt.value = g.id;
+                opt.textContent = buildGroupLabel(g);
+                el.groupSelect.appendChild(opt);
+            });
+            if (currentVal && state.groups.some(g => g.id === currentVal)) {
+                el.groupSelect.value = currentVal;
+            }
+        }
+
+        function addNewTask() {
+            const groupId = el.groupSelect.value;
+            const taskNameStr = el.taskName.value.trim();
+            let weight = parseInt(el.taskWeight.value);
+
+            if (!groupId) return alert('Seleccione un grupo en el menÃº antes de aÃ±adir un entregable.');
+            if (!taskNameStr) return alert('Por favor, asigne un nombre al entregable.');
+            if (isNaN(weight) || weight <= 0 || weight > 100) return alert('Asigne un puntaje vÃ¡lido entre 1 y 100 para este producto.');
+
+            const currentTasks = state.deliverables.tasks.filter(t => t.groupId === groupId);
+            const totalWeightNow = currentTasks.reduce((acc, curr) => acc + curr.maxPoints, 0);
+            if (totalWeightNow + weight > 105) {
+                if (!confirm(`Alerta: Con este producto la suma de entregables del grupo serÃ¡ de ${totalWeightNow + weight} puntos (Excede la base de 100). Â¿Desea continuar de todos modos?`)) return;
+            }
+
+            const taskId = uid();
+            state.deliverables.tasks.push({ id: taskId, groupId, name: taskNameStr, maxPoints: weight });
+
+            const group = state.groups.find(g => g.id === groupId);
+            if (group) {
+                group.students.forEach(student => {
+                    if (!state.deliverables.records[student.id]) state.deliverables.records[student.id] = {};
+                    state.deliverables.records[student.id][taskId] = { score: weight, status: 'E' };
+                });
+            }
+
+            el.taskName.value = '';
+            el.taskWeight.value = '';
+            saveState();
+            renderTasksMatrix();
+            renderCriticalDeliverables();
+        }
+
+        window.deleteTask = function(taskId) {
+            if (!confirm('Â¿Desea eliminar este entregable? Todas las calificaciones asignadas a los estudiantes se borrarÃ¡n.')) return;
+            state.deliverables.tasks = state.deliverables.tasks.filter(t => t.id !== taskId);
+            state.groups.forEach(g => {
+                g.students.forEach(s => {
+                    if (state.deliverables.records[s.id]) delete state.deliverables.records[s.id][taskId];
+                });
+            });
+            saveState();
+            renderTasksMatrix();
+            renderCriticalDeliverables();
+        }
+
+        window.toggleDeliverableStatus = function(studentId, taskId) {
+            const task = state.deliverables.tasks.find(t => t.id === taskId);
+            if (!task) return;
+            
+            if (!state.deliverables.records[studentId]) state.deliverables.records[studentId] = {};
+            const record = state.deliverables.records[studentId][taskId];
+            
+            const nextStatus = record.status === 'E' ? 'NE' : 'E';
+            record.status = nextStatus;
+            record.score = nextStatus === 'NE' ? 0 : task.maxPoints;
+
+            saveState();
+            renderTasksMatrix();
+            renderCriticalDeliverables();
+        }
+
+        window.updateStudentScore = function(studentId, taskId, inputElement) {
+            const task = state.deliverables.tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            let val = parseFloat(inputElement.value);
+            if (isNaN(val) || val < 0) val = 0;
+            if (val > task.maxPoints) val = task.maxPoints;
+            inputElement.value = val;
+
+            state.deliverables.records[studentId][taskId].score = val;
+            state.deliverables.records[studentId][taskId].status = val > 0 ? 'E' : 'NE';
+
+            saveState();
+            recalculateRowStats(studentId);
+            renderCriticalDeliverables();
+        }
+
+        function calculateFinalScore(studentId, groupTasks) {
+            let userPoints = 0;
+
+            groupTasks.forEach(t => {
+                const rec = state.deliverables.records[studentId]?.[t.id] || { score: t.maxPoints, status: 'E' };
+                userPoints += rec.score;
+            });
+
+            return userPoints;
+        }
+
+        function recalculateRowStats(studentId) {
+            const groupId = el.groupSelect.value;
+            const groupTasks = state.deliverables.tasks.filter(t => t.groupId === groupId);
+            let missingCount = 0;
+
+            groupTasks.forEach(t => {
+                const rec = state.deliverables.records[studentId]?.[t.id] || { score: t.maxPoints, status: 'E' };
+                if (rec.status === 'NE') missingCount++;
+            });
+
+            const finalAvg = calculateFinalScore(studentId, groupTasks);
+            const cellMissing = document.getElementById(`missing-cnt-${studentId}`);
+            const cellAvg = document.getElementById(`avg-val-${studentId}`);
+            
+            if (cellMissing) {
+                cellMissing.textContent = missingCount;
+                cellMissing.className = `p-2 text-center font-bold ${missingCount >= 2 ? 'bg-orange-600 text-white animate-pulse' : (missingCount > 0 ? 'text-orange-600' : 'text-slate-400')}`;
+            }
+            if (cellAvg) {
+                cellAvg.textContent = Math.round(finalAvg);
+                cellAvg.className = `p-2 text-center font-extrabold ${finalAvg < 60 ? 'text-red-600 bg-red-50' : 'text-emerald-700'}`;
+            }
+        }
+
+        function renderTasksMatrix() {
+            const groupId = el.groupSelect.value;
+            const group = state.groups.find(g => g.id === groupId);
+
+            el.tasksHeaderRow.innerHTML = `
+                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase w-12">NÂ°</th>
+                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase min-w-[180px]">Estudiante</th>
+            `;
+
+            if (!group) {
+                el.tasksMatrixBody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-slate-400">Seleccione un grupo docente activo.</td></tr>';
+                el.totalWeightValue.textContent = "0";
+                return;
+            }
+
+            const groupTasks = state.deliverables.tasks.filter(t => t.groupId === groupId);
+            const totalWeight = groupTasks.reduce((acc, curr) => acc + curr.maxPoints, 0);
+            el.totalWeightValue.textContent = totalWeight;
+
+            groupTasks.forEach(task => {
+                const th = document.createElement('th');
+                th.className = "text-center py-2 px-1 text-[10px] font-bold text-slate-700 uppercase border-l border-slate-200 min-w-[95px] max-w-[120px] relative";
+                th.innerHTML = `
+                    <div class="flex flex-col items-center justify-between h-full min-h-[40px]">
+                        <span class="truncate block w-full px-1" title="${task.name}">${task.name}</span>
+                        <span class="text-[9px] text-slate-400 font-mono font-normal">Valor: ${task.maxPoints} pts</span>
+                        <button onclick="deleteTask('${task.id}')" class="text-red-500 hover:text-red-700 text-[9px] mt-0.5">
+                            <i class="fa-solid fa-square-minus"></i> Quitar
+                        </button>
+                    </div>
+                `;
+                el.tasksHeaderRow.appendChild(th);
+            });
+
+            el.tasksHeaderRow.innerHTML += `
+                <th class="text-center py-2 px-2 font-bold text-slate-600 uppercase w-20 border-l border-slate-300 bg-slate-100">Sin Entregar</th>
+                <th class="text-center py-2 px-2 font-bold text-slate-600 uppercase w-20 border-l border-slate-200 bg-slate-100">Nota Final</th>
+            `;
+
+            el.tasksMatrixBody.innerHTML = '';
+            if (group.students.length === 0) {
+                el.tasksMatrixBody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-slate-400">El grupo no posee cargada una lista de estudiantes.</td></tr>';
+                return;
+            }
+
+            group.students.forEach(student => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-200 hover:bg-slate-50 transition-colors";
+                
+                let htmlCells = `
+                    <td class="p-2 text-slate-400 font-mono">${student.number}</td>
+                    <td class="p-2 font-semibold text-slate-800 truncate" title="${student.name}">${student.name}</td>
+                `;
+
+                let missingCount = 0;
+
+                groupTasks.forEach(task => {
+                    if (!state.deliverables.records[student.id]) state.deliverables.records[student.id] = {};
+                    if (!state.deliverables.records[student.id][task.id]) {
+                        state.deliverables.records[student.id][task.id] = { score: task.maxPoints, status: 'E' };
+                    }
+
+                    const record = state.deliverables.records[student.id][task.id];
+                    if (record.status === 'NE') missingCount++;
+
+                    const badgeClass = record.status === 'E' ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white';
+                    
+                    htmlCells += `
+                        <td class="p-1 border-l border-slate-100 text-center bg-slate-50/50">
+                            <div class="flex flex-col items-center gap-1">
+                                <button onclick="toggleDeliverableStatus('${student.id}', '${task.id}')" 
+                                        class="text-[9px] font-extrabold px-1.5 py-0.5 rounded font-mono ${badgeClass}">
+                                    ${record.status}
+                                </button>
+                                <input type="number" step="1" min="0" max="${task.maxPoints}" value="${record.score}" 
+                                       oninput="updateStudentScore('${student.id}', '${task.id}', this)"
+                                       class="w-12 text-center border border-slate-300 rounded font-bold text-slate-800 focus:outline-none focus:border-guinda bg-white text-[10px] p-0.5"
+                                       title="Puntos obtenidos (MÃ¡x: ${task.maxPoints})">
+                            </div>
+                        </td>
+                    `;
+                });
+
+                const finalAvg = calculateFinalScore(student.id, groupTasks);
+                tr.innerHTML = htmlCells + `
+                    <td id="missing-cnt-${student.id}" class="p-2 text-center border-l border-slate-300 font-bold ${missingCount >= 2 ? 'bg-orange-600 text-white animate-pulse font-extrabold' : (missingCount > 0 ? 'text-orange-600' : 'text-slate-400')}">${missingCount}</td>
+                    <td id="avg-val-${student.id}" class="p-2 text-center border-l border-slate-200 font-extrabold ${finalAvg < 60 ? 'text-red-600 bg-red-50' : 'text-emerald-700'}">${Math.round(finalAvg)}</td>
+                `;
+                el.tasksMatrixBody.appendChild(tr);
+            });
+        }
+
+        function renderCriticalDeliverables() {
+            el.criticalDeliverablesBody.innerHTML = '';
+            const risks = [];
+
+            // Iterar sobre todos los grupos
+            state.groups.forEach(group => {
+                const groupTasks = state.deliverables.tasks.filter(t => t.groupId === group.id);
+                if (groupTasks.length === 0) return; // Saltar grupos sin tareas
+
+                group.students.forEach(student => {
+                    let missingCount = 0;
+                    groupTasks.forEach(task => {
+                        const rec = state.deliverables.records[student.id]?.[task.id];
+                        if (rec && rec.status === 'NE') missingCount++;
+                    });
+
+                    if (missingCount >= 2) {
+                        const finalAvg = calculateFinalScore(student.id, groupTasks);
+                        risks.push({
+                            number: student.number,
+                            name: student.name,
+                            groupLabel: `${group.career} (${group.group})`,
+                            missing: missingCount,
+                            avg: Math.round(finalAvg)
+                        });
+                    }
+                });
+            });
+
+            el.criticalDeliverablesCount.textContent = `${risks.length} en riesgo`;
+
+            if (risks.length === 0) {
+                el.criticalDeliverablesBody.innerHTML = '<tr><td colspan="4" class="p-3 text-center text-slate-400">Sin estudiantes con retrasos crÃ­ticos en entregables en este grupo.</td></tr>';
+                return;
+            }
+
+            risks.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-slate-100 bg-orange-50 text-slate-800';
+                tr.innerHTML = `
+                    <td class="p-2 font-semibold">${item.number}. ${item.name}</td>
+                    <td class="p-2 text-xs text-slate-600">${item.groupLabel}</td>
+                    <td class="p-2 text-center font-extrabold text-white bg-orange-600">${item.missing} Tareas</td>
+                    <td class="p-2 text-center font-extrabold text-red-700">${item.avg} / 100</td>
+                `;
+                el.criticalDeliverablesBody.appendChild(tr);
+            });
+        }
+
+        function addGroup() {
+            const career = el.groupName.value.trim();
+            const groupCode = el.groupShift.value.trim();
+            const students = parseStudents(el.studentsInput.value);
+
+            if (!career || !groupCode || students.length === 0) {
+                return alert('Faltan campos obligatorios para registrar el grupo docente.');
+            }
+
+            const newGroup = {
+                id: uid(), career, semester: el.groupSemester.value.trim(),
+                group: groupCode, name: career, shift: groupCode,
+                subject: el.groupSubject.value.trim(), students
+            };
+
+            state.groups.push(newGroup);
+            saveState();
+            renderGroupOptions();
+            el.groupSelect.value = newGroup.id;
+            renderTasksMatrix();
+            renderCriticalDeliverables();
+
+            el.groupName.value = ''; el.groupSemester.value = ''; el.groupShift.value = '';
+            el.groupSubject.value = ''; el.studentsInput.value = '';
+        }
+
+        function deleteSelectedGroup() {
+            const groupId = el.groupSelect.value;
+            if (!groupId) return alert('Seleccione un grupo primero.');
+            if (!confirm('Â¿Confirma que desea borrar este grupo y todas sus calificaciones vinculadas?')) return;
+
+            state.deliverables.tasks = state.deliverables.tasks.filter(t => t.groupId !== groupId);
+            const group = state.groups.find(g => g.id === groupId);
+            if (group) group.students.forEach(s => delete state.deliverables.records[s.id]);
+
+            state.groups = state.groups.filter(g => g.id !== groupId);
+            saveState();
+            renderGroupOptions();
+            renderTasksMatrix();
+            renderCriticalDeliverables();
+        }
+
+        function exportCsv() {
+            const groupId = el.groupSelect.value;
+            const group = state.groups.find(g => g.id === groupId);
+            if (!group) return alert('Seleccione un grupo vÃ¡lido.');
+
+            const groupTasks = state.deliverables.tasks.filter(t => t.groupId === groupId);
+            const header = ['Num', 'Estudiante', ...groupTasks.map(t => `"${t.name} (${t.maxPoints}pts)"`), 'Sin Entregar', 'Nota Final'];
+            const rows = [header.join(',')];
+
+            group.students.forEach(student => {
+                let missingCount = 0;
+                const scoresRow = groupTasks.map(t => {
+                    const rec = state.deliverables.records[student.id]?.[t.id] || { score: t.maxPoints, status: 'E' };
+                    if (rec.status === 'NE') missingCount++;
+                    return rec.score;
+                });
+
+                const finalAvg = calculateFinalScore(student.id, groupTasks);
+
+                rows.push([
+                    student.number,
+                    `"${student.name}"`,
+                    ...scoresRow,
+                    missingCount,
+                    Math.round(finalAvg)
+                ].join(','));
+            });
+
+            const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Calificaciones_Base100_${group.career.replace(/\s+/g, '_')}.csv`;
+            link.click();
+        }
+
+        function exportBackup() {
+            if (state.groups.length === 0) return alert('No hay informaciÃ³n guardada para respaldar.');
+            const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `RESPALDO_ENTREGABLES_B100_${Date.now()}.json`;
+            link.click();
+        }
+
+        function importBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (Array.isArray(parsed.groups) && parsed.deliverables) {
+                        state.groups = parsed.groups;
+                        state.deliverables = parsed.deliverables;
+                        saveState();
+                        renderGroupOptions();
+                        renderTasksMatrix();
+                        renderCriticalDeliverables();
+                        alert('Copia de seguridad restaurada exitosamente.');
+                    } else {
+                        alert('Formato de archivo invÃ¡lido.');
+                    }
+                } catch (err) {
+                    alert('Error al leer el archivo JSON.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function attachEvents() {
+            el.saveGroupBtn.addEventListener('click', addGroup);
+            el.deleteGroupBtn.addEventListener('click', deleteSelectedGroup);
+            el.addTaskBtn.addEventListener('click', addNewTask);
+            el.exportCsvBtn.addEventListener('click', exportCsv);
+            el.exportBackupBtn.addEventListener('click', exportBackup);
+            el.importBackupBtn.addEventListener('click', () => el.backupFileInput.click());
+            el.backupFileInput.addEventListener('change', importBackup);
+            el.groupSelect.addEventListener('change', () => {
+                renderTasksMatrix();
+                renderCriticalDeliverables();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (mobileMenuBtn && mobileDropdown && menuIcon) {
+                mobileMenuBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleMenu();
+                });
+
+                mobileDropdown.querySelectorAll('a, button').forEach((element) => {
+                    element.addEventListener('click', () => {
+                        if (window.innerWidth < 1024 && !mobileDropdown.classList.contains('hidden')) {
+                            toggleMenu();
+                        }
+                    });
+                });
+
+                document.addEventListener('click', (event) => {
+                    if (window.innerWidth < 1024 && !mobileDropdown.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        if (!mobileDropdown.classList.contains('hidden')) {
+                            toggleMenu();
+                        }
+                    }
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024) {
+                        mobileDropdown.classList.add('hidden');
+                        menuIcon.classList.remove('fa-xmark');
+                        menuIcon.classList.add('fa-bars');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            loadState();
+            attachEvents();
+            renderGroupOptions();
+        });
+    </script>
+</body>
+</html>
+

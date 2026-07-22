@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestiÃ³n de TutorÃ­as y AsesorÃ­as | CECYTE</title>
+    <title>Ecosistema Digital de Soluciones Educativas | CECYTE</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -48,7 +48,7 @@
 
 <body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
 
-    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <!-- MENÚ DE NAVEGACIÓN MODERNO (STICKY) -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
         <div class="container mx-auto px-6 max-w-screen-2xl">
             <div class="flex justify-between h-16">
@@ -61,60 +61,53 @@
 
                 <!-- Enlaces de Escritorio -->
                 <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
-                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                        <i class="fa-solid fa-house"></i> Principal
+                    <a href="index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Inicio
                     </a>
                     <div class="relative group">
-                        <button type="button" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                            <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                        <button type="button" class="text-slate-600 uppercase hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user"></i> Evaluación y Práctica
                             <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
                         </button>
                         <div class="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 z-50">
-                            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="index.html#Práctica Docente y Evaluación" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-layer-group text-cecyte-guinda"></i>
-                                <span>Ir a la secciÃ³n</span>
+                                <span>Ir a la sección</span>
                             </a>
                             <div class="my-2 border-t border-slate-100"></div>
                             <a href="pase_lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
-                                <span>MÃ³dulo: Pase de Lista</span>
+                                <span>Módulo: Pase de Lista</span>
                             </a>
                             <a href="tutoria.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
-                                <span>MÃ³dulo: TutorÃ­a</span>
+                                <span>Módulo: Tutoría</span>
                             </a>
                             <a href="seguimiento_entregas.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-table-list text-cecyte-guinda"></i>
-                                <span>MÃ³dulo: Seguimiento AcadÃ©mico</span>
+                                <span>Módulo: Seguimiento Académico</span>
                             </a>
-                            <a href="eval/plantilla_rubrica.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_rubrica.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
-                                <span>Plantilla: RÃºbrica</span>
+                                <span>Plantilla: Rúbrica</span>
                             </a>
-                            <a href="eval/plantilla_estimativa.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_estimativa.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
                                 <span>Plantilla: Escala Estimativa</span>
                             </a>
-                            <a href="eval/plantilla_observacion.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_observacion.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
-                                <span>Plantilla: GuÃ­a de ObservaciÃ³n</span>
+                                <span>Plantilla: Guía de Observación</span>
                             </a>
-                            <a href="eval/plantilla_cotejo.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_cotejo.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
                                 <span>Plantilla: Lista de Cotejo</span>
                             </a>
                         </div>
                     </div>
-                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
-                    </a>
-                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
-                    </a>
-                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
                 </div>
 
-                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <!-- Botón de Menú Móvil (Hamburguesa) -->
                 <div class="lg:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
                         <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
@@ -123,76 +116,76 @@
             </div>
         </div>
 
-        <!-- MenÃº Desplegable MÃ³vil -->
+        <!-- Menú Desplegable Móvil -->
         <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
-            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
-                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            <a href="index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Inicio
             </a>
             <details class="group rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2">
                 <summary class="cursor-pointer list-none flex items-center justify-between gap-3 rounded-lg text-slate-700 font-semibold text-sm transition-colors">
                     <span class="flex items-center gap-3">
-                        <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+                        <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> Evaluación y Práctica
                     </span>
                     <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-150 group-open:rotate-180"></i>
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
-                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la secciÃ³n
+                    <a href="index.html#Práctica Docente y Evaluación" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la sección
                     </a>
                     <a href="pase_lista.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: Pase de Lista
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> Módulo: Pase de Lista
                     </a>
                     <a href="tutoria.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: TutorÃ­a
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> Módulo: Tutoría
                     </a>
                     <a href="seguimiento_entregas.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-table-list text-cecyte-guinda"></i> MÃ³dulo: Seguimiento AcadÃ©mico
+                        <i class="fa-solid fa-table-list text-cecyte-guinda"></i> Módulo: Seguimiento Académico
                     </a>
-                    <a href="eval/plantilla_rubrica.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: RÃºbrica
+                    <a href="plantilla_rubrica.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Rúbrica
                     </a>
-                    <a href="eval/plantilla_estimativa.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                    <a href="plantilla_estimativa.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
                         <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Escala Estimativa
                     </a>
-                    <a href="eval/plantilla_observacion.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: GuÃ­a de ObservaciÃ³n
+                    <a href="plantilla_observacion.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Guía de Observación
                     </a>
-                    <a href="eval/plantilla_cotejo.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                    <a href="plantilla_cotejo.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
                         <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Lista de Cotejo
                     </a>
                 </div>
             </details>
-           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
-                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
-            </a>
-            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
-                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
-            </a>
         </div>
     </nav>
 
     <!-- Encabezado Principal / Hero Banner -->
     <header class="bg-cecyte-guinda text-white shadow-md relative overflow-hidden">
         <div class="absolute top-0 right-0 w-40 h-40 bg-cecyte-oro opacity-10 rounded-full transform translate-x-12 -translate-y-12"></div>
+        
         <div class="container mx-auto px-6 max-w-screen-2xl py-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="text-center md:text-left">
                 <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
-                    <span class="bg-cecyte-oro text-cecyte-guinda text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Plantel Huejotzingo</span>
-                    <span class="text-slate-300 text-sm">| TutorÃ­as y AsesorÃ­as 2026</span>
+                    <span class="bg-cecyte-oro text-cecyte-guinda text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">CECyTE Puebla</span>
+                    <span class="text-slate-300 text-sm">| Portal Educativo</span>
                 </div>
-                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Expediente y RÃºbrica de TutorÃ­as</h1>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Módulo de Tutoría</h1>
                 <p class="text-cecyte-oroLight mt-2 text-base font-light max-w-2xl">
-                    Plataforma tecnolÃ³gica integral, diseÃ±ada especÃ­ficamente para CECyTE. Este entorno unifica herramientas de anÃ¡lisis y evaluaciÃ³n en un solo Hub interactivo.
+                    Plataforma tecnológica integral, diseñada específicamente para CECyTE. Este entorno unifica herramientas docentes y evaluación en un solo Hub interactivo.
                 </p>
             </div>
             
+            <!-- Perfil del Desarrollador -->
             <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10 w-full md:w-auto">
                 <div class="bg-cecyte-oro/10 border border-cecyte-oro text-cecyte-oro w-14 h-14 rounded-full flex items-center justify-center text-2xl shrink-0">
-                    <img src="../img/julianprofile.png" alt="Perfil" class="w-full h-full object-cover rounded-full" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-full h-full object-cover rounded-full">
                 </div>
                 <div>
                     <h4 class="font-bold text-md text-white">Mtro. Julian Sadak Vergara Cruz</h4>
-                    <p class="text-sm text-cecyte-oro">Desarrollo e InnovaciÃ³n Educativa</p>
+                    <p class="text-sm text-cecyte-oro">Desarrollo e Innovación Educativa</p>
+                    <p class="text-xs text-slate-300"><a href="mailto:jvergarac@cecytepuebla.edu.mx" class="text-white hover:text-cecyte-oroLight underline">jvergarac@cecytepuebla.edu.mx</a></p>
+                    <div class="mt-1 flex gap-2">
+                        <span class="text-[10px] bg-cecyte-oro/20 text-white px-1.5 py-0.5 rounded font-mono font-semibold">Vanilla JS</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -205,18 +198,18 @@
         
         <!-- BOTONES DE RESPALDO GLOBAL Y ACCIONES -->
         <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
-            <!-- MÃ‰TRICAS EN TIEMPO REAL -->
+            <!-- MÉTRICAS EN TIEMPO REAL -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex-grow max-w-3xl text-center">
                 <div>
                     <div class="text-[10px] font-bold text-slate-400 uppercase">Total Sesiones</div>
                     <div id="metric-total" class="text-xl font-bold text-cecyte-guinda">0</div>
                 </div>
                 <div>
-                    <div class="text-[10px] font-bold text-slate-400 uppercase">% AcadÃ©micas</div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase">% Académicas</div>
                     <div id="metric-pct-acad" class="text-xl font-bold text-slate-700">0%</div>
                 </div>
                 <div>
-                    <div class="text-[10px] font-bold text-slate-400 uppercase">% TutorÃ­as</div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase">% Tutorías</div>
                     <div id="metric-pct-tut" class="text-xl font-bold text-slate-700">0%</div>
                 </div>
                 <div>
@@ -239,19 +232,19 @@
         <!-- FORMULARIOS Y MATRIZ -->
         <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
             
-            <!-- CONFIGURACIÃ“N DE GRUPO Y ALTA -->
+            <!-- CONFIGURACIÓN DE GRUPO Y ALTA -->
             <div class="space-y-4 xl:col-span-1">
                 <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-4">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
                         <i class="fa-solid fa-users mr-1 text-cecyte-oro"></i> Datos del Grupo
                     </h2>
                     <div class="space-y-2 text-xs">
-                        <input id="group-name" type="text" placeholder="Carrera (Ej. Soporte TÃ©cnico)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none">
+                        <input id="group-name" type="text" placeholder="Carrera (Ej. Soporte Técnico)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none">
                         <div class="grid grid-cols-2 gap-2">
                             <input id="group-semester" type="text" placeholder="Semestre" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none">
                             <input id="group-shift" type="text" placeholder="Grupo" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none">
                         </div>
-                        <textarea id="students-input" rows="4" placeholder="Estudiantes (uno por lÃ­nea)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none"></textarea>
+                        <textarea id="students-input" rows="4" placeholder="Estudiantes (uno por línea)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none"></textarea>
                         
                         <div class="grid grid-cols-2 gap-2">
                             <button id="save-group-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-2 rounded-xl transition-colors">Guardar Grupo</button>
@@ -266,17 +259,17 @@
                 </article>
             </div>
 
-            <!-- REGISTRO E HISTORIAL DE ATENCIÃ“N CON RÃšBRICA -->
+            <!-- REGISTRO E HISTORIAL DE ATENCIÓN CON RÚBRICA -->
             <div class="xl:col-span-3 space-y-6">
-                <!-- FORMULARIO DE ATENCIÃ“N INDIVIDUAL / GRUPAL -->
+                <!-- FORMULARIO DE ATENCIÓN INDIVIDUAL / GRUPAL -->
                 <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
                     <h2 class="text-sm font-bold uppercase tracking-wider text-cecyte-guinda mb-4">
-                        <i class="fa-solid fa-clipboard-user text-cecyte-oro mr-1"></i> Formulario de IntervenciÃ³n Docente
+                        <i class="fa-solid fa-clipboard-user text-cecyte-oro mr-1"></i> Formulario de Intervención Docente
                     </h2>
                     
                     <form id="tutoria-form" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                         <div>
-                            <label class="block font-bold mb-1">Alcance de AtenciÃ³n</label>
+                            <label class="block font-bold mb-1">Alcance de Atención</label>
                             <select id="tutoria-scope" class="w-full border border-slate-300 rounded-lg p-2 bg-slate-50">
                                 <option value="Individual">Individual (Seleccionar alumno)</option>
                                 <option value="Grupal">Grupal (Todo el grupo seleccionado)</option>
@@ -289,10 +282,10 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block font-bold mb-1">Tipo de IntervenciÃ³n</label>
+                            <label class="block font-bold mb-1">Tipo de Intervención</label>
                             <select id="tutoria-type" class="w-full border border-slate-300 rounded-lg p-2 bg-slate-50">
-                                <option value="Academica">AsesorÃ­a AcadÃ©mica</option>
-                                <option value="Tutoria">SesiÃ³n de TutorÃ­a (Socioemocional / Conductual)</option>
+                                <option value="Academica">Asesoría Académica</option>
+                                <option value="Tutoria">Sesión de Tutoría (Socioemocional / Conductual)</option>
                             </select>
                         </div>
                         <div>
@@ -301,11 +294,11 @@
                                 <option value="Regular">Regular</option>
                                 <option value="Irregular">Irregular</option>
                                 <option value="Sobresaliente">Sobresaliente</option>
-                                <option value="Situacion de riesgo">SituaciÃ³n de riesgo</option>
+                                <option value="Situacion de riesgo">Situación de riesgo</option>
                             </select>
                         </div>
 
-                        <!-- SECCIÃ“N DINÃMICA DE RÃšBRICA EVALUATIVA -->
+                        <!-- SECCIIÓN DINÁMICA DE RÚBRICA EVALUATIVA -->
                         <div class="md:col-span-3 bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2">
                             <h3 class="font-bold text-cecyte-guinda uppercase text-[11px] mb-3 flex items-center gap-1">
                                 <i class="fa-solid fa-star text-cecyte-oro"></i> Matriz Evaluativa Contextualizada
@@ -316,18 +309,18 @@
                         </div>
 
                         <div class="md:col-span-2">
-                            <label class="block font-bold mb-1">SituaciÃ³n presentada / Observaciones</label>
-                            <textarea id="tutoria-obs" rows="3" placeholder="Describe la situaciÃ³n presentada y observaciones relevantes..." class="w-full border border-slate-300 rounded-lg p-2 focus:outline-none focus:border-cecyte-guinda"></textarea>
+                            <label class="block font-bold mb-1">Situación presentada / Observaciones</label>
+                            <textarea id="tutoria-obs" rows="3" placeholder="Describe la situación presentada y observaciones relevantes..." class="w-full border border-slate-300 rounded-lg p-2 focus:outline-none focus:border-cecyte-guinda"></textarea>
                         </div>
                         <div>
-                            <label class="block font-bold mb-1">DeterminaciÃ³n Inicial</label>
+                            <label class="block font-bold mb-1">Determinación Inicial</label>
                             <select id="tutoria-action" class="w-full border border-slate-300 rounded-lg p-2 font-semibold">
                                 <option value="Ninguno" class="text-slate-600">Concluido (Sin acciones requeridas)</option>
                                 <option value="Seguimiento" class="text-orange-600 font-bold">Requiere Plan de Seguimiento Interno</option>
-                                <option value="Canalizacion" class="text-red-600 font-bold">Canalizar Urgente a OrientaciÃ³n Educativa</option>
+                                <option value="Canalizacion" class="text-red-600 font-bold">Canalizar Urgente a Orientación Educativa</option>
                             </select>
                             <button type="button" id="save-session-btn" class="w-full mt-4 bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-4 rounded-xl transition-all shadow-sm text-xs">
-                                <i class="fa-solid fa-floppy-disk mr-1"></i> Registrar BitÃ¡cora
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> Registrar Bitácora
                             </button>
                         </div>
                         <div class="md:col-span-3">
@@ -340,7 +333,7 @@
                 <!-- PROMPT DE SALIDA INTELIGENTE -->
                 <article id="prompt-output-card" class="bg-slate-900 text-slate-100 rounded-2xl p-4 shadow-inner hidden">
                     <div class="flex justify-between items-center mb-2 border-b border-slate-800 pb-2">
-                        <span class="text-xs font-bold text-cecyte-oro tracking-widest uppercase"><i class="fa-solid fa-robot"></i> Prompt de DerivaciÃ³n Generado para IA / Expediente</span>
+                        <span class="text-xs font-bold text-cecyte-oro tracking-widest uppercase"><i class="fa-solid fa-robot"></i> Prompt de Derivación Generado para IA / Expediente</span>
                         <button id="copy-prompt-btn" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2.5 py-1 rounded font-bold text-white transition-colors">
                             <i class="fa-solid fa-copy mr-1"></i> Copiar Prompt
                         </button>
@@ -348,7 +341,7 @@
                     <p id="prompt-text" class="text-xs font-mono text-slate-300 whitespace-pre-wrap leading-relaxed"></p>
                 </article>
 
-                <!-- HISTÃ“RICO DE LOGS / REGISTROS -->
+                <!-- HISTÓRICO DE LOGS / REGISTROS -->
                 <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <h3 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda"><i class="fa-solid fa-history mr-1"></i> Historial Reciente del Grupo</h3>
@@ -363,13 +356,13 @@
                                     <th class="py-2 px-3">Fecha</th>
                                     <th class="py-2 px-3">Alcance / Alumno</th>
                                     <th class="py-2 px-3">Tipo</th>
-                                    <th class="py-2 px-3 text-center">DesempeÃ±o RÃºbrica</th>
+                                    <th class="py-2 px-3 text-center">Desempeño Rúbrica</th>
                                     <th class="py-2 px-3">Estatus</th>
                                     <th class="py-2 px-3 text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="history-table-body">
-                                <tr><td colspan="6" class="p-4 text-center text-slate-400">NingÃºn registro en el grupo actual.</td></tr>
+                                <tr><td colspan="6" class="p-4 text-center text-slate-400">Ningún registro en el grupo actual.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -379,11 +372,11 @@
         </div>
     </main>
 
-    <!-- Pie de PÃ¡gina -->
+    <!-- Pie de Página -->
     <footer class="bg-cecyte-guinda rounded-2xl text-slate-400 border-t border-slate-800 text-xs py-6 mt-auto">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left">
-                <p class="font-bold text-slate-200">Colegio de Estudios CientÃ­ficos y TecnolÃ³gicos del Estado de Puebla</p>
+                <p class="font-bold text-slate-200">Colegio de Estudios Científicos y Tecnológicos del Estado de Puebla</p>
                 <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
             </div>
             <div class="flex gap-4 text-cecyte-oroLight font-mono">
@@ -394,14 +387,14 @@
                 <span>|</span>
                 </span>Revisado por:</span>
                 <a href="mailto:hpaezg@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
-                    <span>Herlinda PaÃ©z GonzÃ¡lez</span>
+                    <span>Herlinda Paéz González</span>
                 </a>
                 
             </div>
         </div>
     </footer>
 
-    <!-- LÃ“GICA JAVASCRIPT INTEGRADA -->
+    <!-- LÓGICA JAVASCRIPT INTEGRADA -->
     <script>
         const STORAGE_KEY = 'cecyte_tutorias_v1';
         
@@ -414,29 +407,29 @@
             Academica: [
                 { 
                     id: 'preparacion', 
-                    label: 'PreparaciÃ³n y Enfoque', 
+                    label: 'Preparación y Enfoque', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Llega puntual, con dudas especÃ­ficas y materiales organizados. Demuestra haber revisado el tema a fondo previamente.' },
-                        { val: 3, text: 'Competente (3 pts): Llega a tiempo con sus materiales. Sus dudas son vÃ¡lidas pero generales. Se nota una revisiÃ³n parcial del tema.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Llega con dudas muy vagas (ej. "no le entiendo a nada"). No hay evidencia de una revisiÃ³n previa del material.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Llega tarde, no trae materiales ni dudas concretas, o no se preparÃ³ en lo absoluto para la sesiÃ³n.' }
+                        { val: 4, text: 'Excelente (4 pts): Llega puntual, con dudas específicas y materiales organizados. Demuestra haber revisado el tema a fondo previamente.' },
+                        { val: 3, text: 'Competente (3 pts): Llega a tiempo con sus materiales. Sus dudas son válidas pero generales. Se nota una revisión parcial del tema.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Llega con dudas muy vagas (ej. "no le entiendo a nada"). No hay evidencia de una revisión previa del material.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Llega tarde, no trae materiales ni dudas concretas, o no se preparó en lo absoluto para la sesión.' }
                     ]
                 },
                 { 
                     id: 'participacion', 
-                    label: 'ParticipaciÃ³n Activa', 
+                    label: 'Participación Activa', 
                     options: [
                         { val: 4, text: 'Excelente (4 pts): Toma notas, propone soluciones y responde con seguridad. Adopta un rol proactivo en su propio aprendizaje.' },
-                        { val: 3, text: 'Competente (3 pts): Escucha con atenciÃ³n y responde cuando se le pregunta, pero su rol tiende a ser mÃ¡s pasivo que proactivo.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Muestra distracciones o apatÃ­a. InteractÃºa solo de forma superficial o cuando la o el asesor se lo exige directamente.' },
-                        { val: 1, text: 'Insuficiente (1 pt): No interactÃºa, muestra total desinterÃ©s o se distrae constantemente con elementos ajenos a la asesorÃ­a.' }
+                        { val: 3, text: 'Competente (3 pts): Escucha con atención y responde cuando se le pregunta, pero su rol tiende a ser más pasivo que proactivo.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Muestra distracciones o apatía. Interactúa solo de forma superficial o cuando la o el asesor se lo exige directamente.' },
+                        { val: 1, text: 'Insuficiente (1 pt): No interactúa, muestra total desinterés o se distrae constantemente con elementos ajenos a la asesoría.' }
                     ]
                 },
                 { 
                     id: 'receptividad', 
-                    label: 'Receptividad a la RetroalimentaciÃ³n', 
+                    label: 'Receptividad a la Retroalimentación', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Recibe las crÃ­ticas constructivas con apertura, hace preguntas para aclarar sus errores y muestra disposiciÃ³n a mejorar.' },
+                        { val: 4, text: 'Excelente (4 pts): Recibe las críticas constructivas con apertura, hace preguntas para aclarar sus errores y muestra disposición a mejorar.' },
                         { val: 3, text: 'Competente (3 pts): Acepta las correcciones y sugerencias, aunque le cuesta un poco profundizar en el origen de sus errores.' },
                         { val: 2, text: 'En Desarrollo (2 pts): Se justifica constantemente, le cuesta aceptar las correcciones o ignora algunas de las sugerencias dadas.' },
                         { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud defensiva o de rechazo absoluto ante las observaciones de la o el asesor, bloqueando el avance.' }
@@ -444,12 +437,12 @@
                 },
                 { 
                     id: 'autonomia', 
-                    label: 'AutonomÃ­a y Plan de AcciÃ³n', 
+                    label: 'Autonomía y Plan de Acción', 
                     options: [
                         { val: 4, text: 'Excelente (4 pts): Es capaz de explicar lo aprendido con sus propias palabras y propone un plan claro con pasos a seguir de forma independiente.' },
                         { val: 3, text: 'Competente (3 pts): Comprende las explicaciones del asesor, pero requiere de su ayuda para definir los siguientes pasos de su trabajo.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Muestra dificultades para aplicar lo aprendido por sÃ­ mismo. El plan de acciÃ³n para el estudio independiente es difuso.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Termina la sesiÃ³n sin comprender el tema y sin una ruta clara de trabajo; depende totalmente de otra asesorÃ­a.' }
+                        { val: 2, text: 'En Desarrollo (2 pts): Muestra dificultades para aplicar lo aprendido por sí mismo. El plan de acción para el estudio independiente es difuso.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Termina la sesión sin comprender el tema y sin una ruta clara de trabajo; depende totalmente de otra asesoría.' }
                     ]
                 }
             ],
@@ -458,40 +451,40 @@
                     id: 'autoconocimiento', 
                     label: 'Autoconocimiento y Apertura', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Identifica con claridad sus emociones, fortalezas y Ã¡reas de oportunidad. Expresa su situaciÃ³n sin reservas y con honestidad.' },
-                        { val: 3, text: 'Competente (3 pts): Reconoce que enfrenta una situaciÃ³n difÃ­cil, sin embargo, no logra verbalizar o profundizar en el origen del problema.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Tiene dificultades para determinar o identificar quÃ© lo o la estÃ¡ afectando.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud cerrada, evade las preguntas y no reconoce o minimiza el problema que estÃ¡ afectando su bienestar.' }
+                        { val: 4, text: 'Excelente (4 pts): Identifica con claridad sus emociones, fortalezas y Áreas de oportunidad. Expresa su situación sin reservas y con honestidad.' },
+                        { val: 3, text: 'Competente (3 pts): Reconoce que enfrenta una situación difícil, sin embargo, no logra verbalizar o profundizar en el origen del problema.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Tiene dificultades para determinar o identificar qué lo o la está afectando.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud cerrada, evade las preguntas y no reconoce o minimiza el problema que está afectando su bienestar.' }
                     ]
                 },
                 { 
                     id: 'comunicacion', 
-                    label: 'ComunicaciÃ³n y Confianza', 
+                    label: 'Comunicación y Confianza', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Utiliza la tutorÃ­a como un espacio seguro. Escucha activamente la perspectiva del docente y dialoga asertivamente.' },
-                        { val: 3, text: 'Competente (3 pts): Se comunica de manera clara, sin embargo,  mantiene distancia durante la sesiÃ³n. Escucha los consejos pero interactÃºa poco.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Su comunicaciÃ³n es pasiva; tiene dificultad para establecer un diÃ¡logo fluido con la o el tutor.' },
-                        { val: 1, text: 'Insuficiente (1 pt): No hay comunicaciÃ³n efectiva; responde con monosÃ­labos o muestra una actitud de rechazo hacia el espacio de tutorÃ­a.' }
+                        { val: 4, text: 'Excelente (4 pts): Utiliza la tutoría como un espacio seguro. Escucha activamente la perspectiva del docente y dialoga asertivamente.' },
+                        { val: 3, text: 'Competente (3 pts): Se comunica de manera clara, sin embargo,  mantiene distancia durante la sesión. Escucha los consejos pero interactúa poco.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Su comunicación es pasiva; tiene dificultad para establecer un diálogo fluido con la o el tutor.' },
+                        { val: 1, text: 'Insuficiente (1 pt): No hay comunicación efectiva; responde con monosílabos o muestra una actitud de rechazo hacia el espacio de tutoría.' }
                     ]
                 },
                 { 
                     id: 'soluciones', 
-                    label: 'BÃºsqueda de Soluciones y Resiliencia', 
+                    label: 'Búsqueda de Soluciones y Resiliencia', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Propone activamente alternativas para superar el obstÃ¡culo y demuestra disposiciÃ³n para aprender de la experiencia.' },
-                        { val: 3, text: 'Competente (3 pts): Acepta las sugerencias de la o el tutor y muestra interÃ©s en cambiar la situaciÃ³n, necesita acompaÃ±amiento en las soluciones.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Espera que la o el tutor o un tercero resuelva el problema por Ã©l o ella. Tiene dificultades para elegir alternativas viables.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud de victimizaciÃ³n o resignaciÃ³n absoluta; no tiene interÃ©s en buscar soluciones a su situaciÃ³n.' }
+                        { val: 4, text: 'Excelente (4 pts): Propone activamente alternativas para superar el obstáculo y demuestra disposición para aprender de la experiencia.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta las sugerencias de la o el tutor y muestra interés en cambiar la situación, necesita acompañamiento en las soluciones.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Espera que la o el tutor o un tercero resuelva el problema por él o ella. Tiene dificultades para elegir alternativas viables.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud de victimización o resignación absoluta; no tiene interés en buscar soluciones a su situación.' }
                     ]
                 },
                 { 
                     id: 'compromiso', 
-                    label: 'Compromiso con el Bienestar (Plan de AcciÃ³n)', 
+                    label: 'Compromiso con el Bienestar (Plan de Acción)', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): DiseÃ±a, junto a la o el tutor, compromisos claros y realistas (ej. acudir al departamento de orientaciÃ³n, organizar mejor su tiempo) y asume la responsabilidad de cumplirlos.' },
-                        { val: 3, text: 'Competente (3 pts): Acepta el plan de acciÃ³n sugerido por la o el tutor y se compromete a realizarlo, sin embargo, requiere de recordatorios o seguimiento cercano.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Acuerda un plan de acciÃ³n solo por compromiso en la sesiÃ³n de tutoria individual, pero muestra baja convicciÃ³n o motivaciÃ³n para llevarlo a cabo.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Se retira de la sesiÃ³n sin establecer ningÃºn compromiso concreto ni intenciÃ³n de cambiar su situaciÃ³n actual.' }
+                        { val: 4, text: 'Excelente (4 pts): Diseña, junto a la o el tutor, compromisos claros y realistas (ej. acudir al departamento de orientación, organizar mejor su tiempo) y asume la responsabilidad de cumplirlos.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta el plan de acción sugerido por la o el tutor y se compromete a realizarlo, sin embargo, requiere de recordatorios o seguimiento cercano.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Acuerda un plan de acción solo por compromiso en la sesión de tutoria individual, pero muestra baja convicción o motivación para llevarlo a cabo.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Se retira de la sesión sin establecer ningún compromiso concreto ni intención de cambiar su situación actual.' }
                     ]
                 }
             ]
@@ -557,7 +550,7 @@
             state.groups.forEach(g => {
                 const opt = document.createElement('option');
                 opt.value = g.id;
-                opt.textContent = `${g.name} (${g.semester}Â° ${g.shift})`;
+                opt.textContent = `${g.name} (${g.semester}° ${g.shift})`;
                 el.groupSelect.appendChild(opt);
             });
             if (val) el.groupSelect.value = val;
@@ -688,17 +681,17 @@
             let template = `[SISTEMA DE ASISTENCIA INTEGRAL - INSTITUTO CECYTE 2026]
 CONTEXTO OPERATIVO:
 - Beneficiario: ${session.studentName}
-- Grupo / Aula: ${group ? `${group.name} - ${group.semester}Â° "${group.shift}"` : 'N/A'}
-- Naturaleza: ${session.type === 'Academica' ? 'AsesorÃ­a AcadÃ©mica Especializada' : 'SesiÃ³n Evaluativa de TutorÃ­a (Socioemocional)'}
+- Grupo / Aula: ${group ? `${group.name} - ${group.semester}° "${group.shift}"` : 'N/A'}
+- Naturaleza: ${session.type === 'Academica' ? 'Asesoría Académica Especializada' : 'Sesión Evaluativa de Tutoría (Socioemocional)'}
 
-RESULTADO GLOBAL DE LA RÃšBRICA APLICADA:
+RESULTADO GLOBAL DE LA RÚBRICA APLICADA:
 Puntaje Obtenido: ${session.scoreGained} de un mÃ¡ximo de ${session.scoreMax} puntos.
 
-DESGLOSE CRÃTICO DE EVALUACIÃ“N:
+DESGLOSE CRÍTICO DE EVALUACIÓN:
 ${rubricStr}
 
 OBSERVACIONES DE CAMPO REGISTRADAS:
-"${session.obs || 'Sin observaciones descriptivas adicionales en bitÃ¡cora.'}"
+"${session.obs || 'Sin observaciones descriptivas adicionales en bitácora.'}"
 
 TIPO DE ESTUDIANTE:
 ${session.studentType || 'No especificado'}
@@ -706,56 +699,56 @@ ${session.studentType || 'No especificado'}
 SEGUIMIENTO PROPUESTO:
 ${session.seguimiento || 'Sin seguimiento adicional registrado.'}
 
-CANALIZACIÃ“N:
+CANALIZACIÓN:
 ${session.canalizacion || 'no'}
 
 ACUERDOS Y COMPROMISOS:
 ${session.acuerdosCompromisos || 'Sin acuerdos y compromisos registrados.'}
 
-ACCIÃ“N INMEDIATA REQUERIDA:
-Estatus institucional: ${session.action === 'Canalizacion' ? 'SOLICITUD DE CANALIZACIÃ“N FORMAL A ORIENTACIÃ“N EDUCATIVA' : session.action === 'Seguimiento' ? 'INTEGRAR A PLAN INTERNO DE SEGUIMIENTO EN PLANTEL' : 'ALTA DE ATENCIÃ“N / PROCESO CONCLUIDO'}.
+ACCIÓN INMEDIATA REQUERIDA:
+Estatus institucional: ${session.action === 'Canalizacion' ? 'SOLICITUD DE CANALIZACIÓN FORMAL A ORIENTACIÓN EDUCATIVA' : session.action === 'Seguimiento' ? 'INTEGRAR A PLAN INTERNO DE SEGUIMIENTO EN PLANTEL' : 'ALTA DE ATENCIÓN / PROCESO CONCLUIDO'}.
 
-PETICIÃ“N AL ASISTENTE DE IA:
-Analiza los fallos o debilidades descritos en la rÃºbrica anterior y genera una minuta oficial institucional para el expediente de este estudiante, que contenga: Estrategias didÃ¡cticas sugeridas, recomendaciones socioeducativas precisas y compromisos esperados del alumno.`;
+PETICIÓN AL ASISTENTE DE IA:
+Analiza los fallos o debilidades descritos en la rúbrica anterior y genera una minuta oficial institucional para el expediente de este estudiante, que contenga: Estrategias didácticas sugeridas, recomendaciones socioeducativas precisas y compromisos esperados del alumno.`;
 
             el.promptText.textContent = template;
             el.promptOutputCard.classList.remove('hidden');
         }
 
         window.deleteSession = function(id) {
-            if(!confirm('Â¿Eliminar este registro del historial?')) return;
+            if(!confirm('¿Eliminar este registro del historial?')) return;
             state.sessions = state.sessions.filter(s => s.id !== id);
             saveState();
             renderHistory();
         }
 
-        // EXPORTAR ATENCIÃ“N INDIVIDUAL (TXT Formateado)
+        // EXPORTAR ATENCIÓN INDIVIDUAL (TXT Formateado)
         window.exportIndividualSession = function(id) {
             const session = state.sessions.find(s => s.id === id);
-            if (!session) return alert('No se encontrÃ³ el registro de la sesiÃ³n.');
+            if (!session) return alert('No se encontrá el registro de la sesión.');
             
             const group = state.groups.find(g => g.id === session.groupId);
             let rubricStr = Object.entries(session.rubric).map(([k,v]) => `${k}:\n  ${v}`).join('\n\n');
 
             const content = `=======================================================
-            CECYTE - EXPEDIENTE DE ATENCIÃ“N INDIVIDUAL
+            CECYTE - EXPEDIENTE DE ATENCIÓN INDIVIDUAL
 =======================================================
 Fecha de Registro:  ${session.timestamp}
-Tipo de AtenciÃ³n:   ${session.type === 'Academica' ? 'AsesorÃ­a AcadÃ©mica' : 'SesiÃ³n de TutorÃ­a (Socioemocional/Conductual)'}
+Tipo de Atención:   ${session.type === 'Academica' ? 'Asesoría Académica' : 'Sesión de Tutoría (Socioemocional/Conductual)'}
 Alcance:            ${session.scope}
 Estudiante/Grupo:   ${session.studentName}
 -------------------------------------------------------
 DATOS DEL GRUPO:
 Carrera:            ${group ? group.name : 'N/A'}
-Semestre y Grupo:   ${group ? `${group.semester}Â° "${group.shift}"` : 'N/A'}
+Semestre y Grupo:   ${group ? `${group.semester}° "${group.shift}"` : 'N/A'}
 -------------------------------------------------------
-EVALUACIÃ“N DE DESEMPEÃ‘O (RÃšBRICA):
+EVALUACIÓN DE DESEMPEÑO (RÚBRICA):
 Puntaje Obtenido:   ${session.scoreGained} / ${session.scoreMax} Puntos
 
 DETALLE DE CRITERIOS:
 ${rubricStr}
 -------------------------------------------------------
-OBSERVACIONES / EVIDENCIA DIAGNÃ“STICA:
+OBSERVACIONES / EVIDENCIA DIAGNÓSTICA:
 ${session.obs || 'Sin observaciones adicionales registradas.'}
 
 TIPO DE ESTUDIANTE:
@@ -764,13 +757,13 @@ ${session.studentType || 'No especificado'}
 SEGUIMIENTO:
 ${session.seguimiento || 'Sin seguimiento registrado.'}
 
-CANALIZACIÃ“N:
+CANALIZACIÓN:
 ${session.canalizacion || 'no'}
 
 ACUERDOS Y COMPROMISOS:
 ${session.acuerdosCompromisos || 'Sin acuerdos y compromisos registrados.'}
 
-DETERMINACIÃ“N ESTATUS INSTITUCIONAL:
+DETERMINACIÓN ESTATUS INSTITUCIONAL:
 Estatus Actual:     ${session.action.toUpperCase()}
 
 =======================================================
@@ -801,10 +794,10 @@ Firma del Docente / Tutor               Firma Alumno(a)
 
             // Cabeceras del CSV
             let csvContent = "\uFEFF"; // BOM para asegurar caracteres UTF-8 correctos en Excel
-            csvContent += "No.,Fecha,Nombre,Tipo de estudiante,SituaciÃ³n presentada,Seguimiento,CanalizaciÃ³n,Acuerdos y compromisos\n";
+            csvContent += "No.,Fecha,Nombre,Tipo de estudiante,Situación presentada,Seguimiento,Canalización,Acuerdos y compromisos\n";
 
             filtered.forEach((s, index) => {
-                const seguimiento = s.seguimiento || (s.action === 'Seguimiento' ? 'SÃ­ (determinaciÃ³n inicial)' : '');
+                const seguimiento = s.seguimiento || (s.action === 'Seguimiento' ? 'Sí (determinación inicial)' : '');
                 const canalizacion = (s.canalizacion || (s.action === 'Canalizacion' ? 'si' : 'no')).toLowerCase() === 'si' ? 'si' : 'no';
                 const row = [
                     index + 1,
@@ -833,7 +826,7 @@ Firma del Docente / Tutor               Firma Alumno(a)
             const filtered = state.sessions.filter(s => s.groupId === gId);
 
             if(filtered.length === 0) {
-                el.historyTableBody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-slate-400">NingÃºn registro en el grupo actual.</td></tr>';
+                el.historyTableBody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-slate-400">Ningún registro en el grupo actual.</td></tr>';
                 return;
             }
 
@@ -845,7 +838,7 @@ Firma del Docente / Tutor               Firma Alumno(a)
                 tr.innerHTML = `
                     <td class="p-2 text-slate-500">${s.timestamp.split(' ')[0]}</td>
                     <td class="p-2 font-semibold">${s.studentName} <span class="text-[9px] block text-slate-400">${s.scope}</span></td>
-                    <td class="p-2">${s.type === 'Academica' ? 'ðŸŽ“ AcadÃ©mica' : 'ðŸ§˜ TutorÃ­a'}</td>
+                    <td class="p-2">${s.type === 'Academica' ? 'Académica' : 'Tutoría'}</td>
                     <td class="p-2 text-center font-bold text-slate-700">${s.scoreGained} / ${s.scoreMax} pts</td>
                     <td class="p-2"><span class="px-2 py-0.5 rounded text-[10px] ${badgeAction}">${s.action}</span></td>
                     <td class="p-2 text-center flex items-center justify-center gap-3">
@@ -913,7 +906,7 @@ Firma del Docente / Tutor               Firma Alumno(a)
         el.deleteGroupBtn.addEventListener('click', () => {
             const id = el.groupSelect.value;
             if(!id) return alert('Seleccione un grupo activo.');
-            if(!confirm('Â¿Eliminar grupo y todas sus bitÃ¡coras asociadas?')) return;
+            if(!confirm('¿Eliminar grupo y todas sus bitácoras asociadas?')) return;
             state.groups = state.groups.filter(g => g.id !== id);
             state.sessions = state.sessions.filter(s => s.groupId !== id);
             saveState();
@@ -933,7 +926,7 @@ Firma del Docente / Tutor               Firma Alumno(a)
         el.saveSessionBtn.addEventListener('click', saveSession);
         el.copyPromptBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(el.promptText.textContent);
-            alert('Â¡Prompt copiado con Ã©xito!');
+            alert('¡Prompt copiado con Éxito!');
         });
 
         document.addEventListener('DOMContentLoaded', () => {

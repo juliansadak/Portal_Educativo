@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestiÃ³n de Entregables (Base 100) | CECYTE</title>
+    <title>Gestión de Entregables (Base 100) | CECYTE</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -44,7 +44,7 @@
 
 <body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
 
-    <!-- MENÃš DE NAVEGACIÃ“N MODERNO (STICKY) -->
+    <!-- MENÚ DE NAVEGACIÓN MODERNO (STICKY) -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
         <div class="container mx-auto px-6 max-w-screen-2xl">
             <div class="flex justify-between h-16">
@@ -57,60 +57,53 @@
 
                 <!-- Enlaces de Escritorio -->
                 <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
-                    <a href="../index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                        <i class="fa-solid fa-house"></i> Principal
+                    <a href="index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Inicio
                     </a>
                     <div class="relative group">
-                        <button type="button" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                            <i class="fa-solid fa-chalkboard-user"></i> EvaluaciÃ³n y PrÃ¡ctica
+                        <button type="button" class="text-slate-600 uppercase hover:text-cecyte-guindahover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user"></i> Evaluación y Práctica
                             <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
                         </button>
                         <div class="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 z-50">
-                            <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="index.html#Práctica Docente y Evaluación" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-layer-group text-cecyte-guinda"></i>
-                                <span>Ir a la secciÃ³n</span>
+                                <span>Ir a la sección</span>
                             </a>
                             <div class="my-2 border-t border-slate-100"></div>
                             <a href="pase_lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
-                                <span>MÃ³dulo: Pase de Lista</span>
+                                <span>Módulo: Pase de Lista</span>
                             </a>
                             <a href="tutoria.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i>
-                                <span>MÃ³dulo: TutorÃ­a</span>
+                                <span>Módulo: Tutoría</span>
                             </a>
                             <a href="seguimiento_entregas.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-table-list text-cecyte-guinda"></i>
-                                <span>MÃ³dulo: Seguimiento AcadÃ©mico</span>
+                                <span>Módulo: Seguimiento Académico</span>
                             </a>
-                            <a href="eval/plantilla_rubrica.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_rubrica.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
-                                <span>Plantilla: RÃºbrica</span>
+                                <span>Plantilla: Rúbrica</span>
                             </a>
-                            <a href="eval/plantilla_estimativa.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_estimativa.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
                                 <span>Plantilla: Escala Estimativa</span>
                             </a>
-                            <a href="eval/plantilla_observacion.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_observacion.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
-                                <span>Plantilla: GuÃ­a de ObservaciÃ³n</span>
+                                <span>Plantilla: Guía de Observación</span>
                             </a>
-                            <a href="eval/plantilla_cotejo.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
+                            <a href="plantilla_cotejo.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-list-check text-cecyte-guinda"></i>
                                 <span>Plantilla: Lista de Cotejo</span>
                             </a>
                         </div>
                     </div>
-                    <a href="../index.html#prospectiva" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                        <i class="fa-solid fa-compass-drafting"></i> Prospectiva y CurrÃ­culo
-                    </a>
-                    <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
-                        <i class="fa-solid fa-chart-pie"></i> Estrategia e Indicadores
-                    </a>
-                    <span class="h-6 w-px bg-slate-200 mx-2"></span>
                 </div>
 
-                <!-- BotÃ³n de MenÃº MÃ³vil (Hamburguesa) -->
+                <!-- Botón de Menú Móvil (Hamburguesa) -->
                 <div class="lg:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
                         <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
@@ -119,51 +112,45 @@
             </div>
         </div>
 
-        <!-- MenÃº Desplegable MÃ³vil -->
+        <!-- Menú Desplegable Móvil -->
         <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
-            <a href="../index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
-                <i class="fa-solid fa-house text-cecyte-guinda"></i> Principal
+            <a href="index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
+                <i class="fa-solid fa-house text-cecyte-guinda"></i> Inicio
             </a>
             <details class="group rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2">
                 <summary class="cursor-pointer list-none flex items-center justify-between gap-3 rounded-lg text-slate-700 font-semibold text-sm transition-colors">
                     <span class="flex items-center gap-3">
-                        <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> EvaluaciÃ³n y PrÃ¡ctica
+                        <i class="fa-solid fa-chalkboard-user text-cecyte-guinda"></i> Evaluación y Práctica
                     </span>
                     <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-150 group-open:rotate-180"></i>
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
-                    <a href="../index.html#PrÃ¡ctica Docente y EvaluaciÃ³n" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la secciÃ³n
+                    <a href="index.html#Práctica Docente y Evaluación" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la sección
                     </a>
                     <a href="pase_lista.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: Pase de Lista
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> Módulo: Pase de Lista
                     </a>
                     <a href="tutoria.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> MÃ³dulo: TutorÃ­a
+                        <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> Módulo: Tutoría
                     </a>
                     <a href="seguimiento_entregas.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-table-list text-cecyte-guinda"></i> MÃ³dulo: Seguimiento AcadÃ©mico
+                        <i class="fa-solid fa-table-list text-cecyte-guinda"></i> Módulo: Seguimiento Académico
                     </a>
-                    <a href="eval/plantilla_rubrica.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: RÃºbrica
+                    <a href="plantilla_rubrica.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Rúbrica
                     </a>
-                    <a href="eval/plantilla_estimativa.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                    <a href="plantilla_estimativa.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
                         <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Escala Estimativa
                     </a>
-                    <a href="eval/plantilla_observacion.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: GuÃ­a de ObservaciÃ³n
+                    <a href="plantilla_observacion.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Guía de Observación
                     </a>
-                    <a href="eval/plantilla_cotejo.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
+                    <a href="plantilla_cotejo.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
                         <i class="fa-solid fa-list-check text-cecyte-guinda"></i> Plantilla: Lista de Cotejo
                     </a>
                 </div>
             </details>
-           <a href="../index.html#prospectiva" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
-                <i class="fa-solid fa-compass-drafting text-cecyte-guinda"></i> Prospectiva Curricular
-            </a>
-            <a href="../index.html#Indicadores y GestiÃ³n EstratÃ©gica" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
-                <i class="fa-solid fa-chart-pie text-cecyte-guinda"></i> GestiÃ³n EstratÃ©gica
-            </a>
         </div>
     </nav>
 
@@ -174,23 +161,23 @@
         <div class="container mx-auto px-6 max-w-screen-2xl py-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="text-center md:text-left">
                 <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
-                    <span class="bg-cecyte-oro text-cecyte-guinda text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Plantel Huejotzingo</span>
-                    <span class="text-slate-300 text-sm">| Ecosistema Digital 2026</span>
+                    <span class="bg-cecyte-oro text-cecyte-guinda text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">CECyTE Puebla</span>
+                    <span class="text-slate-300 text-sm">| Portal Educativo</span>
                 </div>
-                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">MÃ³dulo de Seguimiento Academico</h1>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Módulo de Seguimiento Académico</h1>
                 <p class="text-cecyte-oroLight mt-2 text-base font-light max-w-2xl">
-                    Plataforma tecnolÃ³gica integral, diseÃ±ada especÃ­ficamente para CECyTE. Este entorno unifica herramientas de anÃ¡lisis y evaluaciÃ³n en un solo Hub interactivo. 
+                    Plataforma tecnológica integral, diseñada específicamente para CECyTE. Este entorno unifica herramientas docentes y evaluación en un solo Hub interactivo.
                 </p>
             </div>
             
             <!-- Perfil del Desarrollador -->
             <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10 w-full md:w-auto">
                 <div class="bg-cecyte-oro/10 border border-cecyte-oro text-cecyte-oro w-14 h-14 rounded-full flex items-center justify-center text-2xl shrink-0">
-                    <img src="../img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-full h-full object-cover rounded-full">
+                    <img src="img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-full h-full object-cover rounded-full">
                 </div>
                 <div>
                     <h4 class="font-bold text-md text-white">Mtro. Julian Sadak Vergara Cruz</h4>
-                    <p class="text-sm text-cecyte-oro">Desarrollo e InnovaciÃ³n Educativa</p>
+                    <p class="text-sm text-cecyte-oro">Desarrollo e Innovación Educativa</p>
                     <p class="text-xs text-slate-300"><a href="mailto:jvergarac@cecytepuebla.edu.mx" class="text-white hover:text-cecyte-oroLight underline">jvergarac@cecytepuebla.edu.mx</a></p>
                     <div class="mt-1 flex gap-2">
                         <span class="text-[10px] bg-cecyte-oro/20 text-white px-1.5 py-0.5 rounded font-mono font-semibold">Vanilla JS</span>
@@ -214,12 +201,12 @@
             <input type="file" id="backup-file-input" class="hidden" accept=".json">
         </div>
 
-        <!-- SECCIÃ“N 1: COMPONENTE DE ALERTAS DE RIESGO ACADÃ‰MICO -->
+        <!-- SECCIÓN 1: COMPONENTE DE ALERTAS DE RIESGO ACADÉMICO -->
         <section class="mb-6">
             <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
                 <div class="flex items-center justify-between gap-2 mb-3">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
-                        <i class="fa-solid fa-triangle-exclamation mr-1 text-orange-600"></i> Riesgo AcadÃ©mico: Estudiantes con 2 o mÃ¡s productos sin entregar
+                        <i class="fa-solid fa-triangle-exclamation mr-1 text-orange-600"></i> Riesgo Académico: Estudiantes con 2 o más productos sin entregar
                     </h2>
                     <span id="critical-deliverables-count" class="text-[10px] font-extrabold bg-orange-600 text-white px-2 py-1 rounded">0 en riesgo</span>
                 </div>
@@ -228,7 +215,7 @@
                         <thead class="bg-slate-50 sticky top-0 border-b border-slate-200">
                             <tr>
                                 <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Estudiante</th>
-                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Grupo / SubmÃ³dulo</th>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase">Grupo / Submódulo</th>
                                 <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase">Productos Faltantes</th>
                                 <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase">Nota Final</th>
                             </tr>
@@ -241,23 +228,23 @@
             </article>
         </section>
 
-        <!-- SECCIÃ“N 2: ESTRUCTURA DE CONFIGURACIÃ“N Y MATRIZ -->
+        <!-- SECCIÓN 2: ESTRUCTURA DE CONFIGURACIÓN Y MATRIZ -->
         <section class="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-6">
             
-            <!-- PANEL DE CONFIGURACIÃ“N DEL GRUPO -->
+            <!-- PANEL DE CONFIGURACIÓN DEL GRUPO -->
             <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-1 h-fit space-y-4">
                 <div>
                     <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda mb-2">
-                        <i class="fa-solid fa-users mr-1 text-cecyte-oro"></i> ConfiguraciÃ³n de Grupo
+                        <i class="fa-solid fa-users mr-1 text-cecyte-oro"></i> Configuración de Grupo
                     </h2>
                     <div class="space-y-2 text-xs">
-                        <input id="group-name" type="text" placeholder="Carrera (Ej. Soporte TÃ©cnico)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        <input id="group-name" type="text" placeholder="Carrera (Ej. Soporte Técnico)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">    
                         <div class="grid grid-cols-2 gap-2">
                             <input id="group-semester" type="text" placeholder="Semestre (Ej. 4to)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
                             <input id="group-shift" type="text" placeholder="Grupo (Ej. B)" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
                         </div>
-                        <input id="group-subject" type="text" placeholder="Materia / SubmÃ³dulo" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
-                        <textarea id="students-input" rows="5" placeholder="Estudiantes (uno por lÃ­nea)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none"></textarea>
+                        <input id="group-subject" type="text" placeholder="Materia / Submódulo" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none">
+                        <textarea id="students-input" rows="5" placeholder="Estudiantes (uno por línea)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-guinda focus:outline-none"></textarea>
                         
                         <div class="grid grid-cols-2 gap-2 pt-1">
                             <button id="save-group-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-2 rounded-xl text-xs transition-colors">
@@ -278,14 +265,14 @@
                 </div>
             </article>
 
-            <!-- PANEL DE LA MATRIZ DINÃMICA DE ENTREGABLES -->
+            <!-- PANEL DE LA MATRIZ DINÁMICA DE ENTREGABLES -->
             <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-3 flex flex-col">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3 border-b border-slate-100 pb-2">
                     <div>
                         <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
-                            <i class="fa-solid fa-list-check mr-1 text-cecyte-oro"></i> CuadrÃ­cula Evaluativa Acumulativa (MÃ¡ximo 100)
+                            <i class="fa-solid fa-list-check mr-1 text-cecyte-oro"></i> Cuadrícula Evaluativa Acumulativa (Máximo 100)
                         </h2>
-                        <p class="text-[10px] text-slate-500 mt-0.5">Asigna el puntaje mÃ¡ximo a cada producto. El promedio sumarÃ¡ las notas relativas y calcularÃ¡ la base 100.</p>
+                        <p class="text-[10px] text-slate-500 mt-0.5">Asigna el puntaje máximo a cada producto. El promedio sumará las notas relativas y calculará la base 100.</p>
                     </div>
                     <button id="export-csv-btn" class="bg-slate-900 hover:bg-black text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 shadow">
                         <i class="fa-solid fa-file-csv"></i> Descargar Excel del Grupo (CSV)
@@ -300,7 +287,7 @@
 
                 <div class="mb-3 flex flex-wrap items-center justify-end gap-2 w-full">
                     <input type="text" id="task-name" placeholder="Ej. Tarea 1 o Examen" class="border border-slate-300 rounded-lg p-2 text-xs focus:outline-none focus:border-guinda bg-slate-50 w-36">
-                    <input type="number" id="task-weight" min="1" max="100" placeholder="Pts (Ej. 20)" class="border border-slate-300 rounded-lg p-2 text-xs focus:outline-none focus:border-guinda bg-slate-50 w-20 text-center" title="Puntaje MÃ¡ximo de este Entregable">
+                    <input type="number" id="task-weight" min="1" max="100" placeholder="Pts (Ej. 20)" class="border border-slate-300 rounded-lg p-2 text-xs focus:outline-none focus:border-guinda bg-slate-50 w-20 text-center" title="Puntaje Máximo de este Entregable">
                     <button id="add-task-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-sm">
                         <i class="fa-solid fa-plus mr-1"></i> Crear
                     </button>
@@ -310,14 +297,14 @@
                     <table class="w-full text-[11px] bg-white">
                         <thead class="bg-slate-100 border-b border-slate-200">
                             <tr id="tasks-header-row">
-                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase w-12">NÂ°</th>
+                                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase w-12">N°</th>
                                 <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase min-w-[200px]">Estudiante</th>
                                 <th class="text-center py-2 px-2 font-bold text-slate-600 uppercase w-24">Sin Entregar</th>
                                 <th class="text-center py-2 px-3 font-bold text-slate-600 uppercase w-24">Nota Final</th>
                             </tr>
                         </thead>
                         <tbody id="tasks-matrix-body">
-                            <tr><td colspan="4" class="p-4 text-center text-slate-400">Seleccione o dÃ© de alta un grupo en el panel izquierdo para desplegar la matriz.</td></tr>
+                            <tr><td colspan="4" class="p-4 text-center text-slate-400">Seleccione o dé de alta un grupo en el panel izquierdo para desplegar la matriz.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -326,11 +313,11 @@
         </section>
     </main>
 
-    <!-- Pie de PÃ¡gina Institucional -->
+    <!-- Pie de Página Institucional -->
     <footer class="bg-cecyte-guinda rounded-2xl text-slate-400 border-t border-slate-800 text-xs py-6 mt-auto">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left">
-                <p class="font-bold text-slate-200">Colegio de Estudios CientÃ­ficos y TecnolÃ³gicos del Estado de Puebla</p>
+                <p class="font-bold text-slate-200">Colegio de Estudios Científicos y Tecnológicos del Estado de Puebla</p>
                 <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
             </div>
             <div class="flex gap-4 text-cecyte-oroLight font-mono">
@@ -343,7 +330,7 @@
         </div>
     </footer>
 
-    <!-- LÃ“GICA CORE VANILLA JAVASCRIPT -->
+    <!-- LÓGICA CORE VANILLA JAVASCRIPT -->
     <script>
         const STORAGE_KEY = 'cecyte_entregables_base100_v1';
         
@@ -443,14 +430,14 @@
             const taskNameStr = el.taskName.value.trim();
             let weight = parseInt(el.taskWeight.value);
 
-            if (!groupId) return alert('Seleccione un grupo en el menÃº antes de aÃ±adir un entregable.');
+            if (!groupId) return alert('Seleccione un grupo en el menú antes de añadir un entregable.');
             if (!taskNameStr) return alert('Por favor, asigne un nombre al entregable.');
-            if (isNaN(weight) || weight <= 0 || weight > 100) return alert('Asigne un puntaje vÃ¡lido entre 1 y 100 para este producto.');
+            if (isNaN(weight) || weight <= 0 || weight > 100) return alert('Asigne un puntaje válido entre 1 y 100 para este producto.');
 
             const currentTasks = state.deliverables.tasks.filter(t => t.groupId === groupId);
             const totalWeightNow = currentTasks.reduce((acc, curr) => acc + curr.maxPoints, 0);
             if (totalWeightNow + weight > 105) {
-                if (!confirm(`Alerta: Con este producto la suma de entregables del grupo serÃ¡ de ${totalWeightNow + weight} puntos (Excede la base de 100). Â¿Desea continuar de todos modos?`)) return;
+                if (!confirm(`Alerta: Con este producto la suma de entregables del grupo será de ${totalWeightNow + weight} puntos (Excede la base de 100). ¿Desea continuar de todos modos?`)) return;
             }
 
             const taskId = uid();
@@ -472,7 +459,7 @@
         }
 
         window.deleteTask = function(taskId) {
-            if (!confirm('Â¿Desea eliminar este entregable? Todas las calificaciones asignadas a los estudiantes se borrarÃ¡n.')) return;
+            if (!confirm('¿Desea eliminar este entregable? Todas las calificaciones asignadas a los estudiantes se borrarán.')) return;
             state.deliverables.tasks = state.deliverables.tasks.filter(t => t.id !== taskId);
             state.groups.forEach(g => {
                 g.students.forEach(s => {
@@ -557,7 +544,7 @@
             const group = state.groups.find(g => g.id === groupId);
 
             el.tasksHeaderRow.innerHTML = `
-                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase w-12">NÂ°</th>
+                <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase w-12">N°</th>
                 <th class="text-left py-2 px-3 font-bold text-slate-600 uppercase min-w-[180px]">Estudiante</th>
             `;
 
@@ -629,7 +616,7 @@
                                 <input type="number" step="1" min="0" max="${task.maxPoints}" value="${record.score}" 
                                        oninput="updateStudentScore('${student.id}', '${task.id}', this)"
                                        class="w-12 text-center border border-slate-300 rounded font-bold text-slate-800 focus:outline-none focus:border-guinda bg-white text-[10px] p-0.5"
-                                       title="Puntos obtenidos (MÃ¡x: ${task.maxPoints})">
+                                       title="Puntos obtenidos (Máx: ${task.maxPoints})">
                             </div>
                         </td>
                     `;
@@ -676,7 +663,7 @@
             el.criticalDeliverablesCount.textContent = `${risks.length} en riesgo`;
 
             if (risks.length === 0) {
-                el.criticalDeliverablesBody.innerHTML = '<tr><td colspan="4" class="p-3 text-center text-slate-400">Sin estudiantes con retrasos crÃ­ticos en entregables en este grupo.</td></tr>';
+                el.criticalDeliverablesBody.innerHTML = '<tr><td colspan="4" class="p-3 text-center text-slate-400">Sin estudiantes con retrasos críticos en entregables en este grupo.</td></tr>';
                 return;
             }
 
@@ -722,7 +709,7 @@
         function deleteSelectedGroup() {
             const groupId = el.groupSelect.value;
             if (!groupId) return alert('Seleccione un grupo primero.');
-            if (!confirm('Â¿Confirma que desea borrar este grupo y todas sus calificaciones vinculadas?')) return;
+            if (!confirm('¿Confirma que desea borrar este grupo y todas sus calificaciones vinculadas?')) return;
 
             state.deliverables.tasks = state.deliverables.tasks.filter(t => t.groupId !== groupId);
             const group = state.groups.find(g => g.id === groupId);
@@ -738,7 +725,7 @@
         function exportCsv() {
             const groupId = el.groupSelect.value;
             const group = state.groups.find(g => g.id === groupId);
-            if (!group) return alert('Seleccione un grupo vÃ¡lido.');
+            if (!group) return alert('Seleccione un grupo válido.');
 
             const groupTasks = state.deliverables.tasks.filter(t => t.groupId === groupId);
             const header = ['Num', 'Estudiante', ...groupTasks.map(t => `"${t.name} (${t.maxPoints}pts)"`), 'Sin Entregar', 'Nota Final'];
@@ -771,7 +758,7 @@
         }
 
         function exportBackup() {
-            if (state.groups.length === 0) return alert('No hay informaciÃ³n guardada para respaldar.');
+            if (state.groups.length === 0) return alert('No hay información guardada para respaldar.');
             const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
@@ -795,7 +782,7 @@
                         renderCriticalDeliverables();
                         alert('Copia de seguridad restaurada exitosamente.');
                     } else {
-                        alert('Formato de archivo invÃ¡lido.');
+                        alert('Formato de archivo inválido.');
                     }
                 } catch (err) {
                     alert('Error al leer el archivo JSON.');

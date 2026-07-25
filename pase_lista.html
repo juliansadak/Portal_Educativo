@@ -170,21 +170,6 @@
                     Plataforma tecnológica integral, diseñada específicamente para CECyTE. Este entorno unifica herramientas docentes y evaluación en un solo Hub interactivo.
                 </p>
             </div>
-            
-            <!-- Perfil del Desarrollador -->
-            <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10 w-full md:w-auto">
-                <div class="bg-cecyte-oro/10 border border-cecyte-oro text-cecyte-oro w-14 h-14 rounded-full flex items-center justify-center text-2xl shrink-0">
-                    <img src="img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-full h-full object-cover rounded-full">
-                </div>
-                <div>
-                    <h4 class="font-bold text-md text-white">Mtro. Julian Sadak Vergara Cruz</h4>
-                    <p class="text-sm text-cecyte-oro">Desarrollo e Innovación Educativa</p>
-                    <p class="text-xs text-slate-300"><a href="mailto:jvergarac@cecytepuebla.edu.mx" class="text-white hover:text-cecyte-oroLight underline">jvergarac@cecytepuebla.edu.mx</a></p>
-                    <div class="mt-1 flex gap-2">
-                        <span class="text-[10px] bg-cecyte-oro/20 text-white px-1.5 py-0.5 rounded font-mono font-semibold">Vanilla JS</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -232,7 +217,7 @@
         </section>
 
         <section class="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-6">
-            <!-- PANEL IZQUIERDO: CONFIGURACIÃ“N -->
+            <!-- PANEL IZQUIERDO: CONFIGURACIÓN -->
             <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-1 space-y-4">
                 <div>
                     <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda mb-2">
@@ -292,7 +277,7 @@
                 </div>
             </article>
 
-            <!-- PANEL DERECHO PRINCIPAL: GRID DE ASISTENCIA RÃPIDA -->
+            <!-- PANEL DERECHO PRINCIPAL: GRID DE ASISTENCIA RÁPIDA -->
             <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 xl:col-span-3 flex flex-col">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3 border-b border-slate-100 pb-2">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
@@ -309,10 +294,10 @@
                     Configure un grupo o seleccione uno activo en el menú de la izquierda para comenzar el pase de lista de hoy.
                 </div>
 
-                <!-- CUADRÃCULA COMPACTA DE ESTUDIANTES (IDEAL PARA 50 ESTUDIANTES SIN HACER SCROLL) -->
+                <!-- CUADRÍCULA COMPACTA DE ESTUDIANTES (IDEAL PARA 50 ESTUDIANTES SIN HACER SCROLL) -->
                 <div id="attendance-grid-wrap" class="hidden flex-grow overflow-y-auto max-h-[500px] pr-1">
                     <div id="attendance-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                        <!-- Generado dinÃ¡micamente -->
+                        <!-- Generado dinámicamente -->
                     </div>
                 </div>
 
@@ -330,7 +315,7 @@
             </article>
         </section>
 
-        <!-- SECCIÃ“N DE HISTORIAL Y REPORTES RESUMIDOS -->
+        <!-- SECCIÓN DE HISTORIAL Y REPORTES RESUMIDOS -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- HISTORIAL -->
             <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
@@ -384,10 +369,11 @@
 
     </main>
 
-    <footer class="bg-cecyte-guinda rounded-2xl text-slate-400 border-t border-slate-800 text-xs py-6 mt-6">
+    <!-- Pie de Página Institucional -->
+    <footer class="bg-cecyte-guinda text-slate-400 border-t border-slate-800 text-xs py-6">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left">
-                <p class="font-bold text-slate-200">Colegio de Estudios Cientíicos y Tecnológicos del Estado de Puebla</p>
+                <p class="font-bold text-slate-200">Colegio de Estudios Científicos y Tecnológicos del Estado de Puebla</p>
                 <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
             </div>
             <div class="flex gap-4 text-cecyte-oroLight font-mono">
@@ -446,6 +432,14 @@
         };
 
         const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+        function resetGroupForm() {
+            el.groupName.value = '';
+            el.groupSemester.value = '';
+            el.groupShift.value = '';
+            el.groupSubject.value = '';
+            el.studentsInput.value = '';
+        }
 
         function saveState() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -509,9 +503,20 @@
                 opt.textContent = buildGroupLabel(g);
                 el.groupSelect.appendChild(opt);
             });
+            
+            // Conserva el valor solo si fue seleccionado explícitamente y aún existe en el estado
             if (currentVal && state.groups.some(g => g.id === currentVal)) {
                 el.groupSelect.value = currentVal;
+            } else {
+                el.groupSelect.value = "";
             }
+        }
+
+        function refreshSelectedGroupView() {
+            renderAttendanceGrid();
+            renderHistory();
+            renderSummary();
+            renderCriticalAbsences();
         }
 
         function checkConsecutiveAbsences(studentId, groupId) {
@@ -587,7 +592,7 @@
                 badge.classList.remove(...STATUS_CONFIG[k].badge.split(' '));
             });
 
-            card.classList.add(...STATUS_CONFIG[k=status].bg.split(' '));
+            card.classList.add(...STATUS_CONFIG[status].bg.split(' '));
             badge.classList.add(...STATUS_CONFIG[status].badge.split(' '));
             badge.textContent = status;
         }
@@ -602,7 +607,6 @@
             });
         }
 
-        // FunciÃ³n para eliminar un Ãºnico registro por error de dedo u horario equivocado
         window.deleteSingleSession = function(sessionId) {
             const targetSession = state.sessions.find(s => s.id === sessionId);
             if (!targetSession) return;
@@ -618,7 +622,7 @@
                 renderHistory();
                 renderSummary();
                 renderCriticalAbsences();
-                renderAttendanceGrid(); // Actualiza posibles alertas de racha de faltas
+                renderAttendanceGrid();
                 alert('La clase seleccionada ha sido eliminada del historial.');
             }
         }
@@ -710,10 +714,9 @@
             el.criticalAbsencesBody.innerHTML = '';
             const risks = [];
 
-            // Iterar sobre todos los grupos
             state.groups.forEach(group => {
                 const groupSessions = state.sessions.filter(s => s.groupId === group.id);
-                if (groupSessions.length === 0) return; // Saltar grupos sin clases
+                if (groupSessions.length === 0) return;
 
                 group.students.forEach(student => {
                     const stats = { A: 0, F: 0, J: 0, R: 0 };
@@ -780,17 +783,14 @@
                 statusByStudent
             });
 
+            // Guardar en el almacenamiento local
             saveState();
-            renderHistory();
-            // Reinicia la plantilla para la siguiente captura como en el arranque.
-            state.currentAttendance = {};
-            el.groupSelect.value = '';
-            setTodayDate();
-            autoSelectScheduleBlock();
-            renderAttendanceGrid(); 
-            renderSummary();
-            renderCriticalAbsences();
-            alert('¡Registro de clase guardado exitosamente en este navegador!');
+
+            // Mensaje de confirmación y recarga forzada de la aplicación
+            alert('¡Registro de clase guardado exitosamente!');
+            
+            // Forzar el refresco completo del ejecutable/navegador
+            window.location.reload();
         }
 
         function addGroup() {
@@ -817,16 +817,14 @@
             state.groups.push(newGroup);
             saveState();
             
+            resetGroupForm();
             renderGroupOptions();
+            
+            // Selecciona automáticamente el grupo recién creado
             el.groupSelect.value = newGroup.id;
             state.currentAttendance = {};
             
-            renderAttendanceGrid();
-            renderSummary();
-            renderCriticalAbsences();
-
-            el.groupName.value = ''; el.groupSemester.value = ''; el.groupShift.value = '';
-            el.groupSubject.value = ''; el.studentsInput.value = '';
+            refreshSelectedGroupView();
         }
 
         function deleteSelectedGroup() {
@@ -840,19 +838,14 @@
             
             saveState();
             renderGroupOptions();
-            renderAttendanceGrid();
-            renderHistory();
-            renderSummary();
-            renderCriticalAbsences();
+            refreshSelectedGroupView();
         }
 
         function clearHistory() {
             if (!confirm('¿Desea purgar absolutamente todo el historial de clases del periodo? Los grupos no se borrarán.')) return;
             state.sessions = [];
             saveState();
-            renderHistory();
-            renderSummary();
-            renderCriticalAbsences();
+            refreshSelectedGroupView();
         }
 
         function exportCsv() {
@@ -921,10 +914,8 @@
                         saveState();
                         
                         renderGroupOptions();
-                        renderAttendanceGrid();
-                        renderHistory();
-                        renderSummary();
-                        renderCriticalAbsences();
+                        el.groupSelect.value = ""; // Garantiza que siga sin seleccionar
+                        refreshSelectedGroupView();
                         alert('¡Base de datos restaurada correctamente desde el archivo de copia de seguridad!');
                     } else {
                         alert('El archivo no tiene el formato válido de asistencia Cecyte.');
@@ -946,10 +937,7 @@
             el.deleteGroupBtn.addEventListener('click', deleteSelectedGroup);
             el.groupSelect.addEventListener('change', () => {
                 state.currentAttendance = {};
-                renderAttendanceGrid();
-                renderSummary();
-                renderHistory();
-                renderCriticalAbsences();
+                refreshSelectedGroupView();
             });
             el.markAllP.addEventListener('click', () => markAll('A'));
             el.markAllA.addEventListener('click', () => markAll('F'));
@@ -963,11 +951,14 @@
         }
 
         function init() {
+            resetGroupForm();
             setTodayDate();
             autoSelectScheduleBlock();
             loadState();
             attachEvents();
             renderGroupOptions();
+            el.groupSelect.value = ""; // Asegura que la página inicie sin grupo seleccionado
+            refreshSelectedGroupView();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1010,4 +1001,3 @@
     </script>
 </body>
 </html>
-

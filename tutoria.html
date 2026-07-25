@@ -26,13 +26,6 @@
                             oro: '#B9975B',
                             oroLight: '#ceb484',
                             grisBg: '#f4f6f8',
-                        },
-                        cecyte: {
-                            guinda: '#651C32',
-                            guindaLight: '#80243e',
-                            oro: '#B9975B',
-                            oroLight: '#ceb484',
-                            grisBg: '#f4f6f8',
                         }
                     }
                 }
@@ -173,25 +166,8 @@
                     Plataforma tecnológica integral, diseñada específicamente para CECyTE. Este entorno unifica herramientas docentes y evaluación en un solo Hub interactivo.
                 </p>
             </div>
-            
-            <!-- Perfil del Desarrollador -->
-            <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10 w-full md:w-auto">
-                <div class="bg-cecyte-oro/10 border border-cecyte-oro text-cecyte-oro w-14 h-14 rounded-full flex items-center justify-center text-2xl shrink-0">
-                    <img src="img/julianprofile.png" alt="Perfil de Julian Sadak Vergara Cruz" class="w-full h-full object-cover rounded-full">
-                </div>
-                <div>
-                    <h4 class="font-bold text-md text-white">Mtro. Julian Sadak Vergara Cruz</h4>
-                    <p class="text-sm text-cecyte-oro">Desarrollo e Innovación Educativa</p>
-                    <p class="text-xs text-slate-300"><a href="mailto:jvergarac@cecytepuebla.edu.mx" class="text-white hover:text-cecyte-oroLight underline">jvergarac@cecytepuebla.edu.mx</a></p>
-                    <div class="mt-1 flex gap-2">
-                        <span class="text-[10px] bg-cecyte-oro/20 text-white px-1.5 py-0.5 rounded font-mono font-semibold">Vanilla JS</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
-
-
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container mx-auto px-4 max-w-screen-2xl py-6 flex-grow">
@@ -298,7 +274,7 @@
                             </select>
                         </div>
 
-                        <!-- SECCIIÓN DINÁMICA DE RÚBRICA EVALUATIVA -->
+                        <!-- SECCIÓN DINÁMICA DE RÚBRICA EVALUATIVA -->
                         <div class="md:col-span-3 bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2">
                             <h3 class="font-bold text-cecyte-guinda uppercase text-[11px] mb-3 flex items-center gap-1">
                                 <i class="fa-solid fa-star text-cecyte-oro"></i> Matriz Evaluativa Contextualizada
@@ -373,23 +349,22 @@
     </main>
 
     <!-- Pie de Página -->
-    <footer class="bg-cecyte-guinda rounded-2xl text-slate-400 border-t border-slate-800 text-xs py-6 mt-auto">
+    <footer class="bg-cecyte-guinda text-slate-400 border-t border-slate-800 text-xs py-6 mt-auto">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left">
                 <p class="font-bold text-slate-200">Colegio de Estudios Científicos y Tecnológicos del Estado de Puebla</p>
                 <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
             </div>
             <div class="flex gap-4 text-cecyte-oroLight font-mono">
-                </span>Desarrollado por:</span>
+                <span>Desarrollado por:</span>
                 <a href="mailto:jvergarac@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
                     <span>Julian Sadak Vergara Cruz</span>
                 </a>
                 <span>|</span>
-                </span>Revisado por:</span>
+                <span>Revisado por:</span>
                 <a href="mailto:hpaezg@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
                     <span>Herlinda Paéz González</span>
                 </a>
-                
             </div>
         </div>
     </footer>
@@ -523,7 +498,10 @@
 
         const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
-        function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); computeMetrics(); }
+        function saveState() { 
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); 
+            computeMetrics(); 
+        }
         
         function loadState() {
             const raw = localStorage.getItem(STORAGE_KEY);
@@ -532,7 +510,9 @@
                 const parsed = JSON.parse(raw);
                 state.groups = parsed.groups || [];
                 state.sessions = parsed.sessions || [];
-            } catch(e) { console.error(e); }
+            } catch(e) { 
+                console.error(e); 
+            }
         }
 
         function parseStudents(text) {
@@ -553,8 +533,42 @@
                 opt.textContent = `${g.name} (${g.semester}° ${g.shift})`;
                 el.groupSelect.appendChild(opt);
             });
-            if (val) el.groupSelect.value = val;
+            if (val && state.groups.some(g => g.id === val)) {
+                el.groupSelect.value = val;
+            } else {
+                el.groupSelect.value = '';
+            }
             updateStudentSelect();
+        }
+
+        function syncStudentScopeState() {
+            const isGroupScope = el.tutoriaScope.value === 'Grupal';
+            el.studentSelect.disabled = isGroupScope;
+            if (isGroupScope) el.studentSelect.value = '';
+        }
+
+        function refreshTutoriaView() {
+            renderGroupOptions();
+            renderHistory();
+            computeMetrics();
+            syncStudentScopeState();
+        }
+
+        function resetTutoriaForm(keepPromptVisible = false) {
+            el.tutoriaScope.value = 'Individual';
+            el.tutoriaType.value = 'Academica';
+            el.studentType.value = 'Regular';
+            el.tutoriaAction.value = 'Ninguno';
+            el.tutoriaObs.value = '';
+            el.tutoriaAcuerdos.value = '';
+            renderRubric();
+            updateStudentSelect();
+            el.studentSelect.value = '';
+            syncStudentScopeState();
+            if (!keepPromptVisible) {
+                el.promptText.textContent = '';
+                el.promptOutputCard.classList.add('hidden');
+            }
         }
 
         function updateStudentSelect() {
@@ -599,8 +613,10 @@
         function computeMetrics() {
             const total = state.sessions.length;
             if (total === 0) {
-                el.metricTotal.textContent = "0"; el.metricPctAcad.textContent = "0%";
-                el.metricPctTut.textContent = "0%"; el.metricSeguimiento.textContent = "0";
+                el.metricTotal.textContent = "0"; 
+                el.metricPctAcad.textContent = "0%";
+                el.metricPctTut.textContent = "0%"; 
+                el.metricSeguimiento.textContent = "0";
                 return;
             }
             const acad = state.sessions.filter(s => s.type === 'Academica').length;
@@ -652,7 +668,10 @@
             const session = {
                 id: uid(),
                 groupId: gId,
-                scope, studentId, studentName, type,
+                scope, 
+                studentId, 
+                studentName, 
+                type,
                 studentType: el.studentType.value,
                 rubric: rubricValues,
                 scoreGained: totalPoints,
@@ -667,25 +686,25 @@
 
             state.sessions.push(session);
             saveState();
-            renderHistory();
+            el.groupSelect.value = '';
+            refreshTutoriaView();
             generatePrompt(session);
-            
-            el.tutoriaObs.value = '';
-            el.tutoriaAcuerdos.value = '';
+
+            resetTutoriaForm(true);
         }
 
         function generatePrompt(session) {
             const group = state.groups.find(g => g.id === session.groupId);
             let rubricStr = Object.entries(session.rubric).map(([k,v]) => `- ${k}: ${v}`).join('\n');
             
-            let template = `[SISTEMA DE ASISTENCIA INTEGRAL - INSTITUTO CECYTE 2026]
+            let template = `[SISTEMA DE TUTORÍA INTEGRAL - CECYTE 2026]
 CONTEXTO OPERATIVO:
 - Beneficiario: ${session.studentName}
 - Grupo / Aula: ${group ? `${group.name} - ${group.semester}° "${group.shift}"` : 'N/A'}
 - Naturaleza: ${session.type === 'Academica' ? 'Asesoría Académica Especializada' : 'Sesión Evaluativa de Tutoría (Socioemocional)'}
 
 RESULTADO GLOBAL DE LA RÚBRICA APLICADA:
-Puntaje Obtenido: ${session.scoreGained} de un mÃ¡ximo de ${session.scoreMax} puntos.
+Puntaje Obtenido: ${session.scoreGained} de un máximo de ${session.scoreMax} puntos.
 
 DESGLOSE CRÍTICO DE EVALUACIÓN:
 ${rubricStr}
@@ -725,7 +744,7 @@ Analiza los fallos o debilidades descritos en la rúbrica anterior y genera una 
         // EXPORTAR ATENCIÓN INDIVIDUAL (TXT Formateado)
         window.exportIndividualSession = function(id) {
             const session = state.sessions.find(s => s.id === id);
-            if (!session) return alert('No se encontrá el registro de la sesión.');
+            if (!session) return alert('No se encontró el registro de la sesión.');
             
             const group = state.groups.find(g => g.id === session.groupId);
             let rubricStr = Object.entries(session.rubric).map(([k,v]) => `${k}:\n  ${v}`).join('\n\n');
@@ -777,7 +796,7 @@ Firma del Docente / Tutor               Firma Alumno(a)
             link.click();
         }
 
-        // EXPORTAR REPORTE GENERAL DEL GRUPO (CSV compatible con Excel) - INCLUYE REPORTE INDIVIDUALIZADO
+        // EXPORTAR REPORTE GENERAL DEL GRUPO (CSV compatible con Excel)
         el.exportGeneralReportBtn.addEventListener('click', () => {
             const gId = el.groupSelect.value;
             if(!gId) return alert('Por favor, elija un grupo activo para exportar su reporte.');
@@ -854,7 +873,7 @@ Firma del Docente / Tutor               Firma Alumno(a)
             });
         }
 
-        // GestiÃ³n de respaldos
+        // Gestión de respaldos
         el.exportBackupBtn.addEventListener('click', () => {
             if(state.groups.length === 0 && state.sessions.length === 0) return alert('No hay datos para respaldar.');
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
@@ -875,10 +894,11 @@ Firma del Docente / Tutor               Firma Alumno(a)
                     state.groups = parsed.groups || [];
                     state.sessions = parsed.sessions || [];
                     saveState();
-                    renderGroupOptions();
-                    renderHistory();
+                    refreshTutoriaView();
                     alert('Copia de seguridad restaurada de forma exitosa.');
-                } catch(err) { alert('Archivo JSON invÃ¡lido.'); }
+                } catch(err) { 
+                    alert('Archivo JSON inválido.'); 
+                }
             };
             reader.readAsText(file);
         });
@@ -896,11 +916,12 @@ Firma del Docente / Tutor               Firma Alumno(a)
             state.groups.push(g);
             saveState();
             renderGroupOptions();
-            el.groupSelect.value = g.id;
-            updateStudentSelect();
-            renderHistory();
+            refreshTutoriaView();
 
-            el.groupName.value = ''; el.groupShift.value = ''; el.groupSemester.value = ''; el.studentsInput.value = '';
+            el.groupName.value = ''; 
+            el.groupShift.value = ''; 
+            el.groupSemester.value = ''; 
+            el.studentsInput.value = '';
         });
 
         el.deleteGroupBtn.addEventListener('click', () => {
@@ -910,23 +931,30 @@ Firma del Docente / Tutor               Firma Alumno(a)
             state.groups = state.groups.filter(g => g.id !== id);
             state.sessions = state.sessions.filter(s => s.groupId !== id);
             saveState();
-            renderGroupOptions();
-            renderHistory();
+            refreshTutoriaView();
         });
 
         el.groupSelect.addEventListener('change', () => {
-            updateStudentSelect();
-            renderHistory();
+            refreshTutoriaView();
         });
+        
         el.tutoriaType.addEventListener('change', renderRubric);
+        
         el.tutoriaScope.addEventListener('change', (e) => {
-            el.studentSelect.disabled = (e.target.value === 'Grupal');
-            if(el.studentSelect.disabled) el.studentSelect.value = '';
+            syncStudentScopeState();
         });
+        
         el.saveSessionBtn.addEventListener('click', saveSession);
+        
         el.copyPromptBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(el.promptText.textContent);
-            alert('¡Prompt copiado con Éxito!');
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(el.promptText.textContent).then(() => {
+                alert('¡Prompt copiado con Éxito!');
+                resetTutoriaForm(false); 
+                window.location.reload();
+            }).catch(err => {
+                console.error('Error al copiar el prompt: ', err);
+            });
         });
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -965,11 +993,9 @@ Firma del Docente / Tutor               Firma Alumno(a)
             });
 
             loadState();
-            renderGroupOptions();
+            refreshTutoriaView();
             renderRubric();
-            computeMetrics();
         });
     </script>
 </body>
 </html>
-

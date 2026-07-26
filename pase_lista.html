@@ -40,6 +40,19 @@
     <style>
         body { font-family: 'Open Sans', sans-serif; }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+        /* Estilos seguros de estado para el pase de lista */
+        .status-a { background-color: #ecfdf5 !important; border-color: #6ee7b7 !important; color: #064e3b !important; }
+        .badge-a  { background-color: #059669 !important; color: #ffffff !important; }
+
+        .status-f { background-color: #fef2f2 !important; border-color: #fca5a5 !important; color: #7f1d1d !important; }
+        .badge-f  { background-color: #dc2626 !important; color: #ffffff !important; }
+
+        .status-j { background-color: #fffbeb !important; border-color: #fcd34d !important; color: #78350f !important; }
+        .badge-j  { background-color: #f59e0b !important; color: #ffffff !important; }
+
+        .status-r { background-color: #f0f9ff !important; border-color: #7dd3fc !important; color: #0c4a6e !important; }
+        .badge-r  { background-color: #0284c7 !important; color: #ffffff !important; }
     </style>
 </head>
 
@@ -294,7 +307,7 @@
                     Configure un grupo o seleccione uno activo en el menú de la izquierda para comenzar el pase de lista de hoy.
                 </div>
 
-                <!-- CUADRÍCULA COMPACTA DE ESTUDIANTES (IDEAL PARA 50 ESTUDIANTES SIN HACER SCROLL) -->
+                <!-- CUADRÍCULA COMPACTA DE ESTUDIANTES -->
                 <div id="attendance-grid-wrap" class="hidden flex-grow overflow-y-auto max-h-[500px] pr-1">
                     <div id="attendance-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
                         <!-- Generado dinámicamente -->
@@ -390,10 +403,10 @@
         const STORAGE_KEY = 'cecyte_pase_lista_v1';
         
         const STATUS_CONFIG = {
-            A: { label: 'Asistencia', bg: 'bg-emerald-50 border-emerald-300 text-emerald-900', badge: 'bg-emerald-600 text-white' },
-            F: { label: 'Falta', bg: 'bg-red-50 border-red-300 text-red-900', badge: 'bg-red-600 text-white' },
-            J: { label: 'Justificado', bg: 'bg-amber-50 border-amber-300 text-amber-900', badge: 'bg-amber-500 text-white' },
-            R: { label: 'Retardo', bg: 'bg-sky-50 border-sky-300 text-sky-900', badge: 'bg-sky-600 text-white' }
+            A: { label: 'Asistencia', bgClass: 'status-a', badgeClass: 'badge-a' },
+            F: { label: 'Falta', bgClass: 'status-f', badgeClass: 'badge-f' },
+            J: { label: 'Justificado', bgClass: 'status-j', badgeClass: 'badge-j' },
+            R: { label: 'Retardo', bgClass: 'status-r', badgeClass: 'badge-r' }
         };
         const STATUS_KEYS = Object.keys(STATUS_CONFIG);
 
@@ -433,6 +446,46 @@
 
         const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
+        /* MÉTODO DE DESCARGA ANTI-BLOQUEO PARA ANDROID WEBVIEW, CAPACITOR Y NAVEGADORES WEB */
+        async function downloadBlobForMobile(contentString, fileName, mimeType) {
+            const isCapacitor = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform();
+
+            if (isCapacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Filesystem) {
+                try {
+                    const Filesystem = window.Capacitor.Plugins.Filesystem;
+                    const Directory = window.Capacitor.Plugins.Directory || { Documents: 'DOCUMENTS' };
+
+                    const base64Data = btoa(unescape(encodeURIComponent(contentString)));
+
+                    await Filesystem.writeFile({
+                        path: fileName,
+                        data: base64Data,
+                        directory: Directory.Documents
+                    });
+
+                    alert(`Archivo guardado exitosamente en tus documentos: ${fileName}`);
+                } catch (err) {
+                    console.error("Error al guardar con Filesystem nativo", err);
+                    alert("No se pudo guardar el archivo en el dispositivo. Revisa los permisos de almacenamiento.");
+                }
+            } else {
+                const blob = new Blob([contentString], { type: mimeType });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.style.display = 'none';
+                link.href = url;
+                link.download = fileName;
+                
+                document.body.appendChild(link);
+                link.click();
+                
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }, 200);
+            }
+        }
+
         function resetGroupForm() {
             el.groupName.value = '';
             el.groupSemester.value = '';
@@ -465,6 +518,7 @@
                 { limit: "08:20", value: "07:30 - 08:20" },
                 { limit: "09:10", value: "08:20 - 09:10" },
                 { limit: "10:00", value: "09:10 - 10:00" },
+                { limit: "10:30", value: "10:30 - 11:20" },
                 { limit: "11:20", value: "10:30 - 11:20" },
                 { limit: "12:10", value: "11:20 - 12:10" },
                 { limit: "13:00", value: "12:10 - 13:00" },
@@ -504,7 +558,6 @@
                 el.groupSelect.appendChild(opt);
             });
             
-            // Conserva el valor solo si fue seleccionado explícitamente y aún existe en el estado
             if (currentVal && state.groups.some(g => g.id === currentVal)) {
                 el.groupSelect.value = currentVal;
             } else {
@@ -558,7 +611,7 @@
 
                 const card = document.createElement('div');
                 card.id = `card-${student.id}`;
-                card.className = `p-2 rounded-xl border-2 cursor-pointer transition-all flex flex-col justify-between h-20 shadow-sm relative select-none ${conf.bg}`;
+                card.className = `p-2 rounded-xl border-2 cursor-pointer transition-all flex flex-col justify-between h-20 shadow-sm relative select-none ${conf.bgClass}`;
                 
                 card.addEventListener('click', () => {
                     const nextIndex = (STATUS_KEYS.indexOf(state.currentAttendance[student.id]) + 1) % STATUS_KEYS.length;
@@ -571,7 +624,7 @@
                     <div class="flex justify-between items-start">
                         <span class="text-[10px] font-bold text-slate-400">N° ${student.number}</span>
                         ${hasAlert ? '<span class="bg-red-600 text-white text-[9px] font-extrabold px-1 rounded animate-pulse"><i class="fa-solid fa-triangle-exclamation"></i> Riesgo</span>' : ''}
-                        <span id="badge-${student.id}" class="text-[11px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider ${conf.badge}">${currentStatus}</span>
+                        <span id="badge-${student.id}" class="text-[11px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider ${conf.badgeClass}">${currentStatus}</span>
                     </div>
                     <p class="text-[11px] font-bold leading-tight truncate mt-1 text-slate-800" title="${student.name}">${student.name}</p>
                 `;
@@ -587,13 +640,12 @@
             const badge = document.getElementById(`badge-${studentId}`);
             if (!card || !badge) return;
 
-            STATUS_KEYS.forEach(k => {
-                card.classList.remove(...STATUS_CONFIG[k].bg.split(' '));
-                badge.classList.remove(...STATUS_CONFIG[k].badge.split(' '));
-            });
+            card.classList.remove('status-a', 'status-f', 'status-j', 'status-r');
+            badge.classList.remove('badge-a', 'badge-f', 'badge-j', 'badge-r');
 
-            card.classList.add(...STATUS_CONFIG[status].bg.split(' '));
-            badge.classList.add(...STATUS_CONFIG[status].badge.split(' '));
+            const conf = STATUS_CONFIG[status];
+            card.classList.add(conf.bgClass);
+            badge.classList.add(conf.badgeClass);
             badge.textContent = status;
         }
 
@@ -783,13 +835,8 @@
                 statusByStudent
             });
 
-            // Guardar en el almacenamiento local
             saveState();
-
-            // Mensaje de confirmación y recarga forzada de la aplicación
             alert('¡Registro de clase guardado exitosamente!');
-            
-            // Forzar el refresco completo del ejecutable/navegador
             window.location.reload();
         }
 
@@ -820,7 +867,6 @@
             resetGroupForm();
             renderGroupOptions();
             
-            // Selecciona automáticamente el grupo recién creado
             el.groupSelect.value = newGroup.id;
             state.currentAttendance = {};
             
@@ -879,11 +925,9 @@
                 rows.push(row.join(','));
             });
 
-            const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `Reporte_Asistencia_${group.career.replace(/\s+/g, '_')}_${group.group}.csv`;
-            link.click();
+            const fileName = `Reporte_Asistencia_${group.career.replace(/\s+/g, '_')}_${group.group}.csv`;
+            const csvContent = '\uFEFF' + rows.join('\n');
+            downloadBlobForMobile(csvContent, fileName, 'text/csv;charset=utf-8;');
         }
 
         function exportBackup() {
@@ -891,12 +935,9 @@
                 return alert('No hay datos en el sistema para respaldar.');
             }
             const dataStr = JSON.stringify(state, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const link = document.createElement('a');
             const d = new Date();
-            link.href = URL.createObjectURL(blob);
-            link.download = `RESPALDO_ASISTENCIAS_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}.json`;
-            link.click();
+            const fileName = `RESPALDO_ASISTENCIAS_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}.json`;
+            downloadBlobForMobile(dataStr, fileName, 'application/json');
         }
 
         function importBackup(event) {
@@ -914,7 +955,7 @@
                         saveState();
                         
                         renderGroupOptions();
-                        el.groupSelect.value = ""; // Garantiza que siga sin seleccionar
+                        el.groupSelect.value = "";
                         refreshSelectedGroupView();
                         alert('¡Base de datos restaurada correctamente desde el archivo de copia de seguridad!');
                     } else {
@@ -957,7 +998,7 @@
             loadState();
             attachEvents();
             renderGroupOptions();
-            el.groupSelect.value = ""; // Asegura que la página inicie sin grupo seleccionado
+            el.groupSelect.value = "";
             refreshSelectedGroupView();
         }
 

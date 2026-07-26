@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecosistema Digital de Soluciones Educativas | CECYTE</title>
     
-    <script src="css/tailwind.min.js"></script>
-    <link rel="stylesheet" href="css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -79,11 +79,7 @@
                         <div class="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 z-50">
                             <a href="index.html#Práctica Docente y Evaluación" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
                                 <i class="fa-solid fa-layer-group text-cecyte-guinda"></i>
-                                <span>Ir a Evaluación y Práctica</span>
-                            </a>
-                            <a href="index.html#Plataformas Web y Entornos Virtuales" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
-                                <i class="fa-solid fa-globe text-cecyte-guinda"></i>
-                                <span>Ir a Plataformas Web</span>
+                                <span>Ir a la sección</span>
                             </a>
                             <div class="my-2 border-t border-slate-100"></div>
                             <a href="pase_lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-cecyte-guinda transition-colors">
@@ -141,10 +137,7 @@
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
                     <a href="index.html#Práctica Docente y Evaluación" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Práctica Docente
-                    </a>
-                    <a href="index.html#Plataformas Web y Entornos Virtuales" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
-                        <i class="fa-solid fa-globe text-cecyte-guinda"></i> Plataformas Web
+                        <i class="fa-solid fa-layer-group text-cecyte-guinda"></i> Ir a la sección
                     </a>
                     <a href="pase_lista.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-white font-semibold text-sm transition-colors flex items-center gap-3">
                         <i class="fa-solid fa-clipboard-user text-cecyte-guinda"></i> Módulo: Pase de Lista
@@ -222,7 +215,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 <!-- Card: Módulo Pase de Lista -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="pase_lista.html" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -237,14 +230,14 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-file-code mr-1"></i>pase_lista</span>
-                        <a href="pase_lista.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card: Módulo Seguimiento de Estudiantes -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="seguimiento_entregas.html" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -259,14 +252,14 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-file-code mr-1"></i>seguimiento_estudiantes</span>
-                        <a href="seguimiento_entregas.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card: Módulo Tutoría -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="tutoria.html" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -281,14 +274,14 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-file-code mr-1"></i>tutoría</span>
-                        <a href="tutoria.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card: Creador Rúbrica -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="plantilla_rubrica.html" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -303,14 +296,14 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-file-code mr-1"></i>rúbricas...</span>
-                        <a href="plantilla_rubrica.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card: Escala Estimativa -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="plantilla_estimativa.html" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -325,14 +318,14 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-file-code mr-1"></i>estimativa...</span>
-                        <a href="plantilla_estimativa.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card: Guía de Observación -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="plantilla_observacion.html" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -347,14 +340,14 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-file-code mr-1"></i>observación...</span>
-                        <a href="plantilla_observacion.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card: Lista de cotejo -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="plantilla_cotejo.html" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -369,11 +362,11 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-file-code mr-1"></i>cotejo...</span>
-                        <a href="plantilla_cotejo.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -391,7 +384,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
                 <!-- Card: Aprendamos en Cecyte -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="https://aprendamos.iniciodigital.net" target="_blank" rel="noopener noreferrer" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -406,14 +399,14 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-solid fa-globe mr-1 text-cecyte-guinda"></i>moodle</span>
-                        <a href="https://aprendamos.iniciodigital.net" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card: Dolibarr CRM | ERP -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+                <a href="https://demo.iniciodigital.net/htdocs/" target="_blank" rel="noopener noreferrer" class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-cecyte-guinda/30 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group cursor-pointer">
                     <div class="p-6 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-11 h-11 bg-slate-100 text-cecyte-guinda rounded-xl flex items-center justify-center text-lg group-hover:bg-cecyte-guinda group-hover:text-white transition-all duration-300">
@@ -428,11 +421,11 @@
                     </div>
                     <div class="p-4 bg-slate-50 border-t border-slate-100 mt-auto flex justify-between items-center">
                         <span class="text-xs font-mono text-cecyte-guinda"><i class="fa-regular fa-solid fa-globe mr-1"></i>dolibarr</span>
-                        <a href="https://demo.iniciodigital.net/htdocs/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda hover:text-cecyte-guindaLight">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-cecyte-guinda group-hover:text-cecyte-guindaLight">
                             Abrir Herramienta <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 

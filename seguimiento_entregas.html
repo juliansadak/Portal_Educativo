@@ -411,8 +411,6 @@
             });
             if (currentVal && state.groups.some(g => g.id === currentVal)) {
                 el.groupSelect.value = currentVal;
-            } else if (state.groups.length > 0) {
-                el.groupSelect.value = state.groups[0].id;
             }
         }
 
@@ -628,10 +626,9 @@
             el.criticalDeliverablesBody.innerHTML = '';
             const risks = [];
 
-            // Iterar sobre todos los grupos
             state.groups.forEach(group => {
                 const groupTasks = state.deliverables.tasks.filter(t => t.groupId === group.id);
-                if (groupTasks.length === 0) return; // Saltar grupos sin tareas
+                if (groupTasks.length === 0) return;
 
                 group.students.forEach(student => {
                     let missingCount = 0;
@@ -713,6 +710,49 @@
             refreshDeliverablesView();
         }
 
+        // FUNCIÓN MEJORADA PARA DESCARGAS TANTO EN NAVEGADOR WEB COMO EN APK (CAPACITOR / ANDROID)
+        async function downloadBlobForMobile(contentString, fileName, mimeType) {
+            // Detecta si la app se está ejecutando como APK nativa mediante Capacitor
+            const isCapacitor = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform();
+
+            if (isCapacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Filesystem) {
+                try {
+                    const Filesystem = window.Capacitor.Plugins.Filesystem;
+                    const Directory = window.Capacitor.Plugins.Directory || { Documents: 'DOCUMENTS' };
+
+                    // Convertir texto a base64 para evitar errores de codificación
+                    const base64Data = btoa(unescape(encodeURIComponent(contentString)));
+
+                    await Filesystem.writeFile({
+                        path: fileName,
+                        data: base64Data,
+                        directory: Directory.Documents
+                    });
+
+                    alert(`Archivo guardado exitosamente en tus documentos: ${fileName}`);
+                } catch (err) {
+                    console.error("Error al guardar con Filesystem native", err);
+                    alert("No se pudo guardar el archivo en el dispositivo. Revisa los permisos de almacenamiento.");
+                }
+            } else {
+                // Modo Web convencional o WebView con soporte de descargas Blob
+                const blob = new Blob([contentString], { type: mimeType });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = fileName;
+                
+                document.body.appendChild(a);
+                a.click();
+                
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 200);
+            }
+        }
+
         function exportCsv() {
             const groupId = el.groupSelect.value;
             const group = state.groups.find(g => g.id === groupId);
@@ -741,20 +781,19 @@
                 ].join(','));
             });
 
-            const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `Calificaciones_Base100_${group.career.replace(/\s+/g, '_')}.csv`;
-            link.click();
+            // Agrega BOM (\uFEFF) para compatibilidad con acentos y eñes en Android/Excel
+            const csvContent = '\uFEFF' + rows.join('\n');
+            const fileName = `Calificaciones_Base100_${group.career.replace(/\s+/g, '_')}.csv`;
+            
+            downloadBlobForMobile(csvContent, fileName, 'text/csv;charset=utf-8;');
         }
 
         function exportBackup() {
             if (state.groups.length === 0) return alert('No hay información guardada para respaldar.');
-            const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `RESPALDO_ENTREGABLES_B100_${Date.now()}.json`;
-            link.click();
+            const jsonString = JSON.stringify(state, null, 2);
+            const fileName = `RESPALDO_ENTREGABLES_B100_${Date.now()}.json`;
+            
+            downloadBlobForMobile(jsonString, fileName, 'application/json');
         }
 
         function importBackup(event) {

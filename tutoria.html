@@ -6,6 +6,8 @@
     <title>Ecosistema Digital de Soluciones Educativas | CECYTE</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@capacitor/core/dist/capacitor.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@capacitor/filesystem/dist/plugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,18 +43,16 @@
 
 <body class="bg-cecyte-grisBg text-slate-800 min-h-screen flex flex-col pt-16">
 
-    <!-- MENÚ DE NAVEGACIÓN MODERNO (STICKY) -->
+    <!-- MENÚ DE NAVEGACIÓN -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
         <div class="container mx-auto px-6 max-w-screen-2xl">
             <div class="flex justify-between h-16">
-                <!-- Logo e Identidad -->
                 <div class="flex items-center gap-3">
                     <div>
                         <span class="font-montserrat font-extrabold text-sm sm:text-base tracking-wider text-cecyte-guinda block leading-none">PORTAL EDUCATIVO</span>
                     </div>
                 </div>
 
-                <!-- Enlaces de Escritorio -->
                 <div class="hidden lg:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider">
                     <a href="index.html" class="text-slate-600 hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
                         <i class="fa-solid fa-house"></i> Inicio
@@ -100,7 +100,6 @@
                     </div>
                 </div>
 
-                <!-- Botón de Menú Móvil (Hamburguesa) -->
                 <div class="lg:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-cecyte-guinda focus:outline-none p-2 rounded-lg transition-colors">
                         <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
@@ -109,7 +108,6 @@
             </div>
         </div>
 
-        <!-- Menú Desplegable Móvil -->
         <div id="mobile-dropdown" class="hidden lg:hidden bg-white border-t border-slate-200 shadow-inner px-6 py-4 space-y-3">
             <a href="index.html" onclick="toggleMenu()" class="block py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors flex items-center gap-3">
                 <i class="fa-solid fa-house text-cecyte-guinda"></i> Inicio
@@ -151,10 +149,9 @@
         </div>
     </nav>
 
-    <!-- Encabezado Principal / Hero Banner -->
+    <!-- Encabezado Principal -->
     <header class="bg-cecyte-guinda text-white shadow-md relative overflow-hidden">
         <div class="absolute top-0 right-0 w-40 h-40 bg-cecyte-oro opacity-10 rounded-full transform translate-x-12 -translate-y-12"></div>
-        
         <div class="container mx-auto px-6 max-w-screen-2xl py-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="text-center md:text-left">
                 <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
@@ -163,7 +160,7 @@
                 </div>
                 <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Módulo de Tutoría</h1>
                 <p class="text-cecyte-oroLight mt-2 text-base font-light max-w-2xl">
-                    Plataforma tecnológica integral, diseñada específicamente para CECyTE. Este entorno unifica herramientas docentes y evaluación en un solo Hub interactivo.
+                    Plataforma tecnológica integral, diseñada específicamente para CECyTE.
                 </p>
             </div>
         </div>
@@ -172,9 +169,7 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container mx-auto px-4 max-w-screen-2xl py-6 flex-grow">
         
-        <!-- BOTONES DE RESPALDO GLOBAL Y ACCIONES -->
         <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
-            <!-- MÉTRICAS EN TIEMPO REAL -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex-grow max-w-3xl text-center">
                 <div>
                     <div class="text-[10px] font-bold text-slate-400 uppercase">Total Sesiones</div>
@@ -195,20 +190,18 @@
             </div>
 
             <div class="flex items-center gap-2">
-                <button id="backup-export-btn" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1">
+                <button id="backup-export-btn" type="button" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1 shadow-sm">
                     <i class="fa-solid fa-file-shield"></i> Respaldar Datos
                 </button>
-                <button id="backup-import-btn" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1">
+                <button id="backup-import-btn" type="button" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1 shadow-sm">
                     <i class="fa-solid fa-file-import"></i> Restaurar Copia
                 </button>
                 <input type="file" id="backup-file-input" class="hidden" accept=".json">
             </div>
         </div>
 
-        <!-- FORMULARIOS Y MATRIZ -->
         <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
             
-            <!-- CONFIGURACIÓN DE GRUPO Y ALTA -->
             <div class="space-y-4 xl:col-span-1">
                 <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-4">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda">
@@ -223,8 +216,8 @@
                         <textarea id="students-input" rows="4" placeholder="Estudiantes (uno por línea)&#10;1, Perez Ana&#10;2, Torres Luis" class="w-full border border-slate-300 rounded-lg p-2 focus:border-cecyte-guinda focus:outline-none"></textarea>
                         
                         <div class="grid grid-cols-2 gap-2">
-                            <button id="save-group-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-2 rounded-xl transition-colors">Guardar Grupo</button>
-                            <button id="delete-group-btn" class="bg-slate-700 hover:bg-black text-white font-bold py-2 px-2 rounded-xl transition-colors">Borrar</button>
+                            <button id="save-group-btn" type="button" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white font-bold py-2 px-2 rounded-xl transition-colors">Guardar Grupo</button>
+                            <button id="delete-group-btn" type="button" class="bg-slate-700 hover:bg-black text-white font-bold py-2 px-2 rounded-xl transition-colors">Borrar</button>
                         </div>
                     </div>
                     <hr class="border-slate-200">
@@ -235,15 +228,13 @@
                 </article>
             </div>
 
-            <!-- REGISTRO E HISTORIAL DE ATENCIÓN CON RÚBRICA -->
             <div class="xl:col-span-3 space-y-6">
-                <!-- FORMULARIO DE ATENCIÓN INDIVIDUAL / GRUPAL -->
                 <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
                     <h2 class="text-sm font-bold uppercase tracking-wider text-cecyte-guinda mb-4">
                         <i class="fa-solid fa-clipboard-user text-cecyte-oro mr-1"></i> Formulario de Intervención Docente
                     </h2>
                     
-                    <form id="tutoria-form" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <form id="tutoria-form" onsubmit="return false;" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                         <div>
                             <label class="block font-bold mb-1">Alcance de Atención</label>
                             <select id="tutoria-scope" class="w-full border border-slate-300 rounded-lg p-2 bg-slate-50">
@@ -274,14 +265,11 @@
                             </select>
                         </div>
 
-                        <!-- SECCIÓN DINÁMICA DE RÚBRICA EVALUATIVA -->
                         <div class="md:col-span-3 bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2">
                             <h3 class="font-bold text-cecyte-guinda uppercase text-[11px] mb-3 flex items-center gap-1">
                                 <i class="fa-solid fa-star text-cecyte-oro"></i> Matriz Evaluativa Contextualizada
                             </h3>
-                            <div id="rubric-container" class="space-y-3">
-                                <!-- Contenido inyectado por JS -->
-                            </div>
+                            <div id="rubric-container" class="space-y-3"></div>
                         </div>
 
                         <div class="md:col-span-2">
@@ -306,22 +294,20 @@
                     </form>
                 </article>
 
-                <!-- PROMPT DE SALIDA INTELIGENTE -->
                 <article id="prompt-output-card" class="bg-slate-900 text-slate-100 rounded-2xl p-4 shadow-inner hidden">
                     <div class="flex justify-between items-center mb-2 border-b border-slate-800 pb-2">
                         <span class="text-xs font-bold text-cecyte-oro tracking-widest uppercase"><i class="fa-solid fa-robot"></i> Prompt de Derivación Generado para IA / Expediente</span>
-                        <button id="copy-prompt-btn" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2.5 py-1 rounded font-bold text-white transition-colors">
+                        <button id="copy-prompt-btn" type="button" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2.5 py-1 rounded font-bold text-white transition-colors">
                             <i class="fa-solid fa-copy mr-1"></i> Copiar Prompt
                         </button>
                     </div>
                     <p id="prompt-text" class="text-xs font-mono text-slate-300 whitespace-pre-wrap leading-relaxed"></p>
                 </article>
 
-                <!-- HISTÓRICO DE LOGS / REGISTROS -->
                 <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <h3 class="text-xs font-bold uppercase tracking-wider text-cecyte-guinda"><i class="fa-solid fa-history mr-1"></i> Historial Reciente del Grupo</h3>
-                        <button id="export-general-report-btn" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white text-[11px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 transition-colors">
+                        <button id="export-general-report-btn" type="button" class="bg-cecyte-guinda hover:bg-cecyte-guindaLight text-white text-[11px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 transition-colors">
                             <i class="fa-solid fa-file-excel"></i> Descargar Reporte General (Excel/CSV)
                         </button>
                     </div>
@@ -348,7 +334,6 @@
         </div>
     </main>
 
-    <!-- Pie de Página -->
     <footer class="bg-cecyte-guinda text-slate-400 border-t border-slate-800 text-xs py-6 mt-auto">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left">
@@ -356,20 +341,12 @@
                 <p class="text-cecyte-oroLight mt-0.5">Todos los derechos reservados.</p>
             </div>
             <div class="flex gap-4 text-cecyte-oroLight font-mono">
-                <span>Desarrollado por:</span>
-                <a href="mailto:jvergarac@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
-                    <span>Julian Sadak Vergara Cruz</span>
-                </a>
-                <span>|</span>
-                <span>Revisado por:</span>
-                <a href="mailto:hpaezg@cecytepuebla.edu.mx" class="hover:text-slate-200 transition-colors">
-                    <span>Herlinda Paéz González</span>
-                </a>
+                <span>Desarrollado por: Julian Sadak Vergara Cruz</span>
             </div>
         </div>
     </footer>
 
-    <!-- LÓGICA JAVASCRIPT INTEGRADA -->
+<!-- LÓGICA JAVASCRIPT DIRECTA Y ROBUSTA (CORREGIDA) -->
     <script>
         const STORAGE_KEY = 'cecyte_tutorias_v1';
         
@@ -384,40 +361,40 @@
                     id: 'preparacion', 
                     label: 'Preparación y Enfoque', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Llega puntual, con dudas específicas y materiales organizados. Demuestra haber revisado el tema a fondo previamente.' },
-                        { val: 3, text: 'Competente (3 pts): Llega a tiempo con sus materiales. Sus dudas son válidas pero generales. Se nota una revisión parcial del tema.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Llega con dudas muy vagas (ej. "no le entiendo a nada"). No hay evidencia de una revisión previa del material.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Llega tarde, no trae materiales ni dudas concretas, o no se preparó en lo absoluto para la sesión.' }
+                        { val: 4, text: 'Excelente (4 pts): Llega puntual, con dudas específicas y materiales organizados.' },
+                        { val: 3, text: 'Competente (3 pts): Llega a tiempo con sus materiales. Sus dudas son válidas pero generales.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Llega con dudas muy vagas. No hay evidencia de revisión previa.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Llega tarde, no trae materiales ni dudas concretas.' }
                     ]
                 },
                 { 
                     id: 'participacion', 
                     label: 'Participación Activa', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Toma notas, propone soluciones y responde con seguridad. Adopta un rol proactivo en su propio aprendizaje.' },
-                        { val: 3, text: 'Competente (3 pts): Escucha con atención y responde cuando se le pregunta, pero su rol tiende a ser más pasivo que proactivo.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Muestra distracciones o apatía. Interactúa solo de forma superficial o cuando la o el asesor se lo exige directamente.' },
-                        { val: 1, text: 'Insuficiente (1 pt): No interactúa, muestra total desinterés o se distrae constantemente con elementos ajenos a la asesoría.' }
+                        { val: 4, text: 'Excelente (4 pts): Toma notas, propone soluciones y responde con seguridad.' },
+                        { val: 3, text: 'Competente (3 pts): Escucha con atención y responde cuando se le pregunta.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Muestra distracciones o apatía.' },
+                        { val: 1, text: 'Insuficiente (1 pt): No interactúa o muestra total desinterés.' }
                     ]
                 },
                 { 
                     id: 'receptividad', 
                     label: 'Receptividad a la Retroalimentación', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Recibe las críticas constructivas con apertura, hace preguntas para aclarar sus errores y muestra disposición a mejorar.' },
-                        { val: 3, text: 'Competente (3 pts): Acepta las correcciones y sugerencias, aunque le cuesta un poco profundizar en el origen de sus errores.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Se justifica constantemente, le cuesta aceptar las correcciones o ignora algunas de las sugerencias dadas.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud defensiva o de rechazo absoluto ante las observaciones de la o el asesor, bloqueando el avance.' }
+                        { val: 4, text: 'Excelente (4 pts): Recibe las críticas constructivas con apertura y hace preguntas.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta las correcciones y sugerencias.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Se justifica constantemente o le cuesta aceptar correcciones.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud defensiva o de rechazo.' }
                     ]
                 },
                 { 
                     id: 'autonomia', 
                     label: 'Autonomía y Plan de Acción', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Es capaz de explicar lo aprendido con sus propias palabras y propone un plan claro con pasos a seguir de forma independiente.' },
-                        { val: 3, text: 'Competente (3 pts): Comprende las explicaciones del asesor, pero requiere de su ayuda para definir los siguientes pasos de su trabajo.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Muestra dificultades para aplicar lo aprendido por sí mismo. El plan de acción para el estudio independiente es difuso.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Termina la sesión sin comprender el tema y sin una ruta clara de trabajo; depende totalmente de otra asesoría.' }
+                        { val: 4, text: 'Excelente (4 pts): Es capaz de explicar lo aprendido y propone un plan claro.' },
+                        { val: 3, text: 'Competente (3 pts): Comprende las explicaciones, pero requiere ayuda para definir pasos.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Muestra dificultades para aplicar lo aprendido por sí mismo.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Termina la sesión sin comprender el tema.' }
                     ]
                 }
             ],
@@ -426,77 +403,124 @@
                     id: 'autoconocimiento', 
                     label: 'Autoconocimiento y Apertura', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Identifica con claridad sus emociones, fortalezas y Áreas de oportunidad. Expresa su situación sin reservas y con honestidad.' },
-                        { val: 3, text: 'Competente (3 pts): Reconoce que enfrenta una situación difícil, sin embargo, no logra verbalizar o profundizar en el origen del problema.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Tiene dificultades para determinar o identificar qué lo o la está afectando.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud cerrada, evade las preguntas y no reconoce o minimiza el problema que está afectando su bienestar.' }
+                        { val: 4, text: 'Excelente (4 pts): Identifica emociones y expresa su situación con honestidad.' },
+                        { val: 3, text: 'Competente (3 pts): Reconoce la situación, pero no logra profundiza el origen.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Tiene dificultades para identificar qué lo afecta.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Muestra actitud cerrada o evade preguntas.' }
                     ]
                 },
                 { 
                     id: 'comunicacion', 
                     label: 'Comunicación y Confianza', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Utiliza la tutoría como un espacio seguro. Escucha activamente la perspectiva del docente y dialoga asertivamente.' },
-                        { val: 3, text: 'Competente (3 pts): Se comunica de manera clara, sin embargo,  mantiene distancia durante la sesión. Escucha los consejos pero interactúa poco.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Su comunicación es pasiva; tiene dificultad para establecer un diálogo fluido con la o el tutor.' },
-                        { val: 1, text: 'Insuficiente (1 pt): No hay comunicación efectiva; responde con monosílabos o muestra una actitud de rechazo hacia el espacio de tutoría.' }
+                        { val: 4, text: 'Excelente (4 pts): Utiliza la tutoría como un espacio seguro.' },
+                        { val: 3, text: 'Competente (3 pts): Se comunica claramente pero mantiene distancia.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Comunicación pasiva, dificultad para el diálogo.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Sin comunicación efectiva, responde con monosílabos.' }
                     ]
                 },
                 { 
                     id: 'soluciones', 
-                    label: 'Búsqueda de Soluciones y Resiliencia', 
+                    label: 'Búsqueda de Soluciones', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Propone activamente alternativas para superar el obstáculo y demuestra disposición para aprender de la experiencia.' },
-                        { val: 3, text: 'Competente (3 pts): Acepta las sugerencias de la o el tutor y muestra interés en cambiar la situación, necesita acompañamiento en las soluciones.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Espera que la o el tutor o un tercero resuelva el problema por él o ella. Tiene dificultades para elegir alternativas viables.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Muestra una actitud de victimización o resignación absoluta; no tiene interés en buscar soluciones a su situación.' }
+                        { val: 4, text: 'Excelente (4 pts): Propone activamente alternativas para superar el obstáculo.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta sugerencias y muestra interés en cambiar.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Espera que otros resuelvan el problema.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Actitud de victimización o resignación.' }
                     ]
                 },
                 { 
                     id: 'compromiso', 
-                    label: 'Compromiso con el Bienestar (Plan de Acción)', 
+                    label: 'Compromiso con el Bienestar', 
                     options: [
-                        { val: 4, text: 'Excelente (4 pts): Diseña, junto a la o el tutor, compromisos claros y realistas (ej. acudir al departamento de orientación, organizar mejor su tiempo) y asume la responsabilidad de cumplirlos.' },
-                        { val: 3, text: 'Competente (3 pts): Acepta el plan de acción sugerido por la o el tutor y se compromete a realizarlo, sin embargo, requiere de recordatorios o seguimiento cercano.' },
-                        { val: 2, text: 'En Desarrollo (2 pts): Acuerda un plan de acción solo por compromiso en la sesión de tutoria individual, pero muestra baja convicción o motivación para llevarlo a cabo.' },
-                        { val: 1, text: 'Insuficiente (1 pt): Se retira de la sesión sin establecer ningún compromiso concreto ni intención de cambiar su situación actual.' }
+                        { val: 4, text: 'Excelente (4 pts): Diseña compromisos claros y realistas.' },
+                        { val: 3, text: 'Competente (3 pts): Acepta el plan de acción pero requiere seguimiento.' },
+                        { val: 2, text: 'En Desarrollo (2 pts): Acuerda por compromiso, pero muestra baja convicción.' },
+                        { val: 1, text: 'Insuficiente (1 pt): Se retira sin establecer ningún compromiso.' }
                     ]
                 }
             ]
         };
 
-        const el = {
-            groupName: document.getElementById('group-name'),
-            groupSemester: document.getElementById('group-semester'),
-            groupShift: document.getElementById('group-shift'),
-            studentsInput: document.getElementById('students-input'),
-            saveGroupBtn: document.getElementById('save-group-btn'),
-            deleteGroupBtn: document.getElementById('delete-group-btn'),
-            groupSelect: document.getElementById('group-select'),
-            tutoriaScope: document.getElementById('tutoria-scope'),
-            studentSelect: document.getElementById('student-select'),
-            tutoriaType: document.getElementById('tutoria-type'),
-            studentType: document.getElementById('student-type'),
-            rubricContainer: document.getElementById('rubric-container'),
-            tutoriaObs: document.getElementById('tutoria-obs'),
-            tutoriaAction: document.getElementById('tutoria-action'),
-            tutoriaAcuerdos: document.getElementById('tutoria-acuerdos'),
-            saveSessionBtn: document.getElementById('save-session-btn'),
-            promptOutputCard: document.getElementById('prompt-output-card'),
-            promptText: document.getElementById('prompt-text'),
-            copyPromptBtn: document.getElementById('copy-prompt-btn'),
-            historyTableBody: document.getElementById('history-table-body'),
-            exportBackupBtn: document.getElementById('backup-export-btn'),
-            importBackupBtn: document.getElementById('backup-import-btn'),
-            backupFileInput: document.getElementById('backup-file-input'),
-            metricTotal: document.getElementById('metric-total'),
-            metricPctAcad: document.getElementById('metric-pct-acad'),
-            metricPctTut: document.getElementById('metric-pct-tut'),
-            metricSeguimiento: document.getElementById('metric-seguimiento'),
-            exportGeneralReportBtn: document.getElementById('export-general-report-btn')
-        };
-
         const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+// --- FUNCIÓN DE DESCARGA (COMPATIBLE CON CAPACITOR / APK Y NAVEGADOR) ---
+        async function triggerDownload(contentString, fileName, mimeType = 'text/plain;charset=utf-8;') {
+            const isCSV = mimeType.includes('csv');
+            const isPlainText = mimeType.includes('text/plain') || fileName.toLowerCase().endsWith('.txt');
+            const finalContent = (isCSV || isPlainText) ? '\uFEFF' + contentString : contentString;
+
+            // 1. SI ESTAMOS EN LA APP COMPILADA CON CAPACITOR (APK)
+            if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+                try {
+                    // Recuperar el plugin de sistema de archivos
+                    // Recuperar el plugin de manera segura evitando el error "is not defined"
+let Filesystem;
+if (typeof capacitorExports !== 'undefined') {
+    Filesystem = capacitorExports.Filesystem;
+} else if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Filesystem) {
+    Filesystem = window.Capacitor.Plugins.Filesystem;
+} else {
+    throw new Error("El plugin Filesystem no está cargado correctamente.");
+}
+                    
+                    // Capacitor requiere que los archivos de texto se guarden codificados en Base64
+                    const base64Data = btoa(unescape(encodeURIComponent(finalContent)));
+
+                    // Escribir archivo físico en el celular
+                    await Filesystem.writeFile({
+                        path: fileName,
+                        data: base64Data,
+                        directory: 'DOCUMENTS', // Guarda en la carpeta "Documentos" del dispositivo
+                    });
+                    
+                    alert(`¡Éxito! Archivo guardado en la carpeta 'Documentos' del dispositivo como:\n${fileName}`);
+                    return; // Terminamos aquí
+                } catch (error) {
+                    console.error('Error guardando archivo con Capacitor:', error);
+                    alert('Hubo un error al guardar el archivo: ' + error.message);
+                    return;
+                }
+            }
+
+            // 2. MÉTODO TRADICIONAL PARA NAVEGADORES WEB (PC)
+            try {
+                const blob = new Blob([finalContent], { type: mimeType });
+                
+                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob, fileName);
+                    return;
+                }
+
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = fileName;
+                
+                document.body.appendChild(a);
+                a.click();
+                
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 400);
+            } catch (err) {
+                const encodedData = encodeURIComponent(contentString);
+                const a = document.createElement('a');
+                a.href = `data:${mimeType},${encodedData}`;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        }
+
+        function sanitizeForCSV(text) {
+            if (!text) return '""';
+            const cleanText = String(text).replace(/"/g, '""').replace(/\r?\n|\r/g, ' ');
+            return `"${cleanText}"`;
+        }
 
         function saveState() { 
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); 
@@ -509,7 +533,11 @@
             try {
                 const parsed = JSON.parse(raw);
                 state.groups = parsed.groups || [];
-                state.sessions = parsed.sessions || [];
+                // Garantiza que cada sesión histórica tenga un ID válido
+                state.sessions = (parsed.sessions || []).map(s => ({
+                    ...s,
+                    id: s.id || uid()
+                }));
             } catch(e) { 
                 console.error(e); 
             }
@@ -525,26 +553,32 @@
         }
 
         function renderGroupOptions() {
-            const val = el.groupSelect.value;
-            el.groupSelect.innerHTML = '<option value="">-- Seleccionar Grupo --</option>';
+            const groupSelect = document.getElementById('group-select');
+            if (!groupSelect) return;
+            const val = groupSelect.value;
+            groupSelect.innerHTML = '<option value="">-- Seleccionar Grupo --</option>';
             state.groups.forEach(g => {
                 const opt = document.createElement('option');
                 opt.value = g.id;
                 opt.textContent = `${g.name} (${g.semester}° ${g.shift})`;
-                el.groupSelect.appendChild(opt);
+                groupSelect.appendChild(opt);
             });
             if (val && state.groups.some(g => g.id === val)) {
-                el.groupSelect.value = val;
+                groupSelect.value = val;
             } else {
-                el.groupSelect.value = '';
+                groupSelect.value = '';
             }
             updateStudentSelect();
         }
 
         function syncStudentScopeState() {
-            const isGroupScope = el.tutoriaScope.value === 'Grupal';
-            el.studentSelect.disabled = isGroupScope;
-            if (isGroupScope) el.studentSelect.value = '';
+            const tutoriaScope = document.getElementById('tutoria-scope');
+            const studentSelect = document.getElementById('student-select');
+            if (!tutoriaScope || !studentSelect) return;
+
+            const isGroupScope = tutoriaScope.value === 'Grupal';
+            studentSelect.disabled = isGroupScope;
+            if (isGroupScope) studentSelect.value = '';
         }
 
         function refreshTutoriaView() {
@@ -555,40 +589,60 @@
         }
 
         function resetTutoriaForm(keepPromptVisible = false) {
-            el.tutoriaScope.value = 'Individual';
-            el.tutoriaType.value = 'Academica';
-            el.studentType.value = 'Regular';
-            el.tutoriaAction.value = 'Ninguno';
-            el.tutoriaObs.value = '';
-            el.tutoriaAcuerdos.value = '';
+            const tutoriaScope = document.getElementById('tutoria-scope');
+            const tutoriaType = document.getElementById('tutoria-type');
+            const studentType = document.getElementById('student-type');
+            const tutoriaAction = document.getElementById('tutoria-action');
+            const tutoriaObs = document.getElementById('tutoria-obs');
+            const tutoriaAcuerdos = document.getElementById('tutoria-acuerdos');
+            const studentSelect = document.getElementById('student-select');
+            const promptText = document.getElementById('prompt-text');
+            const promptOutputCard = document.getElementById('prompt-output-card');
+
+            if (tutoriaScope) tutoriaScope.value = 'Individual';
+            if (tutoriaType) tutoriaType.value = 'Academica';
+            if (studentType) studentType.value = 'Regular';
+            if (tutoriaAction) tutoriaAction.value = 'Ninguno';
+            if (tutoriaObs) tutoriaObs.value = '';
+            if (tutoriaAcuerdos) tutoriaAcuerdos.value = '';
+            
             renderRubric();
             updateStudentSelect();
-            el.studentSelect.value = '';
+            if (studentSelect) studentSelect.value = '';
             syncStudentScopeState();
-            if (!keepPromptVisible) {
-                el.promptText.textContent = '';
-                el.promptOutputCard.classList.add('hidden');
+
+            if (!keepPromptVisible && promptText && promptOutputCard) {
+                promptText.textContent = '';
+                promptOutputCard.classList.add('hidden');
             }
         }
 
         function updateStudentSelect() {
-            const gId = el.groupSelect.value;
-            el.studentSelect.innerHTML = '<option value="">-- Seleccione Estudiante --</option>';
+            const groupSelect = document.getElementById('group-select');
+            const studentSelect = document.getElementById('student-select');
+            if (!groupSelect || !studentSelect) return;
+
+            const gId = groupSelect.value;
+            studentSelect.innerHTML = '<option value="">-- Seleccione Estudiante --</option>';
             const group = state.groups.find(g => g.id === gId);
             if (group) {
                 group.students.forEach(s => {
                     const opt = document.createElement('option');
                     opt.value = s.id;
                     opt.textContent = `${s.number}. ${s.name}`;
-                    el.studentSelect.appendChild(opt);
+                    studentSelect.appendChild(opt);
                 });
             }
         }
 
         function renderRubric() {
-            const type = el.tutoriaType.value;
+            const tutoriaType = document.getElementById('tutoria-type');
+            const rubricContainer = document.getElementById('rubric-container');
+            if (!tutoriaType || !rubricContainer) return;
+
+            const type = tutoriaType.value;
             const definitions = rubricsDefinition[type] || [];
-            el.rubricContainer.innerHTML = '';
+            rubricContainer.innerHTML = '';
 
             definitions.forEach(criteria => {
                 const div = document.createElement('div');
@@ -606,51 +660,67 @@
                     select.appendChild(o);
                 });
                 div.appendChild(select);
-                el.rubricContainer.appendChild(div);
+                rubricContainer.appendChild(div);
             });
         }
 
         function computeMetrics() {
+            const metricTotal = document.getElementById('metric-total');
+            const metricPctAcad = document.getElementById('metric-pct-acad');
+            const metricPctTut = document.getElementById('metric-pct-tut');
+            const metricSeguimiento = document.getElementById('metric-seguimiento');
+
+            if (!metricTotal) return;
+
             const total = state.sessions.length;
             if (total === 0) {
-                el.metricTotal.textContent = "0"; 
-                el.metricPctAcad.textContent = "0%";
-                el.metricPctTut.textContent = "0%"; 
-                el.metricSeguimiento.textContent = "0";
+                metricTotal.textContent = "0"; 
+                metricPctAcad.textContent = "0%";
+                metricPctTut.textContent = "0%"; 
+                metricSeguimiento.textContent = "0";
                 return;
             }
             const acad = state.sessions.filter(s => s.type === 'Academica').length;
             const tut = state.sessions.filter(s => s.type === 'Tutoria').length;
             const seg = state.sessions.filter(s => s.action === 'Seguimiento' || s.action === 'Canalizacion').length;
 
-            el.metricTotal.textContent = total;
-            el.metricPctAcad.textContent = `${Math.round((acad / total) * 100)}%`;
-            el.metricPctTut.textContent = `${Math.round((tut / total) * 100)}%`;
-            el.metricSeguimiento.textContent = seg;
+            metricTotal.textContent = total;
+            metricPctAcad.textContent = `${Math.round((acad / total) * 100)}%`;
+            metricPctTut.textContent = `${Math.round((tut / total) * 100)}%`;
+            metricSeguimiento.textContent = seg;
         }
 
         function saveSession() {
-            const gId = el.groupSelect.value;
+            const groupSelect = document.getElementById('group-select');
+            const tutoriaScope = document.getElementById('tutoria-scope');
+            const studentSelect = document.getElementById('student-select');
+            const tutoriaType = document.getElementById('tutoria-type');
+            const studentType = document.getElementById('student-type');
+            const tutoriaObs = document.getElementById('tutoria-obs');
+            const tutoriaAction = document.getElementById('tutoria-action');
+            const tutoriaAcuerdos = document.getElementById('tutoria-acuerdos');
+
+            const gId = groupSelect ? groupSelect.value : '';
             if (!gId) return alert('Seleccione un grupo docente activo.');
 
-            const scope = el.tutoriaScope.value;
+            const scope = tutoriaScope ? tutoriaScope.value : 'Individual';
             let studentId = '';
             let studentName = 'Todo el Grupo';
 
             if (scope === 'Individual') {
-                studentId = el.studentSelect.value;
-                if (!studentId) return alert('Por favor, elija al estudiante afectado.');
+                studentId = studentSelect ? studentSelect.value : '';
+                if (!studentId) return alert('Por favor, elija al estudiante.');
                 const g = state.groups.find(x => x.id === gId);
                 const s = g?.students.find(x => x.id === studentId);
                 if (s) studentName = s.name;
             }
 
-            const type = el.tutoriaType.value;
+            const type = tutoriaType ? tutoriaType.value : 'Academica';
             const rubricValues = {};
             let totalPoints = 0;
-            let maxPointsPossible = rubricsDefinition[type].length * 4;
+            let maxPointsPossible = (rubricsDefinition[type] || []).length * 4;
 
-            rubricsDefinition[type].forEach(c => {
+            (rubricsDefinition[type] || []).forEach(c => {
                 const component = document.getElementById(`rubric-crit-${c.id}`);
                 if (component) {
                     const parsed = JSON.parse(component.value);
@@ -659,11 +729,12 @@
                 }
             });
 
-            const acuerdosCompromisos = el.tutoriaAcuerdos.value.trim();
+            const acuerdosCompromisos = tutoriaAcuerdos ? tutoriaAcuerdos.value.trim() : '';
+            const actionVal = tutoriaAction ? tutoriaAction.value : 'Ninguno';
             const seguimientoAuto = acuerdosCompromisos
-                ? `Requiere plan de seguimiento interno. Detalles de acuerdos y compromisos: ${acuerdosCompromisos}`
-                : 'Requiere plan de seguimiento interno. Pendiente registrar acuerdos y compromisos.';
-            const seguimientoFinal = el.tutoriaAction.value === 'Seguimiento' ? seguimientoAuto : 'no';
+                ? `Requiere plan de seguimiento interno. Detalles: ${acuerdosCompromisos}`
+                : 'Requiere plan de seguimiento interno.';
+            const seguimientoFinal = actionVal === 'Seguimiento' ? seguimientoAuto : 'no';
 
             const session = {
                 id: uid(),
@@ -672,103 +743,47 @@
                 studentId, 
                 studentName, 
                 type,
-                studentType: el.studentType.value,
+                studentType: studentType ? studentType.value : 'Regular',
                 rubric: rubricValues,
                 scoreGained: totalPoints,
                 scoreMax: maxPointsPossible,
-                obs: el.tutoriaObs.value.trim(),
-                action: el.tutoriaAction.value,
+                obs: tutoriaObs ? tutoriaObs.value.trim() : '',
+                action: actionVal,
                 seguimiento: seguimientoFinal,
-                canalizacion: el.tutoriaAction.value === 'Canalizacion' ? 'si' : 'no',
+                canalizacion: actionVal === 'Canalizacion' ? 'si' : 'no',
                 acuerdosCompromisos,
                 timestamp: new Date().toLocaleString('es-MX')
             };
 
             state.sessions.push(session);
             saveState();
-            el.groupSelect.value = '';
             refreshTutoriaView();
             generatePrompt(session);
-
             resetTutoriaForm(true);
         }
 
         function generatePrompt(session) {
+            const promptText = document.getElementById('prompt-text');
+            const promptOutputCard = document.getElementById('prompt-output-card');
+            if (!promptText || !promptOutputCard) return;
+
             const group = state.groups.find(g => g.id === session.groupId);
-            let rubricStr = Object.entries(session.rubric).map(([k,v]) => `- ${k}: ${v}`).join('\n');
+            let rubricStr = Object.entries(session.rubric || {}).map(([k,v]) => `- ${k}: ${v}`).join('\n');
             
-            let template = `[SISTEMA DE TUTORÍA INTEGRAL - CECYTE 2026]
+            let template = `[SISTEMA DE TUTORÍA INTEGRAL - CECYTE]
 CONTEXTO OPERATIVO:
 - Beneficiario: ${session.studentName}
-- Grupo / Aula: ${group ? `${group.name} - ${group.semester}° "${group.shift}"` : 'N/A'}
-- Naturaleza: ${session.type === 'Academica' ? 'Asesoría Académica Especializada' : 'Sesión Evaluativa de Tutoría (Socioemocional)'}
+- Grupo: ${group ? `${group.name} - ${group.semester}° "${group.shift}"` : 'N/A'}
+- Naturaleza: ${session.type === 'Academica' ? 'Asesoría Académica Especializada' : 'Sesión Evaluativa de Tutoría'}
 
-RESULTADO GLOBAL DE LA RÚBRICA APLICADA:
-Puntaje Obtenido: ${session.scoreGained} de un máximo de ${session.scoreMax} puntos.
+RESULTADO DE RÚBRICA:
+Puntaje: ${session.scoreGained} de ${session.scoreMax} puntos.
 
-DESGLOSE CRÍTICO DE EVALUACIÓN:
+DESGLOSE:
 ${rubricStr}
 
-OBSERVACIONES DE CAMPO REGISTRADAS:
-"${session.obs || 'Sin observaciones descriptivas adicionales en bitácora.'}"
-
-TIPO DE ESTUDIANTE:
-${session.studentType || 'No especificado'}
-
-SEGUIMIENTO PROPUESTO:
-${session.seguimiento || 'Sin seguimiento adicional registrado.'}
-
-CANALIZACIÓN:
-${session.canalizacion || 'no'}
-
-ACUERDOS Y COMPROMISOS:
-${session.acuerdosCompromisos || 'Sin acuerdos y compromisos registrados.'}
-
-ACCIÓN INMEDIATA REQUERIDA:
-Estatus institucional: ${session.action === 'Canalizacion' ? 'SOLICITUD DE CANALIZACIÓN FORMAL A ORIENTACIÓN EDUCATIVA' : session.action === 'Seguimiento' ? 'INTEGRAR A PLAN INTERNO DE SEGUIMIENTO EN PLANTEL' : 'ALTA DE ATENCIÓN / PROCESO CONCLUIDO'}.
-
-PETICIÓN AL ASISTENTE DE IA:
-Analiza los fallos o debilidades descritos en la rúbrica anterior y genera una minuta oficial institucional para el expediente de este estudiante, que contenga: Estrategias didácticas sugeridas, recomendaciones socioeducativas precisas y compromisos esperados del alumno.`;
-
-            el.promptText.textContent = template;
-            el.promptOutputCard.classList.remove('hidden');
-        }
-
-        window.deleteSession = function(id) {
-            if(!confirm('¿Eliminar este registro del historial?')) return;
-            state.sessions = state.sessions.filter(s => s.id !== id);
-            saveState();
-            renderHistory();
-        }
-
-        // EXPORTAR ATENCIÓN INDIVIDUAL (TXT Formateado)
-        window.exportIndividualSession = function(id) {
-            const session = state.sessions.find(s => s.id === id);
-            if (!session) return alert('No se encontró el registro de la sesión.');
-            
-            const group = state.groups.find(g => g.id === session.groupId);
-            let rubricStr = Object.entries(session.rubric).map(([k,v]) => `${k}:\n  ${v}`).join('\n\n');
-
-            const content = `=======================================================
-            CECYTE - EXPEDIENTE DE ATENCIÓN INDIVIDUAL
-=======================================================
-Fecha de Registro:  ${session.timestamp}
-Tipo de Atención:   ${session.type === 'Academica' ? 'Asesoría Académica' : 'Sesión de Tutoría (Socioemocional/Conductual)'}
-Alcance:            ${session.scope}
-Estudiante/Grupo:   ${session.studentName}
--------------------------------------------------------
-DATOS DEL GRUPO:
-Carrera:            ${group ? group.name : 'N/A'}
-Semestre y Grupo:   ${group ? `${group.semester}° "${group.shift}"` : 'N/A'}
--------------------------------------------------------
-EVALUACIÓN DE DESEMPEÑO (RÚBRICA):
-Puntaje Obtenido:   ${session.scoreGained} / ${session.scoreMax} Puntos
-
-DETALLE DE CRITERIOS:
-${rubricStr}
--------------------------------------------------------
-OBSERVACIONES / EVIDENCIA DIAGNÓSTICA:
-${session.obs || 'Sin observaciones adicionales registradas.'}
+OBSERVACIONES REGISTRADAS:
+"${session.obs || 'Sin observaciones.'}"
 
 TIPO DE ESTUDIANTE:
 ${session.studentType || 'No especificado'}
@@ -780,219 +795,283 @@ CANALIZACIÓN:
 ${session.canalizacion || 'no'}
 
 ACUERDOS Y COMPROMISOS:
-${session.acuerdosCompromisos || 'Sin acuerdos y compromisos registrados.'}
+${session.acuerdosCompromisos || 'Sin acuerdos y compromisos.'}
 
-DETERMINACIÓN ESTATUS INSTITUCIONAL:
-Estatus Actual:     ${session.action.toUpperCase()}
+ESTATUS INSTITUCIONAL:
+${session.action === 'Canalizacion' ? 'CANALIZACIÓN A ORIENTACIÓN EDUCATIVA' : session.action === 'Seguimiento' ? 'INTEGRAR A PLAN DE SEGUIMIENTO' : 'PROCESO CONCLUIDO'}.`;
 
-=======================================================
-Firma del Docente / Tutor               Firma Alumno(a)
-`;
-
-            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `EXPEDIENTE_${session.studentName.replace(/\s+/g, '_')}_${session.timestamp.split(' ')[0]}.txt`;
-            link.click();
+            promptText.textContent = template;
+            promptOutputCard.classList.remove('hidden');
         }
 
-        // EXPORTAR REPORTE GENERAL DEL GRUPO (CSV compatible con Excel)
-        el.exportGeneralReportBtn.addEventListener('click', () => {
-            const gId = el.groupSelect.value;
-            if(!gId) return alert('Por favor, elija un grupo activo para exportar su reporte.');
+        window.deleteSession = function(id) {
+            if(!confirm('¿Eliminar este registro del historial?')) return;
+            state.sessions = state.sessions.filter(s => s.id !== id);
+            saveState();
+            renderHistory();
+        }
 
-            const group = state.groups.find(g => g.id === gId);
-            const filtered = state.sessions.filter(s => s.groupId === gId);
+        // --- DESCARGA INDIVIDUAL DE FICHA TXT (CORREGIDO) ---
+        window.exportIndividualSession = function(id) {
+            // Si el id viene vacío o no coincide, buscar por índice como respaldo
+            const session = state.sessions.find(s => s.id === id) || state.sessions.find(s => String(s.id) === String(id));
+            if (!session) {
+                return alert('No se encontró el registro seleccionado.');
+            }
+            
+            const group = state.groups.find(g => g.id === session.groupId);
+            let rubricStr = "";
+            if (session.rubric) {
+                rubricStr = Object.entries(session.rubric).map(([k,v]) => `${k}:\n  ${v}`).join('\n\n');
+            }
 
-            if(filtered.length === 0) return alert('No hay atenciones registradas para este grupo.');
+            const content = `=======================================================
+            CECYTE - EXPEDIENTE DE ATENCIÓN INDIVIDUAL
+=======================================================
+Fecha:              ${session.timestamp}
+Tipo de Atención:   ${session.type === 'Academica' ? 'Asesoría Académica' : 'Sesión de Tutoría'}
+Alcance:            ${session.scope}
+Estudiante:         ${session.studentName}
+-------------------------------------------------------
+DATOS DEL GRUPO:
+Carrera / Materia:  ${group ? group.name : 'N/A'}
+Semestre / Grupo:   ${group ? `${group.semester}° "${group.shift}"` : 'N/A'}
+-------------------------------------------------------
+EVALUACIÓN DE DESEMPEÑO:
+Puntaje Obtenido:   ${session.scoreGained || 0} / ${session.scoreMax || 0} Puntos
 
-            const csvEscape = (value) => {
-                const text = (value ?? '').toString().replace(/"/g, '""').replace(/\n/g, ' ');
-                return `"${text}"`;
-            };
+DETALLE DE CRITERIOS:
+${rubricStr || 'No se registraron detalles de rúbrica.'}
+-------------------------------------------------------
+OBSERVACIONES:
+${session.obs || 'Sin observaciones.'}
 
-            // Cabeceras del CSV
-            let csvContent = "\uFEFF"; // BOM para asegurar caracteres UTF-8 correctos en Excel
-            csvContent += "No.,Fecha,Nombre,Tipo de estudiante,Situación presentada,Seguimiento,Canalización,Acuerdos y compromisos\n";
+TIPO DE ESTUDIANTE:
+${session.studentType || 'No especificado'}
 
-            filtered.forEach((s, index) => {
-                const seguimiento = s.seguimiento || (s.action === 'Seguimiento' ? 'Sí (determinación inicial)' : '');
-                const canalizacion = (s.canalizacion || (s.action === 'Canalizacion' ? 'si' : 'no')).toLowerCase() === 'si' ? 'si' : 'no';
-                const row = [
-                    index + 1,
-                    csvEscape(s.timestamp),
-                    csvEscape(s.studentName),
-                    csvEscape(s.studentType || 'No especificado'),
-                    csvEscape(s.obs || ''),
-                    csvEscape(seguimiento),
-                    csvEscape(canalizacion),
-                    csvEscape(s.acuerdosCompromisos || '')
-                ].join(",");
-                
-                csvContent += row + "\n";
-            });
+SEGUIMIENTO:
+${session.seguimiento || 'Sin seguimiento.'}
 
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `REPORTE_GENERAL_${group.name.replace(/\s+/g, '_')}_${group.semester}_${group.shift}.csv`;
-            link.click();
-        });
+CANALIZACIÓN:
+${session.canalizacion || 'no'}
+
+ACUERDOS Y COMPROMISOS:
+${session.acuerdosCompromisos || 'Sin acuerdos/compromisos.'}
+
+ESTATUS INSTITUCIONAL:
+Estatus:            ${(session.action || 'CONCLUIDO').toUpperCase()}
+=======================================================`;
+
+            const safeName = (session.studentName || 'Alumno').replace(/[^a-zA-Z0-9]/g, '_');
+            triggerDownload(content, `FICHA_${safeName}.txt`, 'text/plain;charset=utf-8;');
+        };
 
         function renderHistory() {
-            const gId = el.groupSelect.value;
-            el.historyTableBody.innerHTML = '';
+            const groupSelect = document.getElementById('group-select');
+            const historyTableBody = document.getElementById('history-table-body');
+            if (!groupSelect || !historyTableBody) return;
+
+            const gId = groupSelect.value;
+            historyTableBody.innerHTML = '';
             const filtered = state.sessions.filter(s => s.groupId === gId);
 
             if(filtered.length === 0) {
-                el.historyTableBody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-slate-400">Ningún registro en el grupo actual.</td></tr>';
+                historyTableBody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-slate-400">Ningún registro en el grupo actual.</td></tr>';
                 return;
             }
 
-            filtered.reverse().forEach(s => {
+            filtered.slice().reverse().forEach(s => {
                 const tr = document.createElement('tr');
                 tr.className = "border-b border-slate-200 hover:bg-slate-50 transition-colors";
                 let badgeAction = s.action === 'Canalizacion' ? 'bg-red-100 text-red-700 font-extrabold' : s.action === 'Seguimiento' ? 'bg-orange-100 text-orange-700 font-bold' : 'bg-slate-100 text-slate-600';
                 
                 tr.innerHTML = `
-                    <td class="p-2 text-slate-500">${s.timestamp.split(' ')[0]}</td>
+                    <td class="p-2 text-slate-500">${(s.timestamp || '').split(' ')[0]}</td>
                     <td class="p-2 font-semibold">${s.studentName} <span class="text-[9px] block text-slate-400">${s.scope}</span></td>
                     <td class="p-2">${s.type === 'Academica' ? 'Académica' : 'Tutoría'}</td>
-                    <td class="p-2 text-center font-bold text-slate-700">${s.scoreGained} / ${s.scoreMax} pts</td>
+                    <td class="p-2 text-center font-bold text-slate-700">${s.scoreGained || 0} / ${s.scoreMax || 0} pts</td>
                     <td class="p-2"><span class="px-2 py-0.5 rounded text-[10px] ${badgeAction}">${s.action}</span></td>
                     <td class="p-2 text-center flex items-center justify-center gap-3">
-                        <button onclick="exportIndividualSession('${s.id}')" class="text-blue-600 hover:text-blue-900 transition-colors" title="Exportar Ficha Individual">
+                        <button type="button" onclick="window.exportIndividualSession('${s.id}')" class="text-blue-600 hover:text-blue-900 transition-colors p-1" title="Exportar Ficha Individual">
                             <i class="fa-solid fa-file-arrow-down text-base"></i>
                         </button>
-                        <button onclick="deleteSession('${s.id}')" class="text-red-600 hover:text-red-900 transition-colors" title="Eliminar Registro">
+                        <button type="button" onclick="window.deleteSession('${s.id}')" class="text-red-600 hover:text-red-900 transition-colors p-1" title="Eliminar Registro">
                             <i class="fa-solid fa-trash text-base"></i>
                         </button>
                     </td>
                 `;
-                el.historyTableBody.appendChild(tr);
+                historyTableBody.appendChild(tr);
             });
         }
 
-        // Gestión de respaldos
-        el.exportBackupBtn.addEventListener('click', () => {
-            if(state.groups.length === 0 && state.sessions.length === 0) return alert('No hay datos para respaldar.');
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
-            const dlAnchorElem = document.createElement('a');
-            dlAnchorElem.setAttribute("href", dataStr);
-            dlAnchorElem.setAttribute("download", `RESPALDO_TUTORIAS_${Date.now()}.json`);
-            dlAnchorElem.click();
-        });
-
-        el.importBackupBtn.addEventListener('click', () => el.backupFileInput.click());
-        el.backupFileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if(!file) return;
-            const reader = new FileReader();
-            reader.onload = (evt) => {
-                try {
-                    const parsed = JSON.parse(evt.target.result);
-                    state.groups = parsed.groups || [];
-                    state.sessions = parsed.sessions || [];
-                    saveState();
-                    refreshTutoriaView();
-                    alert('Copia de seguridad restaurada de forma exitosa.');
-                } catch(err) { 
-                    alert('Archivo JSON inválido.'); 
-                }
-            };
-            reader.readAsText(file);
-        });
-
-        // Alta de Grupos
-        el.saveGroupBtn.addEventListener('click', () => {
-            const name = el.groupName.value.trim();
-            const shift = el.groupShift.value.trim();
-            const semester = el.groupSemester.value.trim();
-            const students = parseStudents(el.studentsInput.value);
-
-            if(!name || !shift || students.length === 0) return alert('Complete los datos y alumnos.');
-
-            const g = { id: uid(), name, shift, semester, students };
-            state.groups.push(g);
-            saveState();
-            renderGroupOptions();
-            refreshTutoriaView();
-
-            el.groupName.value = ''; 
-            el.groupShift.value = ''; 
-            el.groupSemester.value = ''; 
-            el.studentsInput.value = '';
-        });
-
-        el.deleteGroupBtn.addEventListener('click', () => {
-            const id = el.groupSelect.value;
-            if(!id) return alert('Seleccione un grupo activo.');
-            if(!confirm('¿Eliminar grupo y todas sus bitácoras asociadas?')) return;
-            state.groups = state.groups.filter(g => g.id !== id);
-            state.sessions = state.sessions.filter(s => s.groupId !== id);
-            saveState();
-            refreshTutoriaView();
-        });
-
-        el.groupSelect.addEventListener('change', () => {
-            refreshTutoriaView();
-        });
-        
-        el.tutoriaType.addEventListener('change', renderRubric);
-        
-        el.tutoriaScope.addEventListener('change', (e) => {
-            syncStudentScopeState();
-        });
-        
-        el.saveSessionBtn.addEventListener('click', saveSession);
-        
-        el.copyPromptBtn.addEventListener('click', () => {
-            // Copiar al portapapeles
-            navigator.clipboard.writeText(el.promptText.textContent).then(() => {
-                alert('¡Prompt copiado con Éxito!');
-                resetTutoriaForm(false); 
-                window.location.reload();
-            }).catch(err => {
-                console.error('Error al copiar el prompt: ', err);
-            });
-        });
-
+        // --- INICIALIZACIÓN DE EVENTOS Y VISTAS ---
         document.addEventListener('DOMContentLoaded', () => {
+            loadState();
+
+            // Menu móvil
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileDropdown = document.getElementById('mobile-dropdown');
             const menuIcon = document.getElementById('menu-icon');
 
-            function toggleMenu() {
-                if (!mobileMenuBtn || !mobileDropdown || !menuIcon) return;
-
-                const isHidden = mobileDropdown.classList.contains('hidden');
-                mobileDropdown.classList.toggle('hidden', !isHidden);
-                menuIcon.classList.toggle('fa-bars', !isHidden);
-                menuIcon.classList.toggle('fa-xmark', isHidden);
-                mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
-            }
-
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    toggleMenu();
+            if (mobileMenuBtn && mobileDropdown && menuIcon) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    const isHidden = mobileDropdown.classList.contains('hidden');
+                    mobileDropdown.classList.toggle('hidden', !isHidden);
+                    menuIcon.classList.toggle('fa-bars', !isHidden);
+                    menuIcon.classList.toggle('fa-xmark', isHidden);
                 });
             }
 
-            window.toggleMenu = toggleMenu;
+            // Listener: Respaldar Datos JSON (CORREGIDO)
+            const exportBackupBtn = document.getElementById('backup-export-btn');
+            if (exportBackupBtn) {
+                exportBackupBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (state.groups.length === 0 && state.sessions.length === 0) {
+                        return alert('No hay ningún grupo ni registro guardado para respaldar.');
+                    }
+                    const dataStr = JSON.stringify(state, null, 2);
+                    const filename = `RESPALDO_TUTORIAS_${Date.now()}.json`;
+                    triggerDownload(dataStr, filename, 'application/json;charset=utf-8;');
+                });
+            }
 
-            document.addEventListener('click', (event) => {
-                if (!mobileMenuBtn || !mobileDropdown || !menuIcon) return;
-                const clickedInsideMenu = mobileMenuBtn.contains(event.target) || mobileDropdown.contains(event.target);
-                if (!clickedInsideMenu && !mobileDropdown.classList.contains('hidden')) {
-                    mobileDropdown.classList.add('hidden');
-                    menuIcon.classList.remove('fa-xmark');
-                    menuIcon.classList.add('fa-bars');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                }
-            });
+            // Listener: Restaurar copia JSON
+            const importBackupBtn = document.getElementById('backup-import-btn');
+            const backupFileInput = document.getElementById('backup-file-input');
+            if (importBackupBtn && backupFileInput) {
+                importBackupBtn.addEventListener('click', () => backupFileInput.click());
+                backupFileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if(!file) return;
+                    const reader = new FileReader();
+                    reader.onload = (evt) => {
+                        try {
+                            const parsed = JSON.parse(evt.target.result);
+                            state.groups = parsed.groups || [];
+                            state.sessions = (parsed.sessions || []).map(s => ({ ...s, id: s.id || uid() }));
+                            saveState();
+                            refreshTutoriaView();
+                            alert('¡Respaldo cargado correctamente!');
+                        } catch(err) { 
+                            alert('El archivo no es un respaldo válido.'); 
+                        }
+                    };
+                    reader.readAsText(file);
+                });
+            }
 
-            loadState();
+            // Listener: Exportar Reporte General CSV
+            const exportGeneralReportBtn = document.getElementById('export-general-report-btn');
+            if (exportGeneralReportBtn) {
+                exportGeneralReportBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const groupSelect = document.getElementById('group-select');
+                    const gId = groupSelect ? groupSelect.value : '';
+                    if(!gId) return alert('Por favor, elija un grupo activo para exportar su reporte.');
+
+                    const group = state.groups.find(g => g.id === gId);
+                    const filtered = state.sessions.filter(s => s.groupId === gId);
+
+                    if(filtered.length === 0) return alert('No hay atenciones registradas para este grupo.');
+
+                    let csvContent = "No.,Fecha,Nombre,Tipo de estudiante,Situacion presentada,Seguimiento,Canalizacion,Acuerdos y compromisos\n";
+
+                    filtered.forEach((s, index) => {
+                        const row = [
+                            index + 1,
+                            sanitizeForCSV(s.timestamp),
+                            sanitizeForCSV(s.studentName),
+                            sanitizeForCSV(s.studentType || 'No especificado'),
+                            sanitizeForCSV(s.obs || ''),
+                            sanitizeForCSV(s.seguimiento || ''),
+                            sanitizeForCSV(s.canalizacion || 'no'),
+                            sanitizeForCSV(s.acuerdosCompromisos || '')
+                        ].join(",");
+                        csvContent += row + "\n";
+                    });
+
+                    const safeGroupName = (group ? group.name : 'GRUPO').replace(/[^a-zA-Z0-9]/g, '_');
+                    triggerDownload(csvContent, `REPORTE_GENERAL_${safeGroupName}.csv`, 'text/csv;charset=utf-8;');
+                });
+            }
+
+            // Botón guardar sesión
+            const saveSessionBtn = document.getElementById('save-session-btn');
+            if (saveSessionBtn) {
+                saveSessionBtn.addEventListener('click', saveSession);
+            }
+
+            // Copiar prompt
+            const copyPromptBtn = document.getElementById('copy-prompt-btn');
+            if (copyPromptBtn) {
+                copyPromptBtn.addEventListener('click', () => {
+                    const promptText = document.getElementById('prompt-text');
+                    if (promptText) {
+                        navigator.clipboard.writeText(promptText.textContent).then(() => {
+                            alert('¡Prompt copiado con éxito!');
+                            const groupSelect = document.getElementById('group-select');
+                            if (groupSelect) groupSelect.value = '';
+                            resetTutoriaForm(false);
+                        });
+                    }
+                });
+            }
+
+            // Grupos
+            const saveGroupBtn = document.getElementById('save-group-btn');
+            if (saveGroupBtn) {
+                saveGroupBtn.addEventListener('click', () => {
+                    const groupName = document.getElementById('group-name');
+                    const groupShift = document.getElementById('group-shift');
+                    const groupSemester = document.getElementById('group-semester');
+                    const studentsInput = document.getElementById('students-input');
+
+                    const name = groupName ? groupName.value.trim() : '';
+                    const shift = groupShift ? groupShift.value.trim() : '';
+                    const semester = groupSemester ? groupSemester.value.trim() : '';
+                    const students = studentsInput ? parseStudents(studentsInput.value) : [];
+
+                    if(!name || !shift || students.length === 0) return alert('Ingrese el nombre del grupo y la lista de alumnos.');
+
+                    const g = { id: uid(), name, shift, semester, students };
+                    state.groups.push(g);
+                    saveState();
+                    
+                    if (groupName) groupName.value = '';
+                    if (groupShift) groupShift.value = '';
+                    if (groupSemester) groupSemester.value = '';
+                    if (studentsInput) studentsInput.value = '';
+
+                    refreshTutoriaView();
+                    alert('Grupo guardado con éxito.');
+                });
+            }
+
+            const deleteGroupBtn = document.getElementById('delete-group-btn');
+            if (deleteGroupBtn) {
+                deleteGroupBtn.addEventListener('click', () => {
+                    const groupSelect = document.getElementById('group-select');
+                    const id = groupSelect ? groupSelect.value : '';
+                    if(!id) return alert('Seleccione un grupo activo.');
+                    if(!confirm('¿Eliminar grupo y todas sus bitácoras?')) return;
+                    state.groups = state.groups.filter(g => g.id !== id);
+                    state.sessions = state.sessions.filter(s => s.groupId !== id);
+                    saveState();
+                    refreshTutoriaView();
+                });
+            }
+
+            // Eventos de selección
+            const groupSelect = document.getElementById('group-select');
+            if (groupSelect) groupSelect.addEventListener('change', refreshTutoriaView);
+
+            const tutoriaType = document.getElementById('tutoria-type');
+            if (tutoriaType) tutoriaType.addEventListener('change', renderRubric);
+
+            const tutoriaScope = document.getElementById('tutoria-scope');
+            if (tutoriaScope) tutoriaScope.addEventListener('change', syncStudentScopeState);
+
             refreshTutoriaView();
             renderRubric();
         });

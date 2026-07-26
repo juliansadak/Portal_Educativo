@@ -12,6 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
+    <!-- SCRIPTS DE CAPACITOR Y FILESYSTEM PARA ANDROID -->
+    <script src="https://cdn.jsdelivr.net/npm/@capacitor/core/dist/capacitor.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@capacitor/filesystem/dist/plugin.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -72,7 +76,7 @@
                         <i class="fa-solid fa-house"></i> Inicio
                     </a>
                     <div class="relative group">
-                        <button type="button" class="text-slate-600 uppercase hover:text-cecyte-guindahover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <button type="button" class="text-slate-600 uppercase hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
                             <i class="fa-solid fa-chalkboard-user"></i> Evaluación y Práctica
                             <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
                         </button>
@@ -333,9 +337,33 @@
         </div>
     </footer>
 
-<script>
+    <script>
         let config = { indicatorsCount: 5 };
         let evaluationState = { selections: {}, maxScore: 0 };
+
+        // --- FUNCIÓN NATIVA PARA GUARDAR ARCHIVOS CON CAPACITOR ---
+        async function saveNativeFile(fileName, base64Data) {
+            try {
+                let Filesystem;
+                if (typeof capacitorExports !== 'undefined') {
+                    Filesystem = capacitorExports.Filesystem;
+                } else if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Filesystem) {
+                    Filesystem = window.Capacitor.Plugins.Filesystem;
+                } else {
+                    throw new Error("Plugin Filesystem no encontrado.");
+                }
+
+                await Filesystem.writeFile({
+                    path: fileName,
+                    data: base64Data,
+                    directory: 'DOCUMENTS'
+                });
+                alert(`¡Éxito! Archivo guardado en la carpeta 'Documentos':\n${fileName}`);
+            } catch (error) {
+                console.error('Error guardando archivo nativo:', error);
+                alert('Error al guardar el archivo: ' + error.message);
+            }
+        }
 
         // --- FUNCIONES PARA EL MENÚ DE HAMBURGUESA ---
         document.addEventListener("DOMContentLoaded", () => {
@@ -360,18 +388,14 @@
                 if (isHidden) {
                     dropdown.classList.remove('hidden');
                     button.setAttribute('aria-expanded', 'true');
-                    // Cambia el icono a una "X" cuando está abierto
                     icon.className = "fa-solid fa-xmark text-xl"; 
                 } else {
                     dropdown.classList.add('hidden');
                     button.setAttribute('aria-expanded', 'false');
-                    // Vuelve al icono de barras cuando se cierra
                     icon.className = "fa-solid fa-bars text-xl";
                 }
             }
         }
-        // ----------------------------------------------
-
 
         // BANCO DE PLANTILLAS POR DEFECTO
         const defaultTemplates = {
@@ -412,7 +436,6 @@
                 weights: [2, 2, 2, 2, 2]
             }
         };
-
 
         function changeDimensions(delta) {
             config.indicatorsCount = Math.max(1, Math.min(20, config.indicatorsCount + delta));
@@ -543,7 +566,7 @@
             }
 
             const key = val.replace('user_', '');
-            if (confirm(`Â¿Eliminar la escala personalizada "${key}"?`)) {
+            if (confirm(`¿Eliminar la escala personalizada "${key}"?`)) {
                 let userLists = JSON.parse(localStorage.getItem('cecyte_user_estimative_scales') || '{}');
                 delete userLists[key];
                 localStorage.setItem('cecyte_user_estimative_scales', JSON.stringify(userLists));
@@ -577,11 +600,10 @@
             </tr></thead><tbody>`;
 
             for (let i = 1; i <= config.indicatorsCount; i++) {
-                const indText = document.getElementById(`ind-text-${i}`).value.trim() || `Criterio de Medición NÂ° ${i}`;
+                const indText = document.getElementById(`ind-text-${i}`).value.trim() || `Criterio de Medición N° ${i}`;
                 const indVal = parseFloat(document.getElementById(`ind-val-${i}`).value) || 0;
                 totalMax += indVal;
 
-                // Cálculo gradual de sub-puntajes proporcionales fijos por columna de nivel
                 let pExc = indVal;
                 let pMB = Math.round((indVal * 0.8) * 100) / 100;
                 let pReg = Math.round((indVal * 0.6) * 100) / 100;
@@ -610,12 +632,10 @@
             const row = cellElement.parentElement;
             const cells = row.querySelectorAll('td');
             
-            // Limpiar clases de celdas de niveles (columnas index 2 a 5)
             for(let i = 2; i <= 5; i++) {
                 cells[i].className = "p-2 text-center font-semibold text-xs cursor-pointer border border-slate-200 text-slate-400 select-none";
             }
 
-            // Resaltar de forma diferenciada según el rango cualitativo seleccionado
             if (levelName === 'Excelente') cellElement.className = "p-2 text-center border-2 border-emerald-600 bg-emerald-100 text-emerald-900 font-bold text-xs select-none shadow-sm font-mono";
             if (levelName === 'Muy Bueno') cellElement.className = "p-2 text-center border-2 border-blue-600 bg-blue-100 text-blue-900 font-bold text-xs select-none shadow-sm font-mono";
             if (levelName === 'Regular') cellElement.className = "p-2 text-center border-2 border-amber-600 bg-amber-100 text-amber-900 font-bold text-xs select-none shadow-sm font-mono";
@@ -636,7 +656,6 @@
                 }
             }
 
-            // Forzar redondeo limpio a 2 decimales para el acumulador interactivo
             currentTotal = Math.round(currentTotal * 100) / 100;
 
             document.getElementById('score-display').innerText = `${currentTotal} / ${evaluationState.maxScore}`;
@@ -689,25 +708,27 @@
             const feedbackText = document.getElementById('teacher-comments').value.trim();
 
             let txt = `REPORTE DE ESCALA ESTIMATIVA DIGITAL\n\n` +
-                      `â€¢ Instrumento: ${document.getElementById('view-title').innerText}\n` +
-                      `â€¢ Nombre del Estudiante: ${student}\n` +
-                      `â€¢ Docente Evaluador: ${prof}\n` +
-                      `â€¢ Puntaje Logrado: ${score} (${percentage})\n` +
-                      `â€¢ Dictamen Formativo: ${diagnosis}`;
-            if (feedbackText) txt += `\nâ€¢ Recomendaciones específicas: ${feedbackText}`;
+                      `• Instrumento: ${document.getElementById('view-title').innerText}\n` +
+                      `• Nombre del Estudiante: ${student}\n` +
+                      `• Docente Evaluador: ${prof}\n` +
+                      `• Puntaje Logrado: ${score} (${percentage})\n` +
+                      `• Dictamen Formativo: ${diagnosis}`;
+            if (feedbackText) txt += `\n• Recomendaciones específicas: ${feedbackText}`;
 
             navigator.clipboard.writeText(txt).then(() => {
-                alert("Â¡Resultados y ponderaciones de la escala copiados al portapapeles!");
+                alert("¡Resultados y ponderaciones de la escala copiados al portapapeles!");
             });
         }
 
+        // --- EXPORTAR A PDF COMPATIBLE CON CAPACITOR / ANDROID Y PC ---
         function exportToPDF() {
             const area = document.getElementById('evaluation-section');
-            const studentName = document.getElementById('student-name').value.trim().replace(/\s+/g, '_') || 'Escala_Estimativa';
-            
+            const name = document.getElementById('student-name').value.trim().replace(/\s+/g, '_') || 'Escala_Estimativa';
+            const fileName = `Escala_Estimativa_${name}.pdf`;
+
             const opt = {
                 margin: [0.2, 0.2, 0.2, 0.2],
-                filename: `Escala_Estimativa_${studentName}.pdf`,
+                filename: fileName,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
                     scale: 2,
@@ -718,10 +739,25 @@
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait', compress: true },
                 pagebreak: { mode: ['avoid-all', 'css'] }
             };
-            html2pdf().set(opt).from(area).save();
+
+            // Detectar si se está ejecutando dentro del APK con Capacitor
+            if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+                html2pdf().set(opt).from(area).toPdf().output('datauristring').then(async function(pdfBase64) {
+                    // Extraer solo la cadena Base64 pura
+                    const base64Data = pdfBase64.split(',')[1];
+                    await saveNativeFile(fileName, base64Data);
+                }).catch(err => {
+                    console.error('Error al generar PDF nativo:', err);
+                    alert('Ocurrió un error generando el PDF: ' + err.message);
+                });
+            } else {
+                // Modo estándar de escritorio / navegador web
+                html2pdf().set(opt).from(area).save();
+            }
         }
 
-        function exportToHTML() {
+        // --- EXPORTAR A HTML COMPATIBLE CON CAPACITOR / ANDROID Y PC ---
+        async function exportToHTML() {
             document.querySelectorAll('input, textarea').forEach(el => {
                 el.setAttribute('value', el.value);
                 if (el.tagName === 'TEXTAREA') el.innerHTML = el.value;
@@ -742,6 +778,7 @@
             scriptInyectado.textContent = `
                 config = ${JSON.stringify(config)};
                 evaluationState = ${JSON.stringify(evaluationState)};
+                ${saveNativeFile.toString()}
                 ${generateIndicatorsForm.toString()}
                 ${compileAndBuildChecklist.toString()}
                 ${selectEstimativeCell.toString()}
@@ -752,10 +789,21 @@
             `;
             body.appendChild(scriptInyectado);
 
-            const blob = new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: 'text/html;charset=utf-8' });
+            const htmlContent = "<!DOCTYPE html>\n" + clone.outerHTML;
+            const fileName = "Escala_Estimativa_Compilada_Offline.html";
+
+            // Si corre en Android con Capacitor
+            if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+                const base64Data = btoa(unescape(encodeURIComponent(htmlContent)));
+                await saveNativeFile(fileName, base64Data);
+                return;
+            }
+
+            // Si corre en navegador web estándar
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.download = "Escala_Estimativa_Compilada_Offline.html";
+            a.download = fileName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -763,4 +811,3 @@
     </script>
 </body>
 </html>
-

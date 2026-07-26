@@ -12,6 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
+    <!-- SCRIPTS DE CAPACITOR Y FILESYSTEM PARA ANDROID -->
+    <script src="https://cdn.jsdelivr.net/npm/@capacitor/core/dist/capacitor.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@capacitor/filesystem/dist/plugin.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -72,7 +76,7 @@
                         <i class="fa-solid fa-house"></i> Inicio
                     </a>
                     <div class="relative group">
-                        <button type="button" class="text-slate-600 uppercase hover:text-cecyte-guindahover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
+                        <button type="button" class="text-slate-600 uppercase hover:text-cecyte-guinda hover:bg-slate-50 px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-2">
                             <i class="fa-solid fa-chalkboard-user"></i> Evaluación y Práctica
                             <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
                         </button>
@@ -191,7 +195,7 @@
                         <option value="proyecto">Reporte de Proyecto / Práctica de Laboratorio</option>
                     </optgroup>
                     <optgroup label="Mis Plantillas Guardadas" id="user-templates-group">
-                        </optgroup>
+                    </optgroup>
                 </select>
             </div>
             <div class="flex items-end gap-2">
@@ -350,7 +354,31 @@
         let config = { levelsCount: 4, criteriaCount: 5 };
         let evaluationState = { selectedScores: {}, maxPossibleScore: 0 };
 
-        // PLANTILLAS DE FÃBRICA
+        // FUNCIÓN NATIVA PARA GUARDAR ARCHIVOS CON CAPACITOR
+        async function saveNativeFile(fileName, base64Data) {
+            try {
+                let Filesystem;
+                if (typeof capacitorExports !== 'undefined') {
+                    Filesystem = capacitorExports.Filesystem;
+                } else if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Filesystem) {
+                    Filesystem = window.Capacitor.Plugins.Filesystem;
+                } else {
+                    throw new Error("Plugin Filesystem no encontrado.");
+                }
+
+                await Filesystem.writeFile({
+                    path: fileName,
+                    data: base64Data,
+                    directory: 'DOCUMENTS'
+                });
+                alert(`¡Éxito! Archivo guardado en la carpeta 'Documentos':\n${fileName}`);
+            } catch (error) {
+                console.error('Error guardando archivo nativo:', error);
+                alert('Error al guardar el archivo: ' + error.message);
+            }
+        }
+
+        // PLANTILLAS DE FÁBRICA
         const academicTemplates = {
             exposicion: {
                 title: "Evaluación de Exposición Oral", subtitle: "Presentación de Temas Académicos",
@@ -544,9 +572,9 @@
             userTemplates[title] = customTemplate;
             localStorage.setItem('cecyte_user_rubrics', JSON.stringify(userTemplates));
 
-            alert(`Â¡Plantilla "${title}" guardada con éxito en este navegador!`);
+            alert(`¡Plantilla "${title}" guardada con éxito en este navegador!`);
             refreshUserTemplatesSelect();
-            document.getElementById('select-template').value = title;
+            document.getElementById('select-template').value = `user_${title}`;
         }
 
         function refreshUserTemplatesSelect() {
@@ -612,7 +640,7 @@
             }
 
             const key = val.replace('user_', '');
-            if (confirm(`Â¿Estás seguro de que deseas eliminar permanentemente la plantilla "${key}"?`)) {
+            if (confirm(`¿Estás seguro de que deseas eliminar permanentemente la plantilla "${key}"?`)) {
                 let userTemplates = JSON.parse(localStorage.getItem('cecyte_user_rubrics') || '{}');
                 delete userTemplates[key];
                 localStorage.setItem('cecyte_user_rubrics', JSON.stringify(userTemplates));
@@ -727,7 +755,7 @@
                     comment = "Desempeño adecuado. Logra cubrir satisfactoriamente los objetivos planteados. Detalles mínimos a mejorar.";
                 } else {
                     badge = "NIVEL INICIAL / REQUIERE APOYO"; colorClass = "border-red-500 bg-red-50 text-red-800";
-                    comment = "Es necesario para estructurar un plan preventivo o de regularización inmediata debido a importantes áreas de oportunidad.";
+                    comment = "Es necesario estructurar un plan preventivo o de regularización inmediata debido a importantes áreas de oportunidad.";
                 }
 
                 feedbackBox.className = `p-5 rounded-lg border-l-4 text-sm ${colorClass}`;
@@ -747,20 +775,20 @@
             const comentariosDocente = document.getElementById('teacher-comments').value.trim();
 
             let textoFormateado = `RESULTADO DE EVALUACIÓN ACADÉMICA\n\n` +
-                                    `â€¢ Actividad: ${actividad}\n` +
-                                    `â€¢ Evaluado: ${evaluado}\n` +
-                                    `â€¢ Evaluador: ${evaluador}\n` +
-                                    `â€¢ Grupo/Semestre: ${grupo}\n` +
-                                    `â€¢ Calificación: ${puntaje} Pts.\n` +
-                                    `â€¢ Dictamen: ${dictamenText}`;
+                                    `• Actividad: ${actividad}\n` +
+                                    `• Evaluado: ${evaluado}\n` +
+                                    `• Evaluador: ${evaluador}\n` +
+                                    `• Grupo/Semestre: ${grupo}\n` +
+                                    `• Calificación: ${puntaje} Pts.\n` +
+                                    `• Dictamen: ${dictamenText}`;
                                     
             // Si el docente escribió comentarios, se agregan al final del string
             if(comentariosDocente) {
-                textoFormateado += `\nâ€¢ Comentarios Adicionales: ${comentariosDocente}`;
+                textoFormateado += `\n• Comentarios Adicionales: ${comentariosDocente}`;
             }
 
             navigator.clipboard.writeText(textoFormateado).then(() => {
-                alert("Â¡Resumen copiado con éxito! Ya puedes pegarlo directamente en Classroom, Teams o tu archivo de Excel.");
+                alert("¡Resumen copiado con éxito! Ya puedes pegarlo directamente en Classroom, Teams o tu archivo de Excel.");
             }).catch(err => alert("Error al copiar."));
         }
 
@@ -777,9 +805,12 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
+        // EXPORTAR A PDF COMPATIBLE CON CAPACITOR / ANDROID Y PC
         function exportToPDF() {
             const rubricaContainer = document.getElementById('evaluation-section');
             const studentName = document.getElementById('student-name').value.trim().replace(/\s+/g, '_') || 'Evaluacion_Alumno';
+            const fileName = `${studentName}_Rubrica.pdf`;
+
             const originalClassName = rubricaContainer.className;
             const originalStyle = rubricaContainer.getAttribute('style') || '';
 
@@ -792,7 +823,7 @@
 
             const configuracionPdf = {
                 margin: [0.2, 0.2, 0.2, 0.2],
-                filename: `${studentName}_Rubrica.pdf`,
+                filename: fileName,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
                     scale: 2,
@@ -811,10 +842,25 @@
                 else rubricaContainer.removeAttribute('style');
             };
 
-            html2pdf().set(configuracionPdf).from(rubricaContainer).save().then(restoreView).catch(restoreView);
+            // Detectar si se está ejecutando dentro del APK con Capacitor
+            if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+                html2pdf().set(configuracionPdf).from(rubricaContainer).toPdf().output('datauristring').then(async function(pdfBase64) {
+                    restoreView();
+                    const base64Data = pdfBase64.split(',')[1];
+                    await saveNativeFile(fileName, base64Data);
+                }).catch(err => {
+                    restoreView();
+                    console.error('Error al generar PDF nativo:', err);
+                    alert('Ocurrió un error generando el PDF: ' + err.message);
+                });
+            } else {
+                // Modo estándar de escritorio / navegador web
+                html2pdf().set(configuracionPdf).from(rubricaContainer).save().then(restoreView).catch(restoreView);
+            }
         }
 
-        function exportToHTML() {
+        // EXPORTAR A HTML COMPATIBLE CON CAPACITOR / ANDROID Y PC
+        async function exportToHTML() {
             document.querySelectorAll('input, textarea').forEach(el => {
                 el.setAttribute('value', el.value);
                 if (el.tagName === 'TEXTAREA') el.innerHTML = el.value;
@@ -837,6 +883,7 @@
                 window.loadedOfflineState = true;
                 config = ${JSON.stringify(config)};
                 evaluationState = ${JSON.stringify(evaluationState)};
+                ${saveNativeFile.toString()}
                 ${generateMatrixForm.toString()}
                 ${compileAndBuildRubric.toString()}
                 ${selectInteractiveCell.toString()}
@@ -849,13 +896,23 @@
             bodyContainer.appendChild(bootstrapScript);
 
             const standaloneDocument = "<!DOCTYPE html>\n" + clonedDocument.outerHTML;
+            const rubricTitle = document.getElementById('input-title').value.trim().replace(/\s+/g, '_') || 'Matriz';
+            const fileName = "Plataforma_Rubricas_" + rubricTitle + "_Offline.html";
+
+            // Si corre en Android con Capacitor
+            if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+                const base64Data = btoa(unescape(encodeURIComponent(standaloneDocument)));
+                await saveNativeFile(fileName, base64Data);
+                return;
+            }
+
+            // Si corre en navegador web estándar
             const fileBlob = new Blob([standaloneDocument], { type: 'text/html;charset=utf-8' });
             const downloaderAnchor = document.createElement('a');
             const blobUrl = URL.createObjectURL(fileBlob);
             
             downloaderAnchor.href = blobUrl;
-            const rubricTitle = document.getElementById('input-title').value.trim().replace(/\s+/g, '_') || 'Matriz';
-            downloaderAnchor.download = "Plataforma_Rubricas_" + rubricTitle + "_Offline.html";
+            downloaderAnchor.download = fileName;
             
             document.body.appendChild(downloaderAnchor);
             downloaderAnchor.click();
@@ -865,4 +922,3 @@
     </script>
 </body>
 </html>
-
